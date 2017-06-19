@@ -1,8 +1,6 @@
 <template>
   <div class="header-wrap">
-      <h1 class="header-logo">
-          <img class="header-logo-img" src="../assets/img/owulia-text.png" alt="">
-      </h1>
+      <a href="#/" class="header-logo"><img class="header-logo-img" src="../assets/img/logo.png" alt="">UMI金融管理平台</a>
       <div class="user-info">
           <el-dropdown>
               <span class="el-dropdown-link user-name">
@@ -30,7 +28,7 @@
         },
         methods: {
             achieveUser () {
-                this.user_name = Tool.dataToSessionStorageOperate.achieve('user').user_name;
+//                this.user_name = Tool.dataToSessionStorageOperate.achieve('user').user_name;
             },
             safeExit () {
                 this.$confirm('是否安全退出?', '提示', {
@@ -51,18 +49,19 @@
         transform: rotate(90deg);
     }
     .header-wrap{
-        height: 60px;
-        background-color: #1F2D3D;
+        height: 50px;
+        background-color: #25313e;
     }
     .header-logo{
         @extend %fl;
-        width: 80px;
-        height: 50px;
-        margin: 5px 0 0 30px;
+        @extend %f18;
+        @extend %cfff;
+        padding: 12px 0 0 10px;
     }
     .header-logo-img{
-        @extend %db;
-        @extend %h100;
+        @extend %dib;
+        margin-right: 10px;
+        height: 25px;
     }
     .user-info{
         @extend %pa;
@@ -72,8 +71,8 @@
     }
     .user-img{
         @extend %vam;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         margin-right: 5px;
         border-radius: 50%;
     }

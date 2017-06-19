@@ -3,9 +3,7 @@
     <div class="views-wrap">
         <my-header></my-header>
         <my-menu></my-menu>
-        <div class="container-wrap">
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
     </div>
     <!--/首页-->
 </template>
@@ -25,16 +23,13 @@
     .index-view{
         @extend %pr;
     }
-    .menu-wrap{
-        @extend %h100;
-        width: 200px;
-    }
     .container-wrap{
         @extend %pa;
         @extend %oh;
-        top: 60px;
-        left: 200px;
-        right: 0;
-        bottom: 0;
+        @extend %r0;
+        @extend %b0;
+        padding: 0 30px;
+        top: 50px;
+        left: 250px;
     }
 </style>

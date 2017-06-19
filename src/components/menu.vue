@@ -1,16 +1,60 @@
 <template>
     <div class="menu-wrap">
-        <el-menu :default-active="tabIndex" class="el-menu-vertical-demo">
-            <el-submenu index="1">
-                <template slot="title"><i class="el-icon-document"></i>全部文章</template>
-                <el-menu-item-group v-loading="labelLoading">
-                    <el-menu-item index="all"><a href="#/?tab=all">ALL FILES</a></el-menu-item>
-                    <el-menu-item v-for="(label_item,label_index) in labelArr" :index="label_item.label"><a :href="'#/?tab='+ label_item.label" v-text="label_item.label.toUpperCase()"></a></el-menu-item>
+        <el-menu theme="dark" router unique-opened :default-active="tabIndex" class="el-menu-vertical-demo">
+            <el-submenu index="/permission">
+                <template slot="title"><i class="el-icon-message"></i>权限管理</template>
+                <el-menu-item-group>
+                    <el-menu-item index="/permission/role">角色管理</el-menu-item>
+                    <el-menu-item index="/permission/resource">资源管理</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
-            <el-menu-item index="2"><i class="el-icon-edit"></i><a href="#/editor">发表文章</a></el-menu-item>
-            <el-menu-item index="3"><i class="el-icon-star-off"></i><a href="#/label">标签管理</a></el-menu-item>
-            <el-menu-item index="4"><i class="el-icon-plus"></i><a href="#/user">用户管理</a></el-menu-item>
+            <el-submenu index="2">
+                <template slot="title"><i class="el-icon-message"></i>入驻机构管理</template>
+                <el-menu-item-group>
+                    <el-menu-item index="2-1">入驻代理机构列表</el-menu-item>
+                    <el-menu-item index="2-2">机构管理员列表</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="3">
+                <template slot="title"><i class="el-icon-message"></i>产品机构管理</template>
+                <el-menu-item-group>
+                    <el-menu-item index="3-1">产品机构列表</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="4">
+                <template slot="title"><i class="el-icon-message"></i>消息设置</template>
+                <el-menu-item-group>
+                    <el-menu-item index="4-1">跑马灯设置</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="5">
+                <template slot="title"><i class="el-icon-message"></i>版本管理</template>
+                <el-menu-item-group>
+                    <el-menu-item index="5-1">版本记录</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-menu-item index="6"><i class="el-icon-message"></i>会员列表</el-menu-item>
+            <el-submenu index="7">
+                <template slot="title"><i class="el-icon-message"></i>产品管理</template>
+                <el-menu-item-group>
+                    <el-menu-item index="6-1">快贷产品管理</el-menu-item>
+                    <el-menu-item index="6-2">信用卡产品管理</el-menu-item>
+                    <el-menu-item index="6-3">信贷产品管理</el-menu-item>
+                    <el-menu-item index="6-4">产品类型管理</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="8">
+                <template slot="title"><i class="el-icon-message"></i>订单管理</template>
+                <el-menu-item-group>
+                    <el-menu-item index="7-1">申卡订单</el-menu-item>
+                    <el-menu-item index="7-2">快贷订单</el-menu-item>
+                    <el-menu-item index="7-3">便民订单</el-menu-item>
+                    <el-submenu index="7-4">
+                        <template slot="title">信贷订单</template>
+                        <el-menu-item index="7-4-1">赎楼贷订单</el-menu-item>
+                    </el-submenu>
+                </el-menu-item-group>
+            </el-submenu>
         </el-menu>
     </div>
 </template>
@@ -19,7 +63,7 @@
         name: 'menu',
         data () {
             return {
-                is_loading: true
+                is_loading: false
             }
         },
         computed: {
@@ -34,7 +78,7 @@
             }
         },
         created () {
-            this.$store.dispatch('fetchLabel');
+//            this.$store.dispatch('fetchLabel');
         }
     }
 </script>
@@ -43,20 +87,19 @@
     .menu-wrap{
         @extend %pa;
         @extend %bsb;
-        top: 60px;
-        left: 0;
-        width: 200px;
-        bottom: 0;
-        background-color: #EFF2F7;
-        border-right: 1px solid #ddd;
+        @extend %l0;
+        @extend %b0;
+        @extend %oya;
+        top: 50px;
+        width: 250px;
+        background: #41586e;
         .el-menu-item-group{
             padding-bottom: 20px;
         }
-        .el-menu-item-group{
-            .el-menu-item{
-                height: 40px;
-                line-height: 40px;
-            }
+        .el-menu-item,
+        .el-submenu__title{
+            height: 45px;
+            line-height: 45px;
         }
     }
     .el-menu-item{
@@ -71,6 +114,34 @@
             right: 0;
             padding: 0 45px;
             color: inherit;
+        }
+    }
+
+    .el-submenu__icon-arrow{
+        @include tfr(90deg)
+    }
+    .el-submenu.is-opened>.el-submenu__title i.el-submenu__icon-arrow {
+        @include tfr(0deg)
+    }
+    .el-submenu{
+        .el-menu{
+            .el-submenu__title{
+                padding-left: 44px !important;
+                text-indent: 1em;
+                .el-submenu__icon-arrow{
+                    text-indent: 0;
+                }
+            }
+            .el-menu{
+                .el-menu-item{
+                    padding-left: 44px !important;
+                    text-indent: 2em;
+                }
+            }
+        }
+        .el-menu-item{
+            padding-left: 44px !important;
+            text-indent: 1em;
         }
     }
 </style>
