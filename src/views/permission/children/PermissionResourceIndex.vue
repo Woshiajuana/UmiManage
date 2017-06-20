@@ -1,12 +1,9 @@
 <template>
     <div class="container-wrap">
         <div class="container-inner">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/permission' }"><i class="el-icon-message"></i> 权限管理</el-breadcrumb-item>
-                <el-breadcrumb-item>角色管理</el-breadcrumb-item>
-            </el-breadcrumb>
+            <crumb></crumb>
             <div class="operate-wrap el-col el-col-24">
-                <el-button type="primary"><i class="el-icon-upload el-icon--left"></i>新增数据</el-button>
+                <a href="#/permission/resource/add" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增数据</a>
             </div>
             <el-table
                 ref="multipleTable"
@@ -37,13 +34,8 @@
                     width="180"
                     label="操作">
                     <template scope="scope">
-                        <el-button
-                            size="small"
-                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button
-                            size="small"
-                            type="danger"
-                            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                        <a href="#/permission/resource/edit/woshiajuana" class="el-button el-button--small">编辑</a>
+                        <a href="javascript:;" class="el-button el-button--danger el-button--small">删除</a>
                     </template>
                 </el-table-column>
             </el-table>
@@ -63,6 +55,7 @@
 </template>
 <script>
     import types from '../../../store/mutation-types'
+    import Crumb from '../../../components/crumb.vue'
     export default {
         name: 'permission-resource-index',
         data() {
@@ -179,7 +172,6 @@
                 multipleSelection: []
             }
         },
-
         methods: {
             handleSelectionChange(val) {
                 this.multipleSelection = val;
@@ -196,6 +188,9 @@
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
             }
+        },
+        components: {
+            Crumb
         }
     }
 </script>
