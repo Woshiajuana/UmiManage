@@ -5,7 +5,7 @@
             <div class="operate-wrap el-col el-col-24">
                 <h2 class="session-title">管理员列表</h2>
                 <a href="#/permission/role/details/woshiajuana/resource" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>删除资源</a>
-                <a href="#/permission/role/details/woshiajuana/resource" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增资源</a>
+                <a href="#/permission/admin/add" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增资源</a>
             </div>
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
                 <el-form-item label="用户名">
@@ -63,8 +63,8 @@
                     width="180"
                     label="操作">
                     <template scope="scope">
-                        <a href="#/permission/role/edit/woshiajuana" class="el-button el-button--small">编辑</a>
-                        <a href="#/permission/role/details/woshiajuana" class="el-button el-button--info el-button--small">详情</a>
+                        <a href="#/permission/admin/edit/woshiajuana" class="el-button el-button--small">编辑</a>
+                        <a href="javascript:;" class="el-button el-button--danger el-button--small">删除</a>
                     </template>
                 </el-table-column>
             </el-table>
@@ -91,7 +91,9 @@
             return {
                 formInline: {
                     user: '',
-                    region: ''
+                    region: '',
+                    date1: '',
+                    date2: ''
                 },
                 currentPage1: 5,
                 currentPage2: 5,
@@ -220,6 +222,9 @@
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
+            },
+            onSubmit() {
+                console.log('submit!');
             }
         },
         components: {

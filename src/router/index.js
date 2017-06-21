@@ -15,7 +15,8 @@ import PermissionRoleDetails from '../views/permission/children/PermissionRoleDe
 import PermissionResourceIndex from '../views/permission/children/PermissionResourceIndex.vue'
 import PermissionResourceAddOrEdit from '../views/permission/children/PermissionResourceAddOrEdit.vue'
 import PermissionAdminIndex from '../views/permission/children/PermissionAdminIndex.vue'
-
+import PermissionAdminAddOrEdit from '../views/permission/children/PermissionAdminAddOrEdit.vue'
+import PermissionLogIndex from '../views/permission/children/PermissionLogIndex.vue'
 
 
 Vue.use(Router);
@@ -160,7 +161,48 @@ let router = new Router({
                                     { con: '管理员管理' }
                                 ]
                             }
-                        }
+                        },
+                        /**新增管理员数据*/
+                        {
+                            path: 'admin/add',
+                            name: 'permission-admin-add-or-edit',
+                            component: PermissionAdminAddOrEdit,
+                            meta: {
+                                tab_index: '/permission/admin',
+                                crumb: [
+                                    { path: '/permission', icon: 'el-icon-message', con: '权限管理' },
+                                    { path: '/permission/admin', con: '管理员管理' },
+                                    { con: '新增管理员' }
+                                ]
+                            }
+                        },
+                        /**编辑管理员数据*/
+                        {
+                            path: 'admin/edit/:admin_id',
+                            name: 'permission-admin-add-or-edit',
+                            component: PermissionAdminAddOrEdit,
+                            meta: {
+                                tab_index: '/permission/admin',
+                                crumb: [
+                                    { path: '/permission', icon: 'el-icon-message', con: '权限管理' },
+                                    { path: '/permission/admin', con: '管理员管理' },
+                                    { con: '编辑管理员' }
+                                ]
+                            }
+                        },
+                        /**管理员日志*/
+                        {
+                            path: 'log',
+                            name: 'permission-log-index',
+                            component: PermissionLogIndex,
+                            meta: {
+                                tab_index: '/permission/log',
+                                crumb: [
+                                    { path: '/permission', icon: 'el-icon-message', con: '权限管理' },
+                                    { con: '管理员日志' }
+                                ]
+                            }
+                        },
                     ]
                 }
             ]

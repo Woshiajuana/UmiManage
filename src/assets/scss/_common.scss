@@ -26,6 +26,15 @@
     .line {
         @extend %tac;
     }
+    .el-select{
+        @extend %db;
+    }
+    .add-con{
+        .el-checkbox{
+            width: 160px;
+            margin-left: 0 !important;
+        }
+    }
 }
 .pagination-wrap{
     z-index: 1;

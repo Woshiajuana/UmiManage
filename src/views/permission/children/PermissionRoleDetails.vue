@@ -6,7 +6,7 @@
                 <h2 class="session-title">角色基本信息</h2>
                 <a href="#/permission/role/details/woshiajuana/resource" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增资源</a>
             </div>
-            <div class="add-role-con">
+            <div class="add-con">
                 <el-form ref="form" :model="form" label-width="80px">
                     <el-form-item label="角色名称">
                         <el-input :disabled="true" v-model="form.name"></el-input>
@@ -44,13 +44,3 @@
         }
     }
 </script>
-<style lang="scss">
-    @import "../../../assets/scss/define";
-    .add-role-con{
-        padding: 20px;
-        .el-form{
-            @extend %db;
-            width: 500px;
-        }
-    }
-</style>

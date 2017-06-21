@@ -188,6 +188,9 @@
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
+            },
+            onSubmit() {
+                console.log('submit!');
             }
         },
         components: {
