@@ -43,6 +43,7 @@
     margin-bottom: 20px;
     a{
         @extend %fr;
+        margin-left: 10px;
     }
 }
 .session-title{
@@ -51,4 +52,11 @@
     @extend %fwn;
     height: 36px;
     line-height: 36px;
+}
+.add-con{
+    padding: 20px;
+    .el-form{
+        @extend %db;
+        width: 500px;
+    }
 }

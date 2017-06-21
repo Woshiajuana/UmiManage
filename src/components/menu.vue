@@ -7,6 +7,7 @@
                     <el-menu-item index="/permission/role">角色管理</el-menu-item>
                     <el-menu-item index="/permission/resource">资源管理</el-menu-item>
                     <el-menu-item index="/permission/admin">管理员管理</el-menu-item>
+                    <el-menu-item index="/permission/log">管理员日志</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">

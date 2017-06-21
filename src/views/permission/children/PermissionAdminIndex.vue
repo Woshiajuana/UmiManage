@@ -4,10 +4,11 @@
             <crumb></crumb>
             <div class="operate-wrap el-col el-col-24">
                 <h2 class="session-title">管理员列表</h2>
+                <a href="#/permission/role/details/woshiajuana/resource" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>删除资源</a>
                 <a href="#/permission/role/details/woshiajuana/resource" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增资源</a>
             </div>
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
-                <el-form-item :span="12" label="用户名">
+                <el-form-item label="用户名">
                     <el-input v-model="formInline.user" placeholder="用户名"></el-input>
                 </el-form-item>
                 <el-form-item label="角色">

@@ -4,10 +4,7 @@
             <crumb></crumb>
             <div class="add-con">
                 <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="接口URL">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="接口名称">
+                    <el-form-item label="角色名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="描述">
@@ -25,7 +22,7 @@
 <script>
     import Crumb from '../../../components/crumb.vue'
     export default {
-        name: 'permission-resource-add-or-edit',
+        name: 'permission-role-add-or-edit',
         data() {
             return {
                 form: {

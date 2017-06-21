@@ -3,6 +3,7 @@
         <div class="container-inner">
             <crumb></crumb>
             <div class="operate-wrap el-col el-col-24">
+                <h2 class="session-title">资源列表</h2>
                 <a href="#/permission/resource/add" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增数据</a>
             </div>
             <el-table
