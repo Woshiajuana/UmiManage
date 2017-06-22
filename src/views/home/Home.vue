@@ -24,7 +24,7 @@
         @extend %pr;
     }
     .container-wrap{
-        @extend %pa;
+        position: absolute !important;
         @extend %oh;
         @extend %r0;
         @extend %b0;

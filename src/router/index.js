@@ -248,7 +248,7 @@ let router = new Router({
                         },
                         /**编辑角色*/
                         {
-                            path: 'institution/edit/:role_id',
+                            path: 'institution/edit/:bizId',
                             name: 'system-institution-add-or-edit',
                             component: SystemInstitutionAddOrEdit,
                             meta: {

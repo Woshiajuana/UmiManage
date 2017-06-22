@@ -1,5 +1,7 @@
 <template>
-    <div class="container-wrap">
+    <div class="container-wrap"
+         v-loading="is_loading"
+         element-loading-text="加载中~~~">
         <div class="container-inner">
             <crumb></crumb>
             <div class="operate-wrap el-col el-col-24">
@@ -8,11 +10,10 @@
             </div>
             <el-table
                 ref="multipleTable"
-                :data="tableData3"
+                :data="system_institution_arr"
                 border
                 tooltip-effect="dark"
-                style="width: 100%"
-                @selection-change="handleSelectionChange">
+                style="width: 100%">
                 <el-table-column
                     type="index"
                     width="60">
@@ -20,31 +21,28 @@
                 <el-table-column
                     label="机构分类名称"
                     width="120">
-                    <template scope="scope">{{ scope.row.date }}</template>
+                    <template scope="scope">{{ scope.row.name }}</template>
                 </el-table-column>
                 <el-table-column
-                    prop="name"
+                    prop="groupName"
                     label="机构类型分组名称">
                 </el-table-column>
                 <el-table-column
                     width="180"
                     label="操作">
                     <template scope="scope">
-                        <a href="#/system/institution/edit/woshiajuana" class="el-button el-button--small">编辑</a>
-                        <button class="el-button el-button--danger el-button--small">删除</button>
+                        <a :href="'#/system/institution/edit/' +  scope.row.bizId" class="el-button el-button--small">编辑</a>
+                        <button @click="deleteData(scope.row)" class="el-button el-button--danger el-button--small">删除</button>
                     </template>
                 </el-table-column>
             </el-table>
         </div>
         <div class="pagination-wrap">
             <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="currentPage4"
-                :page-sizes="[100, 200, 300, 400]"
+                :current-page="page_index"
                 :page-size="100"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="400">
+                layout="total, prev, pager, next, jumper"
+                :total="page_total">
             </el-pagination>
         </div>
     </div>
@@ -52,140 +50,78 @@
 <script>
     import Crumb from '../../../components/crumb.vue'
     import types from '../../../store/mutation-types'
+    import Util from '../../../assets/lib/Util'
     export default {
         name: 'system-institution-index',
         data() {
             return {
-                currentPage1: 5,
-                currentPage2: 5,
-                currentPage3: 5,
-                currentPage4: 4,
-                tableData3: [{
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-08',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-06',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-07',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }],
-                multipleSelection: []
+                is_loading: false,
+                page_size: 10,
+                page_index: 1,
+                page_total: 0,
+                system_institution_arr: [
+                    {
+                        "groupName": "productProvider",
+                        "gmtModified": 1498107232000,
+                        "bizId": "61346315fd454261926d67b3c847b64b",
+                        "name": "银行",
+                        "id": 1,
+                        "gmtCreate": 1498107229000
+                    }
+                ]
             }
         },
+        created () {
+//            this.fetchData();
+        },
+        watch: {
+            '$route': 'fetchData'
+        },
         methods: {
-            handleSelectionChange(val) {
-                this.multipleSelection = val;
+            /**获取数据*/
+            fetchData ( route ) {
+                this.is_loading = true;
+                var page_index = route ? route.query.page_index: this.$route.query.page_index;
+                this.page_num = +page_index || 1;
+                Util.fetchSystemInstitutionList({
+                    pageIndex: this.page_num,
+                    pageSize: this.page_size
+                }, (result) => {
+                    setTimeout( () => {
+                        if( result.respHeader.respCode === 'umi-00000' ) {
+                            var data = result.respBody;
+                            this.system_institution_arr = data.records;
+                            this.page_count = data.page_count;
+                            this.page_total = data.total;
+                        }
+                        this.is_loading = false;
+                    },300);
+                });
             },
-            handleEdit(index, row) {
-                console.log(index, row);
-            },
-            handleDelete(index, row) {
-                console.log(index, row);
-            },
-            handleSizeChange(val) {
-                console.log(`每页 ${val} 条`);
-            },
-            handleCurrentChange(val) {
-                console.log(`当前页: ${val}`);
-            },
-            onSubmit() {
-                console.log('submit!');
+            /**删除数据*/
+            deleteData ( item ) {
+                this.$confirm('是否删除'+ item.name +'?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.is_loading = true;
+                    Util.deleteSystemInstitutionList({
+                        bizId: item.bizId,
+                    }, (result) => {
+                        setTimeout( () => {
+                            if( result.respHeader.respCode === 'umi-00000' ) {
+                                this.$message({type: 'success', message: result.respHeader.respMessage});
+                            } else {
+                                this.$message({type: 'error', message: result.respHeader.respMessage});
+                            }
+                            this.is_loading = false;
+                        },300);
+                    });
+                }).catch(() => {
+                    this.$message({type: 'info', message: '已取消删除'});
+                });
+
             }
         },
         components: {
