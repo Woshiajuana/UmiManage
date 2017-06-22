@@ -18,6 +18,11 @@ import PermissionAdminIndex from '../views/permission/children/PermissionAdminIn
 import PermissionAdminAddOrEdit from '../views/permission/children/PermissionAdminAddOrEdit.vue'
 import PermissionLogIndex from '../views/permission/children/PermissionLogIndex.vue'
 
+/**系统管理*/
+import System from '../views/system/System.vue'
+import SystemInstitutionIndex from '../views/system/children/SystemInstitutionIndex.vue'
+import SystemInstitutionAddOrEdit from '../views/system/children/SystemInstitutionAddOrEdit.vue'
+
 
 Vue.use(Router);
 
@@ -200,6 +205,58 @@ let router = new Router({
                                 crumb: [
                                     { path: '/permission', icon: 'el-icon-message', con: '权限管理' },
                                     { con: '管理员日志' }
+                                ]
+                            }
+                        },
+                    ]
+                },
+                /**系统管理*/
+                {
+                    path: 'system',
+                    name: 'system',
+                    component: System,
+                    meta: {
+                        tab_index: 'system'
+                    },
+                    children: [
+                        /**机构类型管理*/
+                        {
+                            path: 'institution',
+                            name: 'system-institution-index',
+                            component: SystemInstitutionIndex,
+                            meta: {
+                                tab_index: '/system/institution',
+                                crumb: [
+                                    { path: '/system', icon: 'el-icon-message', con: '系统管理' },
+                                    { con: '机构类型管理' }
+                                ]
+                            }
+                        },
+                        /**添加机构类行*/
+                        {
+                            path: 'institution/add',
+                            name: 'system-institution-add-or-edit',
+                            component: SystemInstitutionAddOrEdit,
+                            meta: {
+                                tab_index: '/system/institution',
+                                crumb: [
+                                    { path: '/system', icon: 'el-icon-message', con: '系统管理' },
+                                    { path: '/system/institution', con: '机构类型管理' },
+                                    { con: '添加机构类型' }
+                                ]
+                            }
+                        },
+                        /**编辑角色*/
+                        {
+                            path: 'institution/edit/:role_id',
+                            name: 'system-institution-add-or-edit',
+                            component: SystemInstitutionAddOrEdit,
+                            meta: {
+                                tab_index: '/system/institution',
+                                crumb: [
+                                    { path: '/system', icon: 'el-icon-message', con: '系统管理' },
+                                    { path: '/system/institution', con: '机构类型管理' },
+                                    { con: '编辑机构类型' }
                                 ]
                             }
                         },

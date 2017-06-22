@@ -1,63 +1,86 @@
 <template>
     <div class="menu-wrap">
-        <el-menu theme="dark" router unique-opened :default-active="tabIndex" class="el-menu-vertical-demo">
-            <el-submenu index="/permission">
-                <template slot="title"><i class="el-icon-message"></i>权限管理</template>
-                <el-menu-item-group>
-                    <el-menu-item index="/permission/role">角色管理</el-menu-item>
-                    <el-menu-item index="/permission/resource">资源管理</el-menu-item>
-                    <el-menu-item index="/permission/admin">管理员管理</el-menu-item>
-                    <el-menu-item index="/permission/log">管理员日志</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="2">
-                <template slot="title"><i class="el-icon-message"></i>入驻机构管理</template>
-                <el-menu-item-group>
-                    <el-menu-item index="2-1">入驻代理机构列表</el-menu-item>
-                    <el-menu-item index="2-2">机构管理员列表</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="3">
-                <template slot="title"><i class="el-icon-message"></i>产品机构管理</template>
-                <el-menu-item-group>
-                    <el-menu-item index="3-1">产品机构列表</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="4">
-                <template slot="title"><i class="el-icon-message"></i>消息设置</template>
-                <el-menu-item-group>
-                    <el-menu-item index="4-1">跑马灯设置</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="5">
-                <template slot="title"><i class="el-icon-message"></i>版本管理</template>
-                <el-menu-item-group>
-                    <el-menu-item index="5-1">版本记录</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-menu-item index="6"><i class="el-icon-message"></i>会员列表</el-menu-item>
-            <el-submenu index="7">
-                <template slot="title"><i class="el-icon-message"></i>产品管理</template>
-                <el-menu-item-group>
-                    <el-menu-item index="6-1">快贷产品管理</el-menu-item>
-                    <el-menu-item index="6-2">信用卡产品管理</el-menu-item>
-                    <el-menu-item index="6-3">信贷产品管理</el-menu-item>
-                    <el-menu-item index="6-4">产品类型管理</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="8">
-                <template slot="title"><i class="el-icon-message"></i>订单管理</template>
-                <el-menu-item-group>
-                    <el-menu-item index="7-1">申卡订单</el-menu-item>
-                    <el-menu-item index="7-2">快贷订单</el-menu-item>
-                    <el-menu-item index="7-3">便民订单</el-menu-item>
-                    <el-submenu index="7-4">
-                        <template slot="title">信贷订单</template>
-                        <el-menu-item index="7-4-1">赎楼贷订单</el-menu-item>
-                    </el-submenu>
-                </el-menu-item-group>
-            </el-submenu>
-        </el-menu>
+        <div class="menu-inner">
+            <el-menu theme="dark" router unique-opened :default-active="tabIndex" class="el-menu-vertical-demo">
+                <el-submenu index="/permission">
+                    <template slot="title"><i class="el-icon-message"></i>权限管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="/permission/role">角色管理</el-menu-item>
+                        <el-menu-item index="/permission/resource">资源管理</el-menu-item>
+                        <el-menu-item index="/permission/admin">管理员管理</el-menu-item>
+                        <el-menu-item index="/permission/log">管理员日志</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="/app">
+                    <template slot="title"><i class="el-icon-message"></i>APP权限管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="/app/role">角色管理</el-menu-item>
+                        <el-menu-item index="/app/resource">资源管理</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="2">
+                    <template slot="title"><i class="el-icon-message"></i>入驻机构管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="2-1">入驻代理机构列表</el-menu-item>
+                        <el-menu-item index="2-2">机构管理员列表</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title"><i class="el-icon-message"></i>产品机构管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="3-1">产品机构列表</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="4">
+                    <template slot="title"><i class="el-icon-message"></i>APP设置</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="4-1">广告位管理</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="4">
+                    <template slot="title"><i class="el-icon-message"></i>消息设置</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="4-1">跑马灯设置</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="5">
+                    <template slot="title"><i class="el-icon-message"></i>版本管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="5-1">版本记录</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-menu-item index="6"><i class="el-icon-message"></i>会员列表</el-menu-item>
+                <el-submenu index="7">
+                    <template slot="title"><i class="el-icon-message"></i>产品管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="6-1">快贷产品管理</el-menu-item>
+                        <el-menu-item index="6-2">信用卡产品管理</el-menu-item>
+                        <el-menu-item index="6-3">信贷产品管理</el-menu-item>
+                        <el-menu-item index="6-4">产品类型管理</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="8">
+                    <template slot="title"><i class="el-icon-message"></i>订单管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="7-1">申卡订单</el-menu-item>
+                        <el-menu-item index="7-2">快贷订单</el-menu-item>
+                        <el-menu-item index="7-3">便民订单</el-menu-item>
+                        <el-submenu index="7-4">
+                            <template slot="title">信贷订单</template>
+                            <el-menu-item index="7-4-1">赎楼贷订单</el-menu-item>
+                        </el-submenu>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="/system">
+                    <template slot="title"><i class="el-icon-message"></i>系统管理</template>
+                    <el-menu-item-group>
+                        <el-menu-item index="/system/institution">机构分类管理</el-menu-item>
+                        <el-menu-item index="6-2">标签管理</el-menu-item>
+                        <el-menu-item index="6-4">板块管理</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+            </el-menu>
+        </div>
     </div>
 </template>
 <script>
@@ -91,7 +114,7 @@
         @extend %bsb;
         @extend %l0;
         @extend %b0;
-        @extend %oya;
+        @extend %oh;
         top: 50px;
         width: 250px;
         background: #41586e;
@@ -103,6 +126,16 @@
             height: 45px;
             line-height: 45px;
         }
+    }
+    .menu-inner{
+        @extend %pa;
+        @extend %r0;
+        @extend %l0;
+        @extend %b0;
+        @extend %t0;
+        overflow-y: scroll;
+        width: 268px;
+        padding-bottom: 50px;
     }
     .el-menu-item{
         @extend %pr;
