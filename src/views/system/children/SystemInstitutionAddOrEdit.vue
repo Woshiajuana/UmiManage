@@ -14,7 +14,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="subData('ruleForm')">确认</el-button>
-                        <el-button>取消</el-button>
+                        <a class="el-button" href="javascript:history.back(-1);">返回</a>
                     </el-form-item>
                 </el-form>
             </div>
