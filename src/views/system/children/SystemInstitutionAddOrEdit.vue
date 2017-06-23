@@ -5,15 +5,15 @@
         <div class="container-inner system-inner">
             <crumb></crumb>
             <div class="add-con">
-                <el-form ref="formName" :rules="rules" :model="form" label-width="80px">
-                    <el-form-item label="机构分类名称">
-                        <el-input v-model="form.name"></el-input>
+                <el-form ref="ruleForm" :rules="rules" :model="ruleForm" label-width="80px">
+                    <el-form-item label="机构分类名称" prop="name">
+                        <el-input v-model="ruleForm.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="机构分组名称">
-                        <el-input v-model="form.groupName"></el-input>
+                    <el-form-item label="机构分组名称" prop="groupName">
+                        <el-input v-model="ruleForm.groupName"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="subData(formName)">确认</el-button>
+                        <el-button type="primary" @click="subData('ruleForm')">确认</el-button>
                         <el-button>取消</el-button>
                     </el-form-item>
                 </el-form>
@@ -30,7 +30,7 @@
             return {
                 is_loading: false,
                 bizId: this.$route.params.bizId,
-                form: {
+                ruleForm: {
                     name: '',
                     groupName: ''
                 },
@@ -63,11 +63,11 @@
             queryData ( bizId ) {
                 this.is_loading = true;
                 Util.querySystemInstitutionList({
-                    bizId:bizId
+                    bizId: bizId
                 }, ( result ) => {
                     setTimeout( () => {
                         if( result.respHeader.respCode === 'umi-00000' ) {
-                            this.form = {
+                            this.ruleForm = {
                                 name: result.respBody.name,
                                 groupName: result.respBody.groupName
                             }
@@ -79,29 +79,31 @@
             /**编辑数据*/
             updateData ( bizId ) {
                 this.is_loading = true;
-                this.form.bizId = bizId;
-                Util.updateSystemInstitutionList(this.form, ( result ) => {
+                this.ruleForm.bizId = bizId;
+                Util.updateSystemInstitutionList(this.ruleForm, ( result ) => {
                     setTimeout( () => {
+                        this.is_loading = false;
                         if( result.respHeader.respCode === 'umi-00000' ) {
                             this.$message({type: 'success', message: result.respHeader.respMessage});
+                            this.$router.push('/system/institution');
                         } else {
                             this.$message({type: 'error', message: result.respHeader.respMessage});
                         }
-                        this.is_loading = false;
                     },300);
                 })
             },
             /**添加数据*/
             addData () {
                 this.is_loading = true;
-                Util.addSystemInstitutionList(this.form, ( result ) => {
+                Util.addSystemInstitutionList(this.ruleForm, ( result ) => {
                     setTimeout( () => {
+                        this.is_loading = false;
                         if( result.respHeader.respCode === 'umi-00000' ) {
                             this.$message({type: 'success', message: result.respHeader.respMessage});
+                            this.$router.push('/system/institution');
                         } else {
                             this.$message({type: 'error', message: result.respHeader.respMessage});
                         }
-                        this.is_loading = false;
                     },300);
                 })
             }

@@ -17,14 +17,14 @@ const Util = function (win) {
      * 根据是线上环境还是本地环境，选取不同的server_url的值
      * */
     if (win.location.href.indexOf('localhost') > -1){
-        base_url = 'http://umi.backend.dev.finumi.com/';
+        base_url = 'http://192.170.4.22/';
     }
 
     /**
      * 系统管理机构管理获取机构类型列表
      * */
     Util.fetchSystemInstitutionList = function (data, success_callback, fail_callback) {
-        Util.ajax('users/online',data,'POST',success_callback, fail_callback)
+        Util.ajax('v1/party/type/list',data,'POST',success_callback, fail_callback)
     };
 
     /**
@@ -63,16 +63,7 @@ const Util = function (win) {
             url: path,
             method: http_method,
             baseURL: base_url,
-            // data: Tool.changeData(data),
-            data: {online:true},
-            // transformRequest: [function (d) {
-            //     // 对 data 进行任意转换处理
-            //     return return Tool.changeData(d);
-            // }],
-            // contentType: "application/json; charset=utf-8",
-            // paramsSerializer: function(params) {
-            //     return false
-            // },
+            data: Tool.changeData(data)
         }).then( function (response) {
             var data = response.data;
             /**没有登录跳转登录页面*/

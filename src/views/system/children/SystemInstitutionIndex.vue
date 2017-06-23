@@ -39,8 +39,9 @@
         </div>
         <div class="pagination-wrap">
             <el-pagination
+                @current-change="handleCurrentChange"
                 :current-page="page_index"
-                :page-size="100"
+                :page-size="10"
                 layout="total, prev, pager, next, jumper"
                 :total="page_total">
             </el-pagination>
@@ -59,16 +60,7 @@
                 page_size: 10,
                 page_index: 1,
                 page_total: 0,
-                system_institution_arr: [
-                    {
-                        "groupName": "productProvider",
-                        "gmtModified": 1498107232000,
-                        "bizId": "61346315fd454261926d67b3c847b64b",
-                        "name": "银行",
-                        "id": 1,
-                        "gmtCreate": 1498107229000
-                    }
-                ]
+                system_institution_arr: []
             }
         },
         created () {
@@ -82,16 +74,15 @@
             fetchData ( route ) {
                 this.is_loading = true;
                 var page_index = route ? route.query.page_index: this.$route.query.page_index;
-                this.page_num = +page_index || 1;
+                this.page_index = +page_index || 1;
                 Util.fetchSystemInstitutionList({
-                    pageIndex: this.page_num,
+                    pageIndex: this.page_index,
                     pageSize: this.page_size
                 }, (result) => {
                     setTimeout( () => {
                         if( result.respHeader.respCode === 'umi-00000' ) {
                             var data = result.respBody;
                             this.system_institution_arr = data.records;
-                            this.page_count = data.page_count;
                             this.page_total = data.total;
                         }
                         this.is_loading = false;
@@ -111,6 +102,7 @@
                     }, (result) => {
                         setTimeout( () => {
                             if( result.respHeader.respCode === 'umi-00000' ) {
+                                this.fetchData();
                                 this.$message({type: 'success', message: result.respHeader.respMessage});
                             } else {
                                 this.$message({type: 'error', message: result.respHeader.respMessage});
@@ -121,7 +113,9 @@
                 }).catch(() => {
                     this.$message({type: 'info', message: '已取消删除'});
                 });
-
+            },
+            handleCurrentChange(val) {
+                this.$router.push('/system/institution?page_index=' + val);
             }
         },
         components: {

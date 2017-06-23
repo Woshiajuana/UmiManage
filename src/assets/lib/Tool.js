@@ -93,8 +93,8 @@ const Tool = function (win) {
      * */
     Tool.changeData = function (data) {
         var obj = {};
-        obj.resBody = data;
-        return JSON.stringify(obj);
+        obj.reqBody = data;
+        return obj;
     };
     return Tool;
 } (window);
