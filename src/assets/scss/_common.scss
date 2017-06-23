@@ -3,6 +3,9 @@
     @extend %oh;
     @extend %h100;
 }
+.el-message{
+    z-index: 100001 !important;
+}
 .container-inner{
     @extend %pa;
     @extend %r0;
