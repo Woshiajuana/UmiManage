@@ -4,6 +4,7 @@
 import axios from 'axios'
 import Tool from './Tool'
 import router from '../../router/index'
+axios.defaults.headers.post['Content-Type'] = "application/json; charset=utf-8";
 const Util = function (win) {
 
     /**
@@ -16,14 +17,14 @@ const Util = function (win) {
      * 根据是线上环境还是本地环境，选取不同的server_url的值
      * */
     if (win.location.href.indexOf('localhost') > -1){
-        // base_url = 'http://localhost:8088';
+        base_url = 'http://umi.backend.dev.finumi.com/';
     }
 
     /**
      * 系统管理机构管理获取机构类型列表
      * */
     Util.fetchSystemInstitutionList = function (data, success_callback, fail_callback) {
-        Util.ajax('v1/party/type/list',data,'POST',success_callback, fail_callback)
+        Util.ajax('users/online',data,'POST',success_callback, fail_callback)
     };
 
     /**
@@ -62,7 +63,16 @@ const Util = function (win) {
             url: path,
             method: http_method,
             baseURL: base_url,
-            params: data
+            // data: Tool.changeData(data),
+            data: {online:true},
+            // transformRequest: [function (d) {
+            //     // 对 data 进行任意转换处理
+            //     return return Tool.changeData(d);
+            // }],
+            // contentType: "application/json; charset=utf-8",
+            // paramsSerializer: function(params) {
+            //     return false
+            // },
         }).then( function (response) {
             var data = response.data;
             /**没有登录跳转登录页面*/

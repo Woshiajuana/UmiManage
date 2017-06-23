@@ -87,6 +87,15 @@ const Tool = function (win) {
         }
         return fmt;
     };
+
+    /**
+     * 转换数据
+     * */
+    Tool.changeData = function (data) {
+        var obj = {};
+        obj.resBody = data;
+        return JSON.stringify(obj);
+    };
     return Tool;
 } (window);
 export default Tool;
