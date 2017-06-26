@@ -87,6 +87,9 @@
                         }
                         this.is_loading = false;
                     },300);
+                }, (error) => {
+                    this.is_loading = false;
+                    this.$message({type: 'error', message: '服务器响应失败'});
                 });
             },
             /**删除数据*/
@@ -109,6 +112,9 @@
                             }
                             this.is_loading = false;
                         },300);
+                    }, (error) => {
+                        this.is_loading = false;
+                        this.$message({type: 'error', message: '服务器响应失败'});
                     });
                 }).catch(() => {
                     this.$message({type: 'info', message: '已取消删除'});

@@ -63,7 +63,8 @@ const Util = function (win) {
             url: path,
             method: http_method,
             baseURL: base_url,
-            data: Tool.changeData(data)
+            data: Tool.changeData(data),
+            timeout: 10000
         }).then( function (response) {
             var data = response.data;
             /**没有登录跳转登录页面*/

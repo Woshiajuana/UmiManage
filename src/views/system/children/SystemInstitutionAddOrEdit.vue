@@ -57,7 +57,6 @@
                         return false;
                     }
                 });
-
             },
             /**获取数据*/
             queryData ( bizId ) {
@@ -74,6 +73,9 @@
                         }
                         this.is_loading = false;
                     },300);
+                }, (error) => {
+                    this.is_loading = false;
+                    this.$message({type: 'error', message: '服务器响应失败'});
                 })
             },
             /**编辑数据*/
@@ -90,6 +92,9 @@
                             this.$message({type: 'error', message: result.respHeader.respMessage});
                         }
                     },300);
+                }, (error) => {
+                    this.is_loading = false;
+                    this.$message({type: 'error', message: '服务器响应失败'});
                 })
             },
             /**添加数据*/
@@ -105,6 +110,9 @@
                             this.$message({type: 'error', message: result.respHeader.respMessage});
                         }
                     },300);
+                }, (error) => {
+                    this.is_loading = false;
+                    this.$message({type: 'error', message: '服务器响应失败'});
                 })
             }
         },
