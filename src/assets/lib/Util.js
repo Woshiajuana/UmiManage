@@ -18,6 +18,7 @@ const Util = function (win) {
      * */
     if (win.location.href.indexOf('localhost') > -1){
         base_url = 'http://192.170.4.22/';
+        // base_url = 'http://192.170.3.81/';
     }
 
     /**
@@ -56,9 +57,17 @@ const Util = function (win) {
     };
 
     /**
+     * 产品管理产品类型列表
+     * */
+    Util.fetchProductTypeList = function (data, success_callback, fail_callback) {
+        Util.ajax('http://192.170.3.81/v1/manageapi/productCategory/to_product',data,'POST',success_callback, fail_callback)
+    };
+
+    /**
      * 公用请求ajax的方式
      * */
     Util.ajax = function (path, data, http_method, success_callback, fail_callback) {
+        ( path.indexOf('http') > -1 ) && ( base_url = '' );
         axios({
             url: path,
             method: http_method,

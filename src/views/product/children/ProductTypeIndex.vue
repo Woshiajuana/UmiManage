@@ -10,7 +10,7 @@
             </div>
             <el-table
                 ref="multipleTable"
-                :data="system_institution_arr"
+                :data="product_institution_arr"
                 border
                 tooltip-effect="dark"
                 style="width: 100%">
@@ -24,11 +24,11 @@
                     <template scope="scope">{{ scope.row.name }}</template>
                 </el-table-column>
                 <el-table-column
-                    prop="groupName"
+                    prop="code"
                     label="分类编码">
                 </el-table-column>
                 <el-table-column
-                    prop="groupName"
+                    prop="salesCommRatio"
                     label="默认提成比例%">
                 </el-table-column>
                 <el-table-column
@@ -64,7 +64,7 @@
                 page_size: 10,
                 page_index: 1,
                 page_total: 0,
-                system_institution_arr: []
+                product_institution_arr: []
             }
         },
         created () {
@@ -79,14 +79,14 @@
                 this.is_loading = true;
                 var page_index = route ? route.query.page_index: this.$route.query.page_index;
                 this.page_index = +page_index || 1;
-                Util.fetchSystemInstitutionList({
+                Util.fetchProductTypeList({
                     pageIndex: this.page_index,
                     pageSize: this.page_size
                 }, (result) => {
                     setTimeout( () => {
                         if( result.respHeader.respCode === 'umi-00000' ) {
                             var data = result.respBody;
-                            this.system_institution_arr = data.records;
+                            this.product_institution_arr = data.records;
                             this.page_total = data.total;
                         }
                         this.is_loading = false;
