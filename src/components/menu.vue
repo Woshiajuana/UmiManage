@@ -50,13 +50,13 @@
                     </el-menu-item-group>
                 </el-submenu>
                 <el-menu-item index="6"><i class="el-icon-message"></i>会员列表</el-menu-item>
-                <el-submenu index="7">
+                <el-submenu index="/product">
                     <template slot="title"><i class="el-icon-message"></i>产品管理</template>
                     <el-menu-item-group>
                         <el-menu-item index="6-1">快贷产品管理</el-menu-item>
                         <el-menu-item index="6-2">信用卡产品管理</el-menu-item>
                         <el-menu-item index="6-3">信贷产品管理</el-menu-item>
-                        <el-menu-item index="6-4">产品类型管理</el-menu-item>
+                        <el-menu-item index="/product/type">产品类型管理</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-submenu index="8">

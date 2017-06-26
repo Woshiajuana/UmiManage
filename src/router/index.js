@@ -23,6 +23,11 @@ import System from '../views/system/System.vue'
 import SystemInstitutionIndex from '../views/system/children/SystemInstitutionIndex.vue'
 import SystemInstitutionAddOrEdit from '../views/system/children/SystemInstitutionAddOrEdit.vue'
 
+/**产品管理*/
+import Product from '../views/product/Product.vue'
+import ProductTypeIndex from '../views/product/children/ProductTypeIndex.vue'
+import ProductTypeAdd from '../views/product/children/ProductTypeAdd.vue'
+import ProductTypeEdit from '../views/product/children/ProductTypeEdit.vue'
 
 Vue.use(Router);
 
@@ -205,6 +210,58 @@ let router = new Router({
                                 crumb: [
                                     { path: '/permission', icon: 'el-icon-message', con: '权限管理' },
                                     { con: '管理员日志' }
+                                ]
+                            }
+                        },
+                    ]
+                },
+                /**产品管理*/
+                {
+                    path: 'product',
+                    name: 'product',
+                    component: Product,
+                    meta: {
+                        tab_index: 'product'
+                    },
+                    children: [
+                        /**产品类型管理*/
+                        {
+                            path: 'type',
+                            name: 'product-type-index',
+                            component: ProductTypeIndex,
+                            meta: {
+                                tab_index: '/product/type',
+                                crumb: [
+                                    { path: '/product', icon: 'el-icon-message', con: '产品管理' },
+                                    { con: '产品类型管理' }
+                                ]
+                            }
+                        },
+                        /**添加产品类型*/
+                        {
+                            path: 'type/add',
+                            name: 'product-type-add',
+                            component: ProductTypeAdd,
+                            meta: {
+                                tab_index: '/product/type',
+                                crumb: [
+                                    { path: '/product', icon: 'el-icon-message', con: '产品管理' },
+                                    { path: '/product/type', con: '产品类型管理' },
+                                    { con: '添加产品类型' }
+                                ]
+                            }
+                        },
+                        /**编辑产品类型*/
+                        {
+                            path: 'type/edit/:bizId',
+                            name: 'product-type-edit',
+                            component: ProductTypeEdit,
+                            meta: {
+                                tab_index: '/product/type',
+                                crumb: [
+                                    { path: '/product', icon: 'el-icon-message', con: '产品管理' },
+                                    { path: '/product/type', con: '产品类型管理' },
+                                    { con: '编辑产品类型' }
                                 ]
                             }
                         },
