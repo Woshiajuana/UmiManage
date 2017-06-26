@@ -2,14 +2,14 @@
     <div class="container-wrap"
          v-loading="is_loading"
          element-loading-text="加载中~~~">
-        <div class="container-inner system-inner">
+        <div class="container-inner inner-1">
             <crumb></crumb>
             <div class="add-con">
                 <el-form ref="ruleForm" :rules="rules" :model="ruleForm" label-width="80px">
-                    <el-form-item label="机构分类名称" prop="name">
+                    <el-form-item label="产品类型名称" prop="name">
                         <el-input v-model="ruleForm.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="机构分组名称" prop="groupName">
+                    <el-form-item label="产品类型编码" prop="groupName">
                         <el-input v-model="ruleForm.groupName"></el-input>
                     </el-form-item>
                     <el-form-item>
@@ -36,10 +36,10 @@
                 },
                 rules: {
                     name: [
-                        { required: true, message: '机构分类名称', trigger: 'blur' }
+                        { required: true, message: '产品类型名称', trigger: 'blur' }
                     ],
                     groupName: [
-                        { required: true, message: '机构分组名称', trigger: 'change' }
+                        { required: true, message: '产品类型编码', trigger: 'change' }
                     ]
                 }
             }
@@ -121,13 +121,3 @@
         }
     }
 </script>
-<style lang="scss">
-    .system-inner{
-        .el-form-item__label{
-            width: 120px !important;
-        }
-        .el-form-item__content{
-            margin-left: 120px !important;
-        }
-    }
-</style>

@@ -5,7 +5,7 @@
         <div class="container-inner">
             <crumb></crumb>
             <div class="operate-wrap el-col el-col-24">
-                <h2 class="session-title">机构类型列表</h2>
+                <h2 class="session-title">产品类型列表</h2>
                 <a href="#/product/type/add" class="el-button el-button--primary"><i class="el-icon-upload el-icon--left"></i>新增数据</a>
             </div>
             <el-table
@@ -19,13 +19,17 @@
                     width="60">
                 </el-table-column>
                 <el-table-column
-                    label="机构分类名称"
+                    label="产品类型名称"
                     width="120">
                     <template scope="scope">{{ scope.row.name }}</template>
                 </el-table-column>
                 <el-table-column
                     prop="groupName"
-                    label="机构类型分组名称">
+                    label="分类编码">
+                </el-table-column>
+                <el-table-column
+                    prop="groupName"
+                    label="默认提成比例%">
                 </el-table-column>
                 <el-table-column
                     width="180"

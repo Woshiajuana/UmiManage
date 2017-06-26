@@ -38,6 +38,14 @@
             margin-left: 0 !important;
         }
     }
+    &.inner-1{
+        .el-form-item__label{
+            width: 120px !important;
+        }
+        .el-form-item__content{
+            margin-left: 120px !important;
+        }
+    }
 }
 .pagination-wrap{
     z-index: 1;

@@ -2,7 +2,7 @@
     <div class="container-wrap"
          v-loading="is_loading"
          element-loading-text="加载中~~~">
-        <div class="container-inner system-inner">
+        <div class="container-inner inner-1">
             <crumb></crumb>
             <div class="add-con">
                 <el-form ref="ruleForm" :rules="rules" :model="ruleForm" label-width="80px">
@@ -121,13 +121,3 @@
         }
     }
 </script>
-<style lang="scss">
-    .system-inner{
-        .el-form-item__label{
-            width: 120px !important;
-        }
-        .el-form-item__content{
-            margin-left: 120px !important;
-        }
-    }
-</style>
