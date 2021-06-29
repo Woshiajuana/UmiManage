@@ -1,11 +1,11 @@
 <template>
     <div class="home">
-        <h1>Home</h1>
+        <h1>{{ new Date() | filterDate }}</h1>
     </div>
 </template>
 
 <style lang="scss">
-@import "~src/assets/scss/define";
+@import "src/assets/scss/define";
 .home {
     @extend %df;
     @extend %aic;
