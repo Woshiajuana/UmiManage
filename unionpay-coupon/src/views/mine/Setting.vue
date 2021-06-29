@@ -1,24 +1,47 @@
 
 <template>
-    <div class="setting-wrap">
-        <h1 @click="$router.go(-1)">设置</h1>
+    <div>
+        <van-cell-group>
+            <van-cell :title="$t('setting.translations')" :value="computeTranslations.name" is-link @click="show = true"/>
+        </van-cell-group>
+        <van-action-sheet
+            v-model="show"
+            :actions="computedLangOptions"
+            @select="handleSelect"
+            :cancel-text="$t('setting.cancel')"
+            close-on-click-action
+        ></van-action-sheet>
     </div>
 </template>
 
 <script>
+    import { Cell as VanCell, CellGroup as VanCellGroup, ActionSheet as VanActionSheet } from 'vant'
     export default {
-
+        data() {
+            return {
+                show: false,
+            };
+        },
+        computed: {
+            computedLangOptions () {
+                const { langOptions } = this.$i18n;
+                return langOptions;
+            },
+            computeTranslations () {
+                const { locale } = this.$i18n;
+                return this.computedLangOptions.find(item => item.value === locale);
+            },
+        },
+        methods: {
+            handleSelect (item) {
+                const { value } = item;
+                this.$i18n.loadLanguageAsync(value);
+            }
+        },
+        components: {
+            VanCell,
+            VanCellGroup,
+            VanActionSheet,
+        }
     }
 </script>
-
-<style lang="scss" scoped>
-@import "src/assets/scss/define";
-    .setting-wrap {
-        @extend %df;
-        @extend %aic;
-        @extend %jcc;
-        @extend %fdc;
-        font-size: j(78);
-        background-color: #ff6842;
-    }
-</style>

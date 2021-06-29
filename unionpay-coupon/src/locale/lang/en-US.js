@@ -1,9 +1,7 @@
 
 export default {
-    "home": {
-        "title": "home"
-    },
-    "about": {
-        "title": "about"
+    setting: {
+        translations: 'Translations',
+        cancel: 'Cancel',
     },
 }

@@ -1,9 +1,7 @@
 
 export default {
-    "home": {
-        "title": "首页"
-    },
-    "about": {
-        "title": "关于"
+    setting: {
+        translations: '语言',
+        cancel: '取消',
     },
 }

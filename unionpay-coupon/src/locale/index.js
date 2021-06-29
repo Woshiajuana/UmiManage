@@ -3,6 +3,7 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import axios from 'axios'
 import messages from './lang/zh-CN'
+import { langOptions } from './config'
 
 const DEFAULT_LANG = 'zh-CN'
 const $$LOCALE_LANG = '$$LOCALE_LANG'
@@ -48,6 +49,7 @@ export function getLocale () {
     return window.localStorage.getItem($$LOCALE_LANG) || DEFAULT_LANG;
 }
 
+i18n.langOptions = langOptions;
 i18n.getLocale = getLocale;
 i18n.loadLanguageAsync = loadLanguageAsync;
 
