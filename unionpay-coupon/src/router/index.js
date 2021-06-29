@@ -5,12 +5,6 @@ import { loadLanguageAsync } from 'src/locale'
 Vue.use(VueRouter);
 
 const routes = (s => [
-    {
-        path: '/',
-        name: 'Main',
-        component: () => import(/* webpackChunkName: "Home" */ 'src/views/Main'),
-        meta: { depth: 1, title: '首页' },
-    },
     ...s.keys().map(k => s(k).default).flat(),
     {
         path: '*',

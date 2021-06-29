@@ -1,7 +1,7 @@
 
 <template>
-    <div>
-        
+    <div class="mine-wrap">
+        <h1>我的</h1>
     </div>
 </template>
 
@@ -13,12 +13,12 @@
 
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
-    .home {
+    .mine-wrap {
         @extend %df;
         @extend %aic;
         @extend %jcc;
         @extend %fdc;
         font-size: j(78);
-        background-color: #42bdff;
+        background-color: #fff642;
     }
 </style>
