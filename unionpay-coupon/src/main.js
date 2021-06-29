@@ -11,6 +11,8 @@ Vue.config.productionTip = false
 
 Vue.use(Toast);
 
+(s => s.keys().forEach(k => Vue.use(s(k).default)))(require.context('./plugins', true, /\.js$/));
+
 new Vue({
     router,
     store,

@@ -1,22 +1,19 @@
 
-import Vue from 'vue'
+import { filterMessage } from 'src/utils/filters'
+import { Toast } from 'vant'
 
 Promise.prototype.toast = function (callback) {
     return this.catch(err => {
-        let text = typeof err === 'object'
-            ? err.errMsg || err.Message || err.message || JSON.stringify(err)
-            : err + '';
-        if (callback && callback(err, text)) {
+        const message = filterMessage(err);
+        if (callback && callback(err, message)) {
             return null;
         }
-        Vue.prototype.$vux.toast.show({ text });
+        message && Toast(message);
     });
 };
 
 Promise.prototype.null = function () {
-    return this.catch(err => {
-        console.log(err);
-    });
+    return this.catch(err => console.log(err));
 };
 
 Promise.prototype.finally = function (callback) {
