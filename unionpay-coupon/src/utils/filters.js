@@ -1,6 +1,6 @@
 
-export function filterMessage (error = '') {
-    return typeof error === 'object' ? error.message || JSON.stringify(error) : `${error}`;
+export function filterMessage (v = '') {
+    return typeof v === 'object' ? v.message || JSON.stringify(v) : `${v}`;
 }
 
 export function filterDate (v = new Date(), fmt = 'yyyy-MM-dd hh:mm:ss') {
@@ -23,4 +23,55 @@ export function filterDate (v = new Date(), fmt = 'yyyy-MM-dd hh:mm:ss') {
         }
     }
     return fmt;
+}
+
+export function filterAmount (v, divisor = 100) {
+    v = parseFloat(v);
+    if (v) {
+        v = (v / divisor).toFixed(2);
+        let l = v.split('.')[0].split('').reverse();
+        let r = v.split('.')[1];
+        let t = '';
+        l.forEach((ll, key) => {
+            t += l[key] + ((key + 1) % 3 === 0 && (key + 1) !== l.length ? ',' : '');
+        });
+        return t.split('').reverse().join('') + '.' + r;
+    } else if (v === 0) {
+        return '0.00';
+    } else {
+        return '---';
+    }
+}
+
+export function filterCutOut (v, max = 0) {
+    return v ? `${v.substring(0, max)}${v.length > max ? '...' : ''}` : '';
+}
+
+export function filterIDCard (v) {
+    return v ? v.substring(0,6) + '********' + v.substring(14) : '';
+}
+
+export function filterBankCard (v) {
+    if (!v || v.length < 3) return v;
+    let len = v.length;
+    v = `${new Array(len - 3).join('*')}${v.substring(len - 4)}`;
+    return v.replace(/(.{4})/g, '$1 ');
+}
+
+export function filterPhone (v) {
+    return v ? v.substring(0,3) + ' **** ' + v.substring(7) : '';
+}
+
+export function filterName (v) {
+    if (!v) {
+        return '';
+    }
+    if (v.length === 1) {
+        return v;
+    }
+    if (v.length === 2) {
+        return v.substring(0, 1) + '*'
+    }
+    return v.substring(0, 1) + new Array(v.length - 1).join('*') + v.substr(-1);
+    // return value ? value.replace(/.(?=.)/g, '*') : '';
 }
