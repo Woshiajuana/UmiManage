@@ -2,10 +2,10 @@
 <template>
     <div class="main-wrap">
         <router-view class="main-inner"></router-view>
-        <van-tabbar route active-color="#ee0a24" inactive-color="#000">
-            <van-tabbar-item replace to="/" icon="home-o">标签</van-tabbar-item>
-            <van-tabbar-item replace to="/coupon" icon="friends-o">标签</van-tabbar-item>
-            <van-tabbar-item replace to="/mine" icon="setting-o">标签</van-tabbar-item>
+        <van-tabbar route>
+            <van-tabbar-item replace to="/" icon="home-o">首页</van-tabbar-item>
+            <van-tabbar-item replace to="/coupon" icon="gem-o">权益</van-tabbar-item>
+            <van-tabbar-item replace to="/mine" icon="contact">我的</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
