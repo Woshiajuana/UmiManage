@@ -1,23 +1,21 @@
 
 <template>
     <div class="home">
-        <h1>{{ new Date() | filterDate }}</h1>
+        <h1>{{$t('home.title')}}</h1>
+        <br/>
         <van-button @click="$router.push('/about')">跳转到关于页面</van-button>
-        <van-button @click="handlePromise">执行异步函数</van-button>
+        <br/>
+        <van-button @click="handleSwitch">切换语言</van-button>
     </div>
 </template>
 
 <script>
     import { Button as VanButton } from 'vant'
 
-    const fn = flag => new Promise((resolve, reject) => {
-        flag ? resolve(flag) : reject(flag);
-    })
-
     export default {
         methods: {
-            handlePromise () {
-                fn(0).then(res => console.log(`成功=>`, res)).toast();
+            handleSwitch () {
+                this.$i18n.loadLanguageAsync('en-US');
             }
         },
         components: {

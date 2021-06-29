@@ -7,14 +7,16 @@ import messages from './lang/zh-CN'
 Vue.use(VueI18n)
 
 const DEFAULT_LANG = 'zh-CN'
-const locale = ''
+const locale = getLocale()
 const $$LOCALE_LANG = '$$LOCALE_LANG'
 const loadedLanguages = [$$LOCALE_LANG] // 我们的预装默认语言
 
 const i18n = new VueI18n({
     locale,
     fallbackLocale: locale,
-    messages,
+    messages: {
+        [locale]: messages,
+    },
 });
 
 function setI18nLanguage (lang) {
@@ -38,7 +40,7 @@ export function loadLanguageAsync(lang = getLocale()) {
     // 如果尚未加载语言
     return import(/* webpackChunkName: "lang-[request]" */ `src/locale/lang/${lang}.js`).then(
         messages => {
-            i18n.setLocaleMessage(lang, messages.default)
+            i18n.setLocaleMessage(lang, { [lang]: messages.default })
             loadedLanguages.push(lang)
             return setI18nLanguage(lang)
         }
