@@ -15,7 +15,7 @@
     export default {
         methods: {
             handleSwitch () {
-                this.$i18n.loadLanguageAsync('en-US');
+
             }
         },
         components: {
