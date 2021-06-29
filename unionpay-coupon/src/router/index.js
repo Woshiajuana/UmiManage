@@ -7,16 +7,9 @@ Vue.use(VueRouter);
 const routes = (s => [
     {
         path: '/',
-        name: 'Home',
-        component: () => import(/* webpackChunkName: "Home" */ 'src/views/Home'),
+        name: 'Main',
+        component: () => import(/* webpackChunkName: "Home" */ 'src/views/Main'),
         meta: { depth: 1, title: '首页' },
-    },
-    {
-        path: '/about',
-        name: 'About',
-        component: () => import(/* webpackChunkName: "about" */ 'src/views/About'),
-        // component: require('src/views/About').default,
-        meta: { depth: 2, title: '关于' },
     },
     ...s.keys().map(k => s(k).default).flat(),
     {
