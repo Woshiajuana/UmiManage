@@ -10,7 +10,7 @@ export default {
             const { depth: toDepth } = to.meta;
             const { depth: fromDepth = toDepth } = from.meta;
             this.transitionName = toDepth === fromDepth
-                ? '' : toDepth > fromDepth ? 'vux-pop-in' : 'vux-pop-out';
+                ? '' : toDepth < fromDepth ? 'vux-pop-in' : 'vux-pop-out';
         }
     }
 }
