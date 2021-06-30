@@ -42,7 +42,7 @@
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
     .wow-super-box{
-        @extend %pa;
+        //@extend %pa;
         @extend %w100;
         padding: j(300) 0;
     }

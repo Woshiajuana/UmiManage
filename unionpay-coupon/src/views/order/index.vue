@@ -19,6 +19,13 @@
 
 <script>
     import { Cell as VanCell } from 'vant'
+
+    const fn = flag => new Promise((resolve, reject) => {
+        setTimeout(() => {
+            flag ? resolve({ list: new Array(10).fill('A'), total: 30 }) : reject('网络错误');
+        }, 1000)
+    });
+
     export default {
         data () {
             return {
@@ -35,6 +42,18 @@
             },
             pagingLoad () {
 
+            },
+            pagingReqDataList (pagingIndex, callback) {
+                fn(true).then(res => {
+                    const { list, total } = res;
+                    this.pagingData = pagingIndex === 1 ? list : [...this.pagingData, ...list];
+                    this.pagingTotal = total;
+                    callback();
+                }).toast(err => {
+                    callback(err);
+                }).finally(() => {
+
+                });
             },
         },
         components: {
