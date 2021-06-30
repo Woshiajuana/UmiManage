@@ -57,8 +57,10 @@ export function getLocale () {
 function setPageTitle (meta) {
     const { title } = meta || {};
     if (title) {
-        console.log(title);
-        document.title = i18n.t(title).toString();
+        document.title = '\u200E';
+        setTimeout(() => {
+            document.title = i18n.t(title).toString();
+        }, 30);
     }
 }
 

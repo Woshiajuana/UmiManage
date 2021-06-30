@@ -4,8 +4,8 @@
 .vux-pop-out-enter-active,
 .vux-pop-out-leave-active {
     will-change: transform;
-    -webkit-transition: all .5s;
-    transition: all .5s;
+    -webkit-transition: all .25s;
+    transition: all .25s;
     position: absolute;
     top: 0;
     -webkit-backface-visibility: hidden;

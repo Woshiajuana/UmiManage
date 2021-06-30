@@ -19,9 +19,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    loadLanguageAsync(undefined, to.meta).then(() => {
-        next();
-    });
+    loadLanguageAsync(undefined, to.meta).then(() => next());
 });
 
 export default router
