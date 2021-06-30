@@ -38,4 +38,9 @@
         @extend %b0;
         overflow-y: auto;
     }
+    .view-flex{
+        @extend %df;
+        @extend %fdc;
+        @extend %oh;
+    }
 </style>

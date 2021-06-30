@@ -2,9 +2,10 @@
 export default {
     router: {
         home: '首页',
-        setting: '设置',
         coupon: '优惠卷',
         mine: '我的',
+        setting: '设置',
+        order: '我的订单',
     },
     main: {
         home: '首页',

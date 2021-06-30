@@ -2,9 +2,10 @@
 export default {
     router: {
         home: 'Home',
-        setting: 'Setting',
         coupon: 'Coupon',
         mine: 'Mine',
+        setting: 'Setting',
+        order: 'Order',
     },
     main: {
         home: 'Home',

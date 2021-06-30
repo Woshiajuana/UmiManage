@@ -26,3 +26,28 @@ textarea:-ms-input-placeholder,
 input:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #4a6385;
 }
+
+.c-arrow{
+    width: j(10);
+    height: j(10);
+    border-top: 1px solid #cbcbcb;
+    border-right: 1px solid #cbcbcb;
+    &.right{
+        @include tfr(45deg);
+        margin-left: j(10);
+    }
+    &.bottom{
+        @include tfr(135deg);
+        margin-left: j(15);
+        margin-bottom: j(10);
+    }
+    &.left{
+        @include tfr(-135deg);
+        margin-left: j(15);
+        margin-bottom: j(10);
+    }
+    &.top{
+        @include tfr(-45deg);
+        margin-left: j(15);
+    }
+}

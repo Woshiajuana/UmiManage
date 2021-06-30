@@ -3,7 +3,6 @@
     <wow-view>
         <van-cell-group>
             <van-cell :title="$t('setting.translations')" :value="computeTranslations.name" is-link @click="show = true"/>
-            <van-cell title="返回" @click="$router.push('/mine')"></van-cell>
         </van-cell-group>
         <van-action-sheet
             v-model="show"
