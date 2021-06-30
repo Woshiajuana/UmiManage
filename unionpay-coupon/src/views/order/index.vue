@@ -1,11 +1,18 @@
 
 <template>
     <wow-view class="view-flex">
-        <wow-super-box></wow-super-box>
+        <wow-super-box
+            @refresh="pagingRefresh"
+            :error="pagingError"
+            v-if="pagingTotal < 1"
+            :loading="pagingTotal === -1"
+        ></wow-super-box>
         <wow-scroll
-            @refresh="handleRefresh"
-            @load="handleLoad">
-            <van-cell v-for="item in list" :key="item" :title="item" />
+            v-else
+            :finished="pagingData.length >= pagingData"
+            @refresh="pagingRefresh"
+            @load="pagingLoad">
+            <van-cell v-for="item in pagingData" :key="item" :title="item"/>
         </wow-scroll>
     </wow-view>
 </template>
@@ -15,13 +22,19 @@
     export default {
         data () {
             return {
-                list: [],
+                pagingData: '',
+                pagingIndex: 1,
+                pagingSize: 10,
+                pagingTotal: -1,
+                pagingError: '',
             };
         },
         methods: {
-            handleLoad () {
+            pagingRefresh () {
+
             },
-            handleRefresh () {
+            pagingLoad () {
+
             },
         },
         components: {
@@ -29,7 +42,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    @import "src/assets/scss/define";
-</style>

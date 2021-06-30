@@ -24,12 +24,13 @@
         data () {
             return {
                 refreshing: false,
-
                 loading: false,
-                finished: false,
                 error: false,
                 errorText: '',
             }
+        },
+        props: {
+            finished: { type: Boolean, default: false },
         },
         methods: {
             handleLoad () {
@@ -43,8 +44,6 @@
                 });
             },
             handleRefresh () {
-                // 刷新
-                this.finished = false;
                 // 重新加载数据
                 // 将 loading 设置为 true，表示处于加载状态
                 // this.loading = true;
