@@ -3,9 +3,9 @@
     <div class="main-wrap">
         <router-view class="main-inner"></router-view>
         <van-tabbar route>
-            <van-tabbar-item replace to="/" icon="home-o">首页</van-tabbar-item>
-            <van-tabbar-item replace to="/coupon" icon="gem-o">权益</van-tabbar-item>
-            <van-tabbar-item replace to="/mine" icon="contact">我的</van-tabbar-item>
+            <van-tabbar-item replace to="/" icon="home-o">{{$t('main.home')}}</van-tabbar-item>
+            <van-tabbar-item replace to="/coupon" icon="gem-o">{{$t('main.coupon')}}</van-tabbar-item>
+            <van-tabbar-item replace to="/mine" icon="contact">{{$t('main.mine')}}</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>

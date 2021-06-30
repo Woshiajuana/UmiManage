@@ -49,6 +49,12 @@ export function getLocale () {
     return window.localStorage.getItem($$LOCALE_LANG) || DEFAULT_LANG;
 }
 
+export function setPageTitle (title) {
+    if (title) {
+        document.title = i18n.t(title).toString();
+    }
+}
+
 i18n.langOptions = langOptions;
 i18n.getLocale = getLocale;
 i18n.loadLanguageAsync = loadLanguageAsync;

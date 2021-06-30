@@ -3,15 +3,12 @@
     <div class="home">
         <h1>{{$t('home.title')}}</h1>
         <br/>
-        <van-button @click="$router.push('/about')">跳转到关于页面</van-button>
-        <br/>
-        <van-button @click="handleSwitch">切换语言</van-button>
+        <van-button></van-button>
     </div>
 </template>
 
 <script>
     import { Button as VanButton } from 'vant'
-
     export default {
         methods: {
             handleSwitch () {
