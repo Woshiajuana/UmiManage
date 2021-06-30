@@ -1,8 +1,8 @@
 
 <template>
-    <div class="coupon-wrap">
+    <wow-view :left-arrow="false" class="coupon-wrap">
         <h1>优惠卷</h1>
-    </div>
+    </wow-view>
 </template>
 
 <script>

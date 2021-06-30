@@ -1,10 +1,10 @@
 
 <template>
-    <div class="home">
+    <wow-view :left-arrow="false">
         <h1>{{$t('home.title')}}</h1>
         <br/>
         <van-button></van-button>
-    </div>
+    </wow-view>
 </template>
 
 <script>
@@ -23,12 +23,4 @@
 
 <style lang="scss">
     @import "src/assets/scss/define";
-    .home {
-        @extend %df;
-        @extend %aic;
-        @extend %jcc;
-        @extend %fdc;
-        font-size: j(78);
-        background-color: #42bdff;
-    }
 </style>

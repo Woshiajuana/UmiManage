@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <wow-view>
         <van-cell-group>
             <van-cell :title="$t('setting.translations')" :value="computeTranslations.name" is-link @click="show = true"/>
             <van-cell title="返回" @click="$router.push('/mine')"></van-cell>
@@ -12,7 +12,7 @@
             :cancel-text="$t('setting.cancel')"
             close-on-click-action
         ></van-action-sheet>
-    </div>
+    </wow-view>
 </template>
 
 <script>
