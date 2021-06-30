@@ -1,6 +1,7 @@
 
 <template>
     <wow-view class="view-flex">
+        <wow-super-box></wow-super-box>
         <wow-scroll
             @refresh="handleRefresh"
             @load="handleLoad">

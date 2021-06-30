@@ -5,8 +5,6 @@
         v-model="refreshing"
         success-text="刷新成功"
         @refresh="handleRefresh">
-        <wow-super-box
-        ></wow-super-box>
         <van-list
             v-model="loading"
             :finished="finished"

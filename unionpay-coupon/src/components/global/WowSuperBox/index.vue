@@ -2,8 +2,9 @@
 <template>
     <van-empty
         class="wow-super-box"
-        :description="loading ? '' : error">
-        <template #image v-if="loading">
+        :image="error ? 'error' : 'default'"
+        :description="error ? error : loading ? '' : '暂无数据'">
+        <template v-if="loading && !error" #image>
             <van-loading
                 class="wow-super-loading"
                 vertical
@@ -13,7 +14,8 @@
             >加载中</van-loading>
         </template>
         <van-button
-            @click="handleRefresh"
+            v-if="error"
+            @click="$emit('refresh')"
             round
             type="danger"
             class="wow-super-button"
@@ -23,18 +25,11 @@
 
 <script>
     import { Empty as VanEmpty, Button as VanButton, Loading as VanLoading } from 'vant'
+
     export default {
         props: {
-            type: { default: 'loading' },
             loading: { default: true },
             error: { default: '' },
-        },
-        methods: {
-            handleRefresh () {
-                // this.loading = false;
-                this.$emit('update:error', '');
-                this.$emit('update:loading', false);
-            },
         },
         components: {
             VanEmpty,
