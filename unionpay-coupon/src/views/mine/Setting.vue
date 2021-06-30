@@ -35,7 +35,7 @@
         methods: {
             handleSelect (item) {
                 const { value } = item;
-                this.$i18n.loadLanguageAsync(value);
+                this.$i18n.loadLanguageAsync(value, this.$route.meta);
             }
         },
         components: {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { loadLanguageAsync, setPageTitle } from 'src/locale'
+import { loadLanguageAsync } from 'src/locale'
 
 Vue.use(VueRouter);
 
@@ -19,9 +19,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    loadLanguageAsync().then(() => {
-        const { title } = to.meta;
-        setPageTitle(title);
+    loadLanguageAsync(undefined, to.meta).then(() => {
         next();
     });
 });

@@ -26,21 +26,26 @@ function setI18nLanguage (lang) {
     return lang
 }
 
-export function loadLanguageAsync(lang = getLocale()) {
+// 动态加载语言
+export function loadLanguageAsync(lang = getLocale(), meta) {
     // 如果语言相同
     if (i18n.locale === lang) {
-        return Promise.resolve(setI18nLanguage(lang))
+        setPageTitle(meta);
+        return Promise.resolve()
     }
     // 如果语言已经加载
     if (loadedLanguages.includes(lang)) {
-        return Promise.resolve(setI18nLanguage(lang))
+        setI18nLanguage(lang)
+        setPageTitle(meta);
+        return Promise.resolve()
     }
     // 如果尚未加载语言
     return import(/* webpackChunkName: "lang-[request]" */ `src/locale/lang/${lang}.js`).then(
         messages => {
             i18n.setLocaleMessage(lang, messages.default)
             loadedLanguages.push(lang)
-            return setI18nLanguage(lang)
+            setI18nLanguage(lang)
+            return setPageTitle(meta);
         }
     )
 }
@@ -49,8 +54,10 @@ export function getLocale () {
     return window.localStorage.getItem($$LOCALE_LANG) || DEFAULT_LANG;
 }
 
-export function setPageTitle (title) {
+function setPageTitle (meta) {
+    const { title } = meta || {};
     if (title) {
+        console.log(title);
         document.title = i18n.t(title).toString();
     }
 }
