@@ -3,7 +3,7 @@
         <!--主体内容视图-->
         <transition :name="transitionName">
 <!--            <keep-alive>-->
-            <router-view class="view-wrap"></router-view>
+            <router-view class="view-wrap" :key="$route.path"></router-view>
 <!--            </keep-alive>-->
         </transition>
     </div>

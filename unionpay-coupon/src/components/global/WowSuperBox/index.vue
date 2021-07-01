@@ -3,7 +3,7 @@
     <van-empty
         class="wow-super-box"
         :image="error ? 'error' : 'default'"
-        :description="error ? error : loading ? '' : '暂无数据'">
+        :description="error ? error : loading ? '' : $t('emptyText')">
         <template v-if="loading && !error" #image>
             <van-loading
                 class="wow-super-loading"
@@ -11,7 +11,7 @@
                 size="40"
                 color="#0094ff"
                 text-color="#0094ff"
-            >加载中</van-loading>
+            >{{ $t('loadingText') }}</van-loading>
         </template>
         <van-button
             v-if="error"
@@ -19,7 +19,7 @@
             round
             type="danger"
             class="wow-super-button"
-        >刷新一下</van-button>
+        >{{ $t('retryText') }}</van-button>
     </van-empty>
 </template>
 
@@ -27,6 +27,20 @@
     import { Empty as VanEmpty, Button as VanButton, Loading as VanLoading } from 'vant'
 
     export default {
+        i18n: {
+            messages: {
+                'zh-CN': {
+                    emptyText: '空空如也',
+                    retryText: '刷新一下',
+                    loadingText: '加载中',
+                },
+                'en-US': {
+                    emptyText: 'Nothing...',
+                    retryText: 'Try again',
+                    loadingText: 'Loading',
+                },
+            }
+        },
         props: {
             loading: { default: true },
             error: { default: '' },

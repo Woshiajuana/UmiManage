@@ -3,15 +3,19 @@
     <van-pull-refresh
         class="wow-scroll"
         v-model="refreshing"
-        :success-text="error || '刷新成功'"
+        :pulling-text="$t('pullingText')"
+        :loosing-text="$t('loosingText')"
+        :loading-text="$t('loadingText')"
+        :success-text="refreshErrorText ||$t('successText')"
         @refresh="handleRefresh">
         <van-list
+            ref="list"
             v-model="loading"
             :finished="finished"
-            finished-text="没有更多了"
-            :error="!!error"
-            :error-text="error"
-            :immediate-check="false"
+            :finished-text="$t('finishedText')"
+            :loading-text="$t('loadingText')"
+            :error.sync="loadError"
+            :error-text="loadErrorText"
             @load="handleLoad">
             <slot></slot>
         </van-list>
@@ -21,27 +25,56 @@
 <script>
     import { List as VanList, PullRefresh as VanPullRefresh } from 'vant'
     export default {
+        i18n: {
+            messages: {
+                'zh-CN': {
+                    pullingText: '↓ 下拉即可刷新',
+                    loosingText: '↑ 释放即可刷新',
+                    loadingText: '加载中...',
+                    successText: '刷新成功',
+                    finishedText: '没有更多了',
+                    retryText: '，点击重新加载'
+                },
+                'en-US': {
+                    pullingText: '↓ Pulling',
+                    loosingText: '↑ Loosing',
+                    loadingText: 'Loading...',
+                    successText: 'Success',
+                    finishedText: 'No more',
+                    retryText: '，Try again'
+                },
+            }
+        },
         data () {
             return {
                 refreshing: false,
+                refreshErrorText: '',
                 loading: false,
+                loadError: false,
+                loadErrorText: '',
             }
         },
         props: {
             finished: { type: Boolean, default: false },
-            error: { type: String, default: '' },
         },
         methods: {
             handleLoad () {
-                // 加载更多
-                console.log('加载更多');
-                this.$emit('load', () => {
+                this.$emit('load', err => {
+                    if (err) {
+                        this.loadError = true;
+                        this.loadErrorText = `${err}${this.$t('retryText')}`;
+                    } else {
+                        this.loadError = false;
+                        this.loadErrorText = '';
+                    }
                     this.loading = false;
                 });
             },
             handleRefresh () {
-                this.$emit('refresh', () => {
+                this.$emit('refresh', err => {
+                    this.refreshErrorText = err || '';
                     this.refreshing = false;
+                    this.$refs.list.check();
                 });
             },
         },
