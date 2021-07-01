@@ -3,14 +3,14 @@
     <van-pull-refresh
         class="wow-scroll"
         v-model="refreshing"
-        success-text="刷新成功"
+        :success-text="error || '刷新成功'"
         @refresh="handleRefresh">
         <van-list
             v-model="loading"
             :finished="finished"
             finished-text="没有更多了"
-            :error.sync="error"
-            :error-text="errorText"
+            :error="!!error"
+            :error-text="error"
             :immediate-check="false"
             @load="handleLoad">
             <slot></slot>
@@ -25,30 +25,23 @@
             return {
                 refreshing: false,
                 loading: false,
-                error: false,
-                errorText: '',
             }
         },
         props: {
             finished: { type: Boolean, default: false },
+            error: { type: String, default: '' },
         },
         methods: {
             handleLoad () {
-                this.loading = false;
                 // 加载更多
-                this.$emit('load', err => {
-                    if (err) {
-                        this.error = true;
-                        this.errorText = err;
-                    }
+                console.log('加载更多');
+                this.$emit('load', () => {
+                    this.loading = false;
                 });
             },
             handleRefresh () {
-                // 重新加载数据
-                // 将 loading 设置为 true，表示处于加载状态
-                // this.loading = true;
                 this.$emit('refresh', () => {
-
+                    this.refreshing = false;
                 });
             },
         },

@@ -9,10 +9,11 @@
         ></wow-super-box>
         <wow-scroll
             v-else
+            :error="pagingError"
             :finished="pagingData.length >= pagingData"
             @refresh="pagingRefresh"
             @load="pagingLoad">
-            <van-cell v-for="item in pagingData" :key="item" :title="item"/>
+            <van-cell v-for="(item, index) in pagingData" :key="index" :title="item"/>
         </wow-scroll>
     </wow-view>
 </template>
@@ -36,23 +37,29 @@
                 pagingError: '',
             };
         },
+        created() {
+            this.pagingRefresh();
+        },
         methods: {
-            pagingRefresh () {
-
+            pagingRefresh (callback) {
+                this.pagingIndex = 1;
+                this.pagingReqDataList(this.pagingIndex, callback);
             },
-            pagingLoad () {
-
+            pagingLoad (callback) {
+                this.pagingReqDataList(this.pagingIndex + 1, callback);
             },
             pagingReqDataList (pagingIndex, callback) {
+                this.pagingError = '';
                 fn(true).then(res => {
                     const { list, total } = res;
                     this.pagingData = pagingIndex === 1 ? list : [...this.pagingData, ...list];
                     this.pagingTotal = total;
-                    callback();
+                    this.pagingIndex = pagingIndex;
                 }).toast(err => {
-                    callback(err);
+                    this.pagingError = err;
+                    return true;
                 }).finally(() => {
-
+                    typeof callback === 'function' && callback(this.pagingError);
                 });
             },
         },

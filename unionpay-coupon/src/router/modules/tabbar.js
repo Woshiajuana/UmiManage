@@ -14,13 +14,13 @@ export default [
                 path: 'coupon',
                 name: 'Coupon',
                 component: () => import(/* webpackChunkName: "coupon" */ 'src/views/coupon'),
-                meta: { depth: 2, title: 'router.coupon' },
+                meta: { depth: 1, title: 'router.coupon' },
             },
             {
                 path: '/mine',
                 name: 'Mine',
                 component: () => import(/* webpackChunkName: "mine" */ 'src/views/mine'),
-                meta: { depth: 3, title: 'router.mine' },
+                meta: { depth: 1, title: 'router.mine' },
             },
         ]
     }
