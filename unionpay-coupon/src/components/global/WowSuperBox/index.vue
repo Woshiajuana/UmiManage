@@ -9,8 +9,7 @@
                 class="wow-super-loading"
                 vertical
                 size="40"
-                color="#0094ff"
-                text-color="#0094ff"
+                type="spinner"
             >{{ $t('loadingText') }}</van-loading>
         </template>
         <van-button
@@ -56,9 +55,11 @@
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
     .wow-super-box{
-        //@extend %pa;
         @extend %w100;
-        padding: j(300) 0;
+        @extend %df;
+        @extend %aic;
+        @extend %jcc;
+        height: 66.6%;
     }
     .wow-super-loading{
         @extend %df;

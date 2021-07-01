@@ -1,9 +1,6 @@
 
 <template>
     <wow-view class="view-flex">
-        <div class="operate">
-            <van-button style="width: 100px" type="primary" @click="error = !error">{{ error ? '关闭错误' : '开启错误'}}</van-button>
-        </div>
         <wow-super-box
             @refresh="pagingRefresh"
             :error="pagingError"
@@ -21,61 +18,30 @@
 </template>
 
 <script>
-    import { Cell as VanCell, Button as VanButton } from 'vant'
+    import { Cell as VanCell } from 'vant'
+    import PagingMixin from 'src/mixins/paging'
 
-    const fn = flag => new Promise((resolve, reject) => {
+    const fn = ({ pageIndex }) => new Promise((resolve, reject) => {
         setTimeout(() => {
-            flag ? resolve({ list: new Array(10).fill('A'), total: 50 }) : reject('网络错误');
+            pageIndex <= 2 ? resolve({ list: new Array(10).fill('A'), total: 50 }) : reject('网络错误');
         }, 1000)
     });
 
     export default {
-        data () {
-            return {
-                pagingData: '',
-                pagingIndex: 1,
-                pagingSize: 10,
-                pagingTotal: -1,
-                pagingError: '',
-
-                error: false,
-            };
-        },
+        mixins: [
+            PagingMixin,
+        ],
         created() {
             this.pagingRefresh();
         },
         methods: {
-            pagingRefresh (callback) {
-                this.pagingIndex = 1;
-                this.pagingReqDataList(this.pagingIndex, callback);
-            },
-            pagingLoad (callback) {
-                this.pagingReqDataList(this.pagingIndex + 1, callback);
-            },
-            pagingReqDataList (pagingIndex, callback) {
-                this.pagingError = '';
-                fn(this.error).then(res => {
-                    const { list, total } = res;
-                    this.pagingData = pagingIndex === 1 ? list : [...this.pagingData, ...list];
-                    this.pagingTotal = total;
-                    this.pagingIndex = pagingIndex;
-                }).toast(err => {
-                    this.pagingError = err;
-                    return true;
-                }).finally(() => {
-                    typeof callback === 'function' && callback(this.pagingError);
-                });
-            },
+            pagingGetUrlParamsOptions() {
+                return { fn };
+            }
         },
         components: {
-            VanButton,
             VanCell,
         }
     }
 </script>
 
-<style>
-    .operate{
-        display: flex;
-    }
-</style>

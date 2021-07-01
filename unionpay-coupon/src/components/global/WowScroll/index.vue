@@ -60,13 +60,8 @@
         methods: {
             handleLoad () {
                 this.$emit('load', err => {
-                    if (err) {
-                        this.loadError = true;
-                        this.loadErrorText = `${err}${this.$t('retryText')}`;
-                    } else {
-                        this.loadError = false;
-                        this.loadErrorText = '';
-                    }
+                    this.loadError = !!err;
+                    this.loadErrorText = err ? `${err}${this.$t('retryText')}` : '';
                     this.loading = false;
                 });
             },
@@ -74,6 +69,8 @@
                 this.$emit('refresh', err => {
                     this.refreshErrorText = err || '';
                     this.refreshing = false;
+                    this.loadError = false;
+                    this.loadErrorText = '';
                     this.$refs.list.check();
                 });
             },
