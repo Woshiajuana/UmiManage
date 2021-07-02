@@ -5,6 +5,9 @@
             <van-cell :title="$t('setting.translations')" :value="computeTranslations.name" is-link @click="show = true"/>
         </van-cell-group>
         <van-button type="primary">切换主题</van-button>
+        <div class="test-button">
+            <span class="test-button-text">哈哈</span>
+        </div>
         <van-action-sheet
             v-model="show"
             :actions="computedLangOptions"
@@ -47,3 +50,29 @@
         }
     }
 </script>
+
+<style lang="scss">
+    @import "src/assets/scss/define";
+    .test-button{
+        @extend %df;
+        @extend %aic;
+        @extend %jcc;
+        @extend %bsb;
+        width: j(200);
+        height: j(50);
+        margin: j(20);
+        border: 1px solid red;
+    }
+    @include b(human) {
+        padding: j(20);
+        background-color: red;
+        @include e(finger) {
+            padding: j(20);
+            background-color: #42bdff;
+            @include m(little) {
+                padding: j(20);
+                background-color: #ffa442;
+            }
+        }
+    }
+</style>

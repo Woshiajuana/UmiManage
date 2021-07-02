@@ -1,6 +1,34 @@
 
 @import "var";
 
+$element-separator: '__';
+$modifier-separator: '--';
+
+@mixin b($block) {
+    .#{$block} {
+        @content;
+    }
+}
+
+@mixin e($element) {
+    $selector: &;
+    @at-root {
+        #{$selector + $element-separator + $element} {
+            @content;
+        }
+    }
+}
+
+@mixin m($modifier) {
+    $selector: &;
+    @at-root {
+        #{$selector + $modifier-separator + $modifier} {
+            @content;
+        }
+    }
+}
+
+
 @function j($px, $base-font-size: 37.5px) {
     @if (unitless($px)) {
         @return j($px + 0px); // That may fail.
