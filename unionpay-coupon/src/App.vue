@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss">
-    @import "~src/assets/scss/common";
+    @import "src/assets/scss/base";
     html,
     body{
         @extend %h100;

@@ -4,6 +4,7 @@
         <van-cell-group>
             <van-cell :title="$t('setting.translations')" :value="computeTranslations.name" is-link @click="show = true"/>
         </van-cell-group>
+        <van-button type="primary">切换主题</van-button>
         <van-action-sheet
             v-model="show"
             :actions="computedLangOptions"
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-    import { Cell as VanCell, CellGroup as VanCellGroup, ActionSheet as VanActionSheet } from 'vant'
+    import { Cell as VanCell, CellGroup as VanCellGroup, ActionSheet as VanActionSheet, Button as VanButton } from 'vant'
     export default {
         data() {
             return {
@@ -40,6 +41,7 @@
         },
         components: {
             VanCell,
+            VanButton,
             VanCellGroup,
             VanActionSheet,
         }

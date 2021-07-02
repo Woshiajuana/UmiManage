@@ -1,8 +1,10 @@
 
-@import "~src/assets/scss/reset";
-@import "~src/assets/scss/define";
-@import "~src/assets/scss/animate";
-@import "~src/assets/scss/transition";
+@import "var";
+@import "css-variables";
+@import "reset";
+@import "define";
+@import "animation";
+@import "transition";
 
 input:disabled, input[disabled]{
     -webkit-opacity: 1;
