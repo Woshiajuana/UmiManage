@@ -23,13 +23,13 @@ export default {
             this.pagingError = '';
             const { fn, params = {}, options } = this.pagingGetUrlParamsOptions();
             fn(Object.assign({
-                pageIndex: this.pagingIndex,
+                pageIndex: pagingIndex,
                 pageSize: this.pagingSize,
             }, params), options).then(res => {
-                const { list, total } = res;
+                const { list, total } = this.pagingFormatResult(res);
+                this.pagingIndex = pagingIndex;
                 this.pagingData = pagingIndex === 1 ? list : [...this.pagingData, ...list];
                 this.pagingTotal = total;
-                this.pagingIndex = pagingIndex;
             }).toast(err => {
                 this.pagingError = err;
                 return true;

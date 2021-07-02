@@ -40,7 +40,27 @@
     }
     .view-flex{
         @extend %df;
+        @extend %df1;
         @extend %fdc;
         @extend %oh;
+    }
+    .view-flex1{
+        @extend %df1;
+    }
+    .c-van-tabs{
+        @extend %df;
+        @extend %df1;
+        @extend %fdc;
+        @extend %oh;
+        .van-tabs__content{
+            @extend %df1;
+            @extend %oh;
+            .van-tab__pane{
+                @extend %h100;
+                .view-flex{
+                    @extend %h100;
+                }
+            }
+        }
     }
 </style>

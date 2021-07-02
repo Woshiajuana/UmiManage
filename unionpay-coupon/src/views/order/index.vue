@@ -1,46 +1,39 @@
 
 <template>
     <wow-view class="view-flex">
-        <wow-super-box
-            @refresh="pagingRefresh"
-            :error="pagingError"
-            v-if="pagingTotal < 1"
-            :loading="pagingTotal === -1"
-        ></wow-super-box>
-        <wow-scroll
-            v-else
-            :finished="pagingData.length >= pagingTotal"
-            @refresh="pagingRefresh"
-            @load="pagingLoad">
-            <van-cell v-for="(item, index) in pagingData" :key="index" :title="item" :value="index"/>
-        </wow-scroll>
+        <van-tabs class="c-van-tabs" v-model="active">
+            <van-tab
+                :title="item.title"
+                v-for="(item, index) in arrData"
+                :key="index">
+                <tab-content
+                    :params="item"
+                ></tab-content>
+            </van-tab>
+        </van-tabs>
     </wow-view>
 </template>
 
 <script>
-    import { Cell as VanCell } from 'vant'
-    import PagingMixin from 'src/mixins/paging'
-
-    const fn = ({ pageIndex }) => new Promise((resolve, reject) => {
-        setTimeout(() => {
-            pageIndex <= 2 ? resolve({ list: new Array(10).fill('A'), total: 50 }) : reject('网络错误');
-        }, 1000)
-    });
+    import { Tabs as VanTabs, Tab as VanTab } from 'vant'
+    import TabContent from './components/TabContent'
 
     export default {
-        mixins: [
-            PagingMixin,
-        ],
-        created() {
-            this.pagingRefresh();
-        },
-        methods: {
-            pagingGetUrlParamsOptions() {
-                return { fn };
-            }
+        data() {
+            return {
+                active: 0,
+                arrData: [
+                    { title: '全部' },
+                    { title: '已完成' },
+                    { title: '代付款' },
+                    { title: '退换货' },
+                ]
+            };
         },
         components: {
-            VanCell,
+            VanTab,
+            VanTabs,
+            TabContent,
         }
     }
 </script>
