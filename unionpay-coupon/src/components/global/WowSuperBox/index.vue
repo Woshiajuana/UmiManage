@@ -9,8 +9,7 @@
                 class="wow-super-loading"
                 vertical
                 size="40"
-                type="spinner"
-            >{{ $t('loadingText') }}</van-loading>
+            ></van-loading>
         </template>
         <van-button
             v-if="error"
@@ -52,7 +51,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import "src/assets/scss/define";
     .wow-super-box{
         @extend %w100;
@@ -60,12 +59,25 @@
         @extend %aic;
         @extend %jcc;
         height: 66.6%;
+        min-height: j(1000);
+        .van-empty__image{
+            @extend %df;
+            @extend %aic;
+            @extend %jcc;
+        }
     }
     .wow-super-loading{
         @extend %df;
         @extend %aic;
         @extend %jcc;
         @extend %h100;
+        @extend %ma;
+        width: j(100);
+        height: j(100);
+        color: #fff;
+        padding: j(20);
+        border-radius: j(20);
+        background-color: rgba(0, 0, 0, .5);
     }
     .wow-super-button {
         width: 160px;

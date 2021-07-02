@@ -22,7 +22,7 @@
     import PagingMixin from 'src/mixins/paging'
     const fn = ({ pageIndex }) => new Promise((resolve, reject) => {
         setTimeout(() => {
-            pageIndex <= 2 ? resolve({ list: new Array(10).fill('A'), total: 50 }) : reject('网络错误');
+            pageIndex <= 0 ? resolve({ list: new Array(10).fill('A'), total: 50 }) : reject('网络错误');
         }, 1000)
     });
 
