@@ -3,7 +3,7 @@ export default [
     {
         path: '/setting',
         name: 'Setting',
-        component: () => import(/* webpackChunkName: "setting" */ 'src/views/mine/Setting'),
+        component: () => import(/* webpackChunkName: "setting" */ 'src/views/mine/setting'),
         meta: { depth: 2, title: 'router.setting' }
     },
     {

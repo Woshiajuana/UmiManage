@@ -48,7 +48,7 @@
         @extend %fdc;
         @extend %ma;
         @extend %w100;
-        max-width: j(750);
+        max-width: j(375);
     }
     .main-inner{
         @extend %df1;
@@ -61,9 +61,9 @@
             @extend %df;
             @extend %aic;
             @extend %jcc;
-            width: j(48);
-            height: j(48);
-            font-size: j(50) !important;
+            width: j(24);
+            height: j(24);
+            font-size: j(24) !important;
         }
         .van-tabbar-item--active{
             background-color: transparent;

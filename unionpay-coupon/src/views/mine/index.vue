@@ -1,8 +1,6 @@
 
 <template>
-    <wow-view
-        class="mine-wrap"
-        :left-arrow="false">
+    <wow-view>
 
         <div class="section-card">
             <div class="section-head">

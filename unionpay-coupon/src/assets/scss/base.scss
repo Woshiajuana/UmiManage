@@ -30,6 +30,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #4a6385;
 }
 
+body{
+    background-color: $color-background;
+}
+
 .c-arrow{
     width: j(10);
     height: j(10);
