@@ -14,12 +14,16 @@
             class="banner-section"
             :autoplay="3000"
             indicator-color="white">
-            <van-swipe-item>1</van-swipe-item>
-            <van-swipe-item>2</van-swipe-item>
-            <van-swipe-item>3</van-swipe-item>
-            <van-swipe-item>4</van-swipe-item>
+            <van-swipe-item>
+                <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
+            </van-swipe-item>
+            <van-swipe-item>
+                <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
+            </van-swipe-item>
         </van-swipe>
-        <van-tabs v-model="active">
+        <van-tabs
+            class="tabs-section"
+            v-model="active">
             <template #nav-right>
                 <span>查看全部》</span>
             </template>
@@ -84,6 +88,31 @@
         background-color: transparent;
     }
     .banner-section{
+        @extend %ma;
+        border-radius: j(10);
+        height: j(136);
+        width: j(355);
+        img{
+            @extend %db;
+            @extend %w100;
+            @extend %h100;
+            object-fit: cover;
+        }
+    }
+    .tabs-section{
+        .van-tabs__nav {
+            @extend %df;
+            @extend %aic;
+            background-color: transparent;
+        }
+        .van-tab{
+            color: #999;
+        }
+        .van-tab--active{
+            color: #fff;
+        }
+        .van-tabs__line{
 
+        }
     }
 </style>
