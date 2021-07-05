@@ -59,7 +59,7 @@
         @extend %aic;
         @extend %jcc;
         height: 66.6%;
-        min-height: j(1000);
+        min-height: j(500);
         .van-empty__image{
             @extend %df;
             @extend %aic;
@@ -72,11 +72,11 @@
         @extend %jcc;
         @extend %h100;
         @extend %ma;
-        width: j(100);
-        height: j(100);
+        width: j(50);
+        height: j(50);
         color: #fff;
-        padding: j(20);
-        border-radius: j(20);
+        padding: j(10);
+        border-radius: j(10);
         background-color: rgba(0, 0, 0, .5);
     }
     .wow-super-button {

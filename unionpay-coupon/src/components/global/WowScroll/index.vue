@@ -87,7 +87,7 @@
     .wow-scroll{
         @extend %df1;
         @extend %h100;
-        height: j(300);
+        height: j(150);
         overflow-y: auto;
         .van-list{
             @extend %h100;

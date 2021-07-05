@@ -33,7 +33,22 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 body{
     background-color: $color-background;
 }
-
+.c-flex1{
+    @extend %df1;
+}
+.c-button{
+    @extend %df;
+    @extend %pr;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cp;
+    @extend %c3;
+    width: j(72);
+    height: j(30);
+    border-radius: j(15);
+    font-size: j(14);
+    background-image: $gradient-primary-color;
+}
 .c-arrow{
     width: j(10);
     height: j(10);

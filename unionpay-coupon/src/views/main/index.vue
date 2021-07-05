@@ -52,6 +52,7 @@
     }
     .main-inner{
         @extend %df1;
+        @extend %bsb;
         @extend %w100;
         overflow-y: auto;
     }

@@ -22,21 +22,31 @@
             </van-swipe-item>
         </van-swipe>
         <van-tabs
+            sticky
             class="tabs-section"
             v-model="active">
             <template #nav-right>
-                <span>查看全部》</span>
+                <span class="more-link">查看全部 &gt;</span>
             </template>
-            <van-tab title="标签 1">内容 1</van-tab>
-            <van-tab title="标签 2">内容 2</van-tab>
-            <van-tab title="标签 3">内容 3</van-tab>
-            <van-tab title="标签 4">内容 4</van-tab>
+            <van-tab title="代金卷">
+                <coupon-item v-for="(item, index) in 10" :key="index"></coupon-item>
+            </van-tab>
+            <van-tab title="充值卡">
+                <coupon-item v-for="(item, index) in 2" :key="index"></coupon-item>
+            </van-tab>
+            <van-tab title="权益会员">
+                <coupon-item v-for="(item, index) in 3" :key="index"></coupon-item>
+            </van-tab>
+            <van-tab title="其他">
+                <coupon-item v-for="(item, index) in 4" :key="index"></coupon-item>
+            </van-tab>
         </van-tabs>
     </wow-view>
 </template>
 
 <script>
     import { Search, Swipe, SwipeItem, Tabs, Tab } from 'vant'
+    import CouponItem from 'src/components/CouponItem'
     export default {
         data () {
             return {
@@ -44,6 +54,7 @@
             }
         },
         components: {
+            CouponItem,
             VanTabs: Tabs,
             VanTab: Tab,
             VanSwipe: Swipe,
@@ -53,9 +64,10 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "src/assets/scss/define";
     .home-wrap{
+        padding-bottom: j(80);
         background-image: linear-gradient(180deg, rgba(46,46,56,0.20) 1%, #1F1D1C 100%);
     }
     .header{
@@ -100,19 +112,33 @@
         }
     }
     .tabs-section{
-        .van-tabs__nav {
-            @extend %df;
-            @extend %aic;
-            background-color: transparent;
+        /deep/ {
+            .van-tabs__nav{
+                @extend %df;
+                @extend %aic;
+                background-color: transparent;
+            }
+            .van-sticky--fixed{
+                background-color: $color-background-light;
+            }
+            .van-tab{
+                color: #999;
+            }
+            .van-tab--active{
+                color: #fff;
+            }
+            .van-tabs__line{
+                background-image: $gradient-primary-color;
+            }
+            .van-tabs__content{
+                min-height: 100vh;
+            }
         }
-        .van-tab{
-            color: #999;
-        }
-        .van-tab--active{
-            color: #fff;
-        }
-        .van-tabs__line{
-
-        }
+    }
+    .more-link{
+        @extend %c9;
+        @extend %cp;
+        padding: 0 j(14);
+        font-size: j(12);
     }
 </style>

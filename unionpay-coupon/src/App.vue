@@ -36,6 +36,7 @@
         @extend %l0;
         @extend %r0;
         @extend %b0;
+        @extend %bsb;
         overflow-y: auto;
     }
     .view-flex{
@@ -61,6 +62,18 @@
                     @extend %h100;
                 }
             }
+        }
+        .van-tabs__nav{
+            background-color: $color-background-light;
+        }
+        .van-tab{
+            color: #999;
+        }
+        .van-tab--active{
+            color: #fff;
+        }
+        .van-tabs__line{
+            background-image: $gradient-primary-color;
         }
     }
 </style>
