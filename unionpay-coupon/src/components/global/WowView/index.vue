@@ -1,20 +1,20 @@
 
 <template>
     <div>
-        <van-nav-bar
-            fixed
-            placeholder
-            :title="title || $t($route.meta.title)"
-            :left-arrow="leftArrow"
-            @click-left="handleLeft"
-            @click-right="$emit('right')"
-        ></van-nav-bar>
+<!--        <van-nav-bar-->
+<!--            fixed-->
+<!--            placeholder-->
+<!--            :title="title || $t($route.meta.title)"-->
+<!--            :left-arrow="leftArrow"-->
+<!--            @click-left="handleLeft"-->
+<!--            @click-right="$emit('right')"-->
+<!--        ></van-nav-bar>-->
         <slot></slot>
     </div>
 </template>
 
 <script>
-    import { NavBar as VanNavBar } from 'vant'
+    // import { NavBar as VanNavBar } from 'vant'
     export default {
         props: {
             title: { default: '' },
@@ -30,7 +30,7 @@
             },
         },
         components: {
-            VanNavBar
+            // VanNavBar
         }
     }
 </script>

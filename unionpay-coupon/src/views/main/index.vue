@@ -2,10 +2,31 @@
 <template>
     <div class="main-wrap">
         <router-view class="main-inner"></router-view>
-        <van-tabbar route>
-            <van-tabbar-item replace to="/" icon="home-o">{{$t('main.home')}}</van-tabbar-item>
-            <van-tabbar-item replace to="/coupon" icon="gem-o">{{$t('main.coupon')}}</van-tabbar-item>
-            <van-tabbar-item replace to="/mine" icon="contact">{{$t('main.mine')}}</van-tabbar-item>
+        <van-tabbar
+            fixed
+            class="main-tabber"
+            active-color="#FABE97"
+            inactive-color="#999999"
+            route>
+            <van-tabbar-item
+                replace to="/"
+                icon="home-o">
+                {{$t('main.home')}}
+                <template #icon><i class="iconfont icon-shouye-weixuanzhong"></i></template>
+            </van-tabbar-item>
+            <van-tabbar-item
+                replace
+                to="/coupon"
+                icon="gem-o">
+                {{$t('main.coupon')}}
+                <template #icon><i class="iconfont icon-wodequanyi-weixuanzhong"></i></template>
+            </van-tabbar-item>
+            <van-tabbar-item
+                replace to="/mine"
+                icon="contact">
+                {{$t('main.mine')}}
+                <template #icon><i class="iconfont icon-wode-weixuanzhong"></i></template>
+            </van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
@@ -33,5 +54,19 @@
         @extend %df1;
         @extend %w100;
         overflow-y: auto;
+    }
+    .main-tabber{
+        background-color: $color-background-light;
+        .iconfont{
+            @extend %df;
+            @extend %aic;
+            @extend %jcc;
+            width: j(48);
+            height: j(48);
+            font-size: j(50) !important;
+        }
+        .van-tabbar-item--active{
+            background-color: transparent;
+        }
     }
 </style>
