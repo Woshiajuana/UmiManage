@@ -16,9 +16,9 @@
             </van-tabbar-item>
             <van-tabbar-item
                 replace
-                to="/coupon"
+                to="/equities"
                 icon="gem-o">
-                {{$t('main.coupon')}}
+                {{$t('main.equities')}}
                 <template #icon><i class="iconfont icon-wodequanyi-weixuanzhong"></i></template>
             </van-tabbar-item>
             <van-tabbar-item

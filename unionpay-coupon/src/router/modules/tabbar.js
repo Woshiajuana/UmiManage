@@ -11,10 +11,10 @@ export default [
                 meta: { depth: 1, title: 'router.home' },
             },
             {
-                path: 'coupon',
-                name: 'Coupon',
-                component: () => import(/* webpackChunkName: "coupon" */ 'src/views/coupon'),
-                meta: { depth: 1, title: 'router.coupon' },
+                path: 'equities',
+                name: 'Equities',
+                component: () => import(/* webpackChunkName: "coupon" */ 'src/views/equities'),
+                meta: { depth: 1, title: 'router.equities' },
             },
             {
                 path: '/mine',

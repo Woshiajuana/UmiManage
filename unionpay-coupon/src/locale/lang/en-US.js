@@ -2,14 +2,14 @@
 export default {
     router: {
         home: 'Home',
-        coupon: 'Coupon',
+        equities: 'Equities',
         mine: 'Mine',
         setting: 'Setting',
         order: 'Order',
     },
     main: {
         home: 'Home',
-        coupon: 'Coupon',
+        equities: 'Equities',
         mine: 'Mine',
     },
     home: {
