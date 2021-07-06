@@ -50,6 +50,13 @@ body{
     font-size: j(14);
     background-image: $gradient-primary-color;
 }
+.c-button-large{
+    @extend %ma;
+    font-size: j(16);
+    width: j(335);
+    height: j(44);
+    border-radius: j(22);
+}
 .c-button-border{
     color: #d6d6d6;
     border: 1px solid #d6d6d6;

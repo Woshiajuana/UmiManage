@@ -59,7 +59,7 @@
     }
     .main-tabbar-seat{
         height: 50px;
-        padding-bottom: constant(safe-area-inset-bottom) + j(400);
+        padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
     }
     .main-tabbar{

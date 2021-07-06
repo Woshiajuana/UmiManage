@@ -8,11 +8,12 @@
                 <li class="coupon-item-type">通用劵</li>
                 <li class="coupon-item-type">笔笔减</li>
             </ul>
+            <p class="coupon-item-tips">4S店通用补漆一次</p>
             <div class="c-flex1"></div>
             <span class="coupon-item-number">800积分</span>
         </div>
         <span class="coupon-item-status">待付款</span>
-        <div class="coupon-item-button c-button">
+        <div class="coupon-item-button c-button" @click="$router.push('/equities/details')">
             <span>兑换</span>
         </div>
     </div>
@@ -83,6 +84,7 @@
             color: $color-primary;
             font-size: j(12);
             margin-top: j(8);
+            line-height: j(17);
         }
         &-button{
             @extend %pa;
@@ -95,6 +97,13 @@
             top: j(10);
             right: j(10);
             font-size: j(14);
+        }
+        &-tips{
+            @include twno(1);
+            font-size: j(10);
+            color: #D6D6D6;
+            margin-top: j(4);
+            line-height: j(14);
         }
     }
 </style>

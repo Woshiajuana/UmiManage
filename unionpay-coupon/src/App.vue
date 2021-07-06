@@ -48,6 +48,10 @@
     .view-flex1{
         @extend %df1;
     }
+    .c-ios-seat{
+        height: constant(safe-area-inset-bottom);
+        height: env(safe-area-inset-bottom);
+    }
     .c-van-tabs{
         @extend %df;
         @extend %df1;

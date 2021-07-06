@@ -43,17 +43,3 @@
         },
     }
 </script>
-
-<style lang="scss" scoped>
-    @import "src/assets/scss/define";
-    .tab-content{
-        .coupon-item{
-            border-radius: j(8);
-            margin: j(10);
-            background-color: $color-background-light;
-            &:before{
-                @extend %dn;
-            }
-        }
-    }
-</style>
