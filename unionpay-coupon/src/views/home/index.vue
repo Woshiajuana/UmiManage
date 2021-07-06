@@ -1,46 +1,49 @@
 
 <template>
-    <wow-view class="home-wrap">
-        <div class="header">
-            <div class="city-box"><span>上海市</span></div>
-            <van-search
-                class="search-box"
-                shape="round"
-                disabled
-                placeholder="请输入搜索关键词"
-            ></van-search>
+    <wow-view>
+        <div class="home-inner">
+            <div class="header">
+                <div class="city-box"><span>上海市</span></div>
+                <van-search
+                    class="search-box"
+                    shape="round"
+                    disabled
+                    placeholder="请输入搜索关键词"
+                ></van-search>
+            </div>
+            <van-swipe
+                class="banner-section"
+                :autoplay="3000"
+                indicator-color="white">
+                <van-swipe-item>
+                    <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
+                </van-swipe-item>
+                <van-swipe-item>
+                    <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
+                </van-swipe-item>
+            </van-swipe>
+            <van-tabs
+                sticky
+                class="tabs-section"
+                v-model="active">
+                <template #nav-right>
+                    <span class="more-link">查看全部 &gt;</span>
+                </template>
+                <van-tab title="代金卷">
+                    <coupon-item v-for="(item, index) in 10" :key="index"></coupon-item>
+                </van-tab>
+                <van-tab title="充值卡">
+                    <coupon-item v-for="(item, index) in 2" :key="index"></coupon-item>
+                </van-tab>
+                <van-tab title="权益会员">
+                    <coupon-item v-for="(item, index) in 3" :key="index"></coupon-item>
+                </van-tab>
+                <van-tab title="其他">
+                    <coupon-item v-for="(item, index) in 4" :key="index"></coupon-item>
+                </van-tab>
+            </van-tabs>
+            <wow-end-line></wow-end-line>
         </div>
-        <van-swipe
-            class="banner-section"
-            :autoplay="3000"
-            indicator-color="white">
-            <van-swipe-item>
-                <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
-            </van-swipe-item>
-            <van-swipe-item>
-                <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
-            </van-swipe-item>
-        </van-swipe>
-        <van-tabs
-            sticky
-            class="tabs-section"
-            v-model="active">
-            <template #nav-right>
-                <span class="more-link">查看全部 &gt;</span>
-            </template>
-            <van-tab title="代金卷">
-                <coupon-item v-for="(item, index) in 10" :key="index"></coupon-item>
-            </van-tab>
-            <van-tab title="充值卡">
-                <coupon-item v-for="(item, index) in 2" :key="index"></coupon-item>
-            </van-tab>
-            <van-tab title="权益会员">
-                <coupon-item v-for="(item, index) in 3" :key="index"></coupon-item>
-            </van-tab>
-            <van-tab title="其他">
-                <coupon-item v-for="(item, index) in 4" :key="index"></coupon-item>
-            </van-tab>
-        </van-tabs>
     </wow-view>
 </template>
 
@@ -66,9 +69,9 @@
 
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
-    .home-wrap{
-        padding-bottom: j(80);
-        background-image: linear-gradient(180deg, rgba(46,46,56,0.20) 1%, #1F1D1C 100%);
+    .home-inner{
+        min-height: 100%;
+        background-image: linear-gradient(to bottom, #8A7161 100px, #201E23 300px, #1F1D1C);
     }
     .header{
         @extend %df;

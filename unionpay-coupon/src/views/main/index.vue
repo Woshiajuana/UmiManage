@@ -2,9 +2,10 @@
 <template>
     <div class="main-wrap">
         <router-view class="main-inner"></router-view>
+        <div class="main-tabbar-seat"></div>
         <van-tabbar
             fixed
-            class="main-tabber"
+            class="main-tabbar"
             active-color="#FABE97"
             inactive-color="#999999"
             route>
@@ -56,8 +57,17 @@
         @extend %w100;
         overflow-y: auto;
     }
-    .main-tabber{
+    .main-tabbar-seat{
+        height: 50px;
+        padding-bottom: constant(safe-area-inset-bottom) + j(400);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    .main-tabbar{
         background-color: $color-background-light;
+        &:after{
+            border-width: 1px 0 0 0;
+            border-color: #444;
+        }
         .iconfont{
             @extend %df;
             @extend %aic;

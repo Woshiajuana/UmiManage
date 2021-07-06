@@ -3,7 +3,7 @@
     <div class="coupon-item">
         <img class="coupon-item-image" src="" alt="优惠劵"/>
         <div class="coupon-item-info">
-            <span class="coupon-item-name">云闪云闪付通用卷云闪云闪付通用卷云闪付通用卷云闪云闪付通用卷云闪</span>
+            <h3 class="coupon-item-name">云闪云闪付通用卷云闪云闪付通用卷云闪付通用卷云闪云闪付通用卷云闪</h3>
             <ul class="coupon-item-types">
                 <li class="coupon-item-type">通用劵</li>
                 <li class="coupon-item-type">笔笔减</li>

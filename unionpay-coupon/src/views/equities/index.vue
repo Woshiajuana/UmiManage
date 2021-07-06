@@ -1,17 +1,17 @@
 
 <template>
-    <wow-view class="view-flex">
-        <van-tabs class="c-van-tabs" v-model="active">
-            <van-tab
-                :title="item.title"
-                v-for="(item, index) in arrData"
-                :key="index">
-                <tab-content
-                    :params="item"
-                ></tab-content>
-            </van-tab>
-        </van-tabs>
-    </wow-view>
+    <van-tabs
+        class="c-van-tabs"
+        v-model="active">
+        <van-tab
+            :title="item.title"
+            v-for="(item, index) in arrData"
+            :key="index">
+            <tab-content
+                :params="item"
+            ></tab-content>
+        </van-tab>
+    </van-tabs>
 </template>
 
 <script>
@@ -37,4 +37,3 @@
         }
     }
 </script>
-

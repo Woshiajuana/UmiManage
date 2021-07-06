@@ -12,13 +12,13 @@
             :finished="pagingData.length >= pagingTotal"
             @refresh="pagingRefresh"
             @load="pagingLoad">
-            <coupon-item v-for="(item, index) in pagingData" :key="index" :title="item" :value="index"/>
+            <equities-item v-for="(item, index) in pagingData" :key="index" :title="item" :value="index"/>
         </wow-scroll>
     </div>
 </template>
 
 <script>
-    import CouponItem from 'src/components/CouponItem'
+    import EquitiesItem from 'src/components/EquitiesItem'
     import PagingMixin from 'src/mixins/paging'
     const fn = ({ pageIndex }) => new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -39,7 +39,7 @@
             }
         },
         components: {
-            CouponItem,
+            EquitiesItem,
         },
     }
 </script>
