@@ -27,7 +27,7 @@
                 class="tabs-section"
                 v-model="active">
                 <template #nav-right>
-                    <span class="more-link">查看全部 &gt;</span>
+                    <span @click="$router.push('/equities/more')" class="more-link">查看全部 &gt;</span>
                 </template>
                 <van-tab title="代金卷">
                     <coupon-item v-for="(item, index) in 10" :key="index"></coupon-item>
