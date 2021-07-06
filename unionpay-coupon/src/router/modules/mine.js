@@ -13,6 +13,12 @@ export default [
         meta: { depth: 2, title: 'router.order' }
     },
     {
+        path: '/order/details',
+        name: 'OrderDetails',
+        component: () => import(/* webpackChunkName: "order-details" */ 'src/views/order/details'),
+        meta: { depth: 3, title: 'router.order' }
+    },
+    {
         path: '/test',
         name: 'Test',
         component: () => import(/* webpackChunkName: "order" */ 'src/views/test'),

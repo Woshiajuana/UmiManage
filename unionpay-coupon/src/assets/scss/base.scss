@@ -42,6 +42,7 @@ body{
     @extend %aic;
     @extend %jcc;
     @extend %cp;
+    @extend %bsb;
     @extend %c3;
     width: j(72);
     height: j(30);
@@ -49,14 +50,19 @@ body{
     font-size: j(14);
     background-image: $gradient-primary-color;
 }
+.c-button-border{
+    color: #d6d6d6;
+    border: 1px solid #d6d6d6;
+    background-image: none;
+}
 .c-arrow{
-    width: j(10);
-    height: j(10);
+    width: j(6);
+    height: j(6);
     border-top: 1px solid #cbcbcb;
     border-right: 1px solid #cbcbcb;
     &.right{
         @include tfr(45deg);
-        margin-left: j(10);
+        margin-left: j(5);
     }
     &.bottom{
         @include tfr(135deg);
