@@ -1,6 +1,5 @@
 
 import axios from 'axios'
-import router from 'src/router'
 import { Toast } from 'vant'
 import { $user } from 'src/plugins/user'
 import { filterDate } from 'src/utils/filters'
@@ -28,7 +27,7 @@ instance.interceptors.request.use((config) => {
     let { url, baseURL, data, params } = config;
     console.log(`${ url.startsWith('http') ? url : baseURL + url } 请求参数 =>`, data || params);
     return config;
-}, (error) => {
+}, error => {
     // 对请求错误做些什么
     return Promise.reject(error);
 });
@@ -36,27 +35,32 @@ instance.interceptors.request.use((config) => {
 // 添加响应拦截器
 instance.interceptors.response.use((response) => {
     // 对响应数据做点什么
-    let { data, config } = response;
+    let { data: respData, config } = response;
     let { url, baseURL } = config;
     console.log(`${ url.startsWith('http') ? url : baseURL + url } 请求结果 =>`, data);
-    if (!data) {
+    if (!respData) {
         return Promise.reject(`网络繁忙，请稍后再试(1)`);
     }
-    let { Message, Status, Data } = data;
-    if ([201].indexOf(Status) > -1) {
+    let { msg, code, data } = respData;
+    if ([201].indexOf(code) > -1) {
         $user.clear();
-        router.replace('/');
-        return Promise.reject(Message || 'token无效，请重新授权');
+        setTimeout(() => window.location.reload(), 1000);
+        return Promise.reject(msg || 'token无效，请重新授权');
     }
-    if (Status !== 0) {
-        return Promise.reject(Message || `网络繁忙，请稍后再试(2)`);
+    if (code !== 0) {
+        return Promise.reject(msg || `网络繁忙，请稍后再试(2)`);
     }
-    return Data;
-}, (error) => {
+    return data;
+}, error => {
     console.log('请求响应错误 => ', error.response);
-    error = error.response
-        ? `网络繁忙，请稍后再试[${error.response.status}]`
-        : `网络繁忙，请稍后再试(3)`;
+    if (error && error.response) {
+        const { status, data: respData } = error.response;
+        error = status ? `网络繁忙，请稍后再试[${status}]` : `网络繁忙，请稍后再试(3)`;
+        if (respData) {
+            const { msg } = respData;
+            error = msg;
+        }
+    }
     return Promise.reject(error);
 });
 
