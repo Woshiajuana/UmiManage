@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <wow-view>
         <div class="null1"></div>
         <div class="details-inner">
             <div class="header">
@@ -40,7 +40,7 @@
             </div>
             <div class="c-ios-seat"></div>
         </div>
-    </div>
+    </wow-view>
 </template>
 
 <script>

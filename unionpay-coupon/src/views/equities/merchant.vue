@@ -1,10 +1,10 @@
 
 <template>
-    <div class="merchant-wrap">
+    <wow-view class="merchant-wrap">
         <filter-view></filter-view>
         <div class="null"></div>
         <merchant-item v-for="item in 10" :key="item"></merchant-item>
-    </div>
+    </wow-view>
 </template>
 
 <script>

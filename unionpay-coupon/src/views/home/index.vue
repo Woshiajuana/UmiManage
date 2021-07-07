@@ -1,6 +1,6 @@
 
 <template>
-    <wow-view>
+    <wow-view nav-background-color="0xff8A7161">
         <div class="home-inner">
             <div class="header">
                 <div class="city-box"><span>上海市</span></div>
@@ -122,7 +122,10 @@
                 background-color: transparent;
             }
             .van-sticky--fixed{
-                background-color: $color-background-light;
+                background-color: #8A7161;
+                .van-tab{
+                    color: #ddd;
+                }
             }
             .van-tab{
                 color: #999;

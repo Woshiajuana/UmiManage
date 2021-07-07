@@ -6,6 +6,7 @@
             <router-view class="view-wrap" :key="$route.path"></router-view>
 <!--            </keep-alive>-->
         </transition>
+        <UPButton ref="button" @click="handleUserAuth" scope="scope.mobile" style="display: none"/>
     </div>
 </template>
 
@@ -15,6 +16,37 @@
         mixins: [
             TransitionMixin,
         ],
+        mounted() {
+            // this.judgeUserStatus();
+        },
+        methods: {
+            judgeUserStatus () {
+                this.$upsdk.appletAuth().then(res => {
+                    console.log(res);
+                    setTimeout(this.handleUserAuthConfirm.bind(this), 300)
+                }).toast();
+            },
+            handleUserAuthConfirm () {
+                this.$refs.button.handleClick()
+            },
+            handleUserAuth (e, err, data) {
+                if (err) {
+                    this.$dialog.confirm({
+                        title: '温馨提示',
+                        message: `拒绝授权将无法进行更多操作，请确认`,
+                        cancelButtonText: '关闭页面',
+                        confirmButtonText: '重新授权',
+                    }).then(() => {
+                        this.handleUserAuthConfirm()
+                    }).catch(() => {
+                        this.$upsdk.closeWebApp()
+                    })
+                    return null
+                }
+                // 登录成功
+                console.log(`授权成功 => `, data)
+            }
+        },
     }
 </script>
 
@@ -37,6 +69,7 @@
         @extend %r0;
         @extend %b0;
         @extend %bsb;
+        @extend %cfff;
         overflow-y: auto;
     }
     .view-flex{

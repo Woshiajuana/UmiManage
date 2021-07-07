@@ -1,6 +1,6 @@
 
 <template>
-    <div class="more-warp">
+    <wow-view class="more-warp">
         <van-sidebar v-model="current">
             <van-sidebar-item v-for="(item, index) in arrData" :key="index" :title="item" />
         </van-sidebar>
@@ -10,7 +10,7 @@
             :key="index"
             :is-visible="index === current"
         ></more-content>
-    </div>
+    </wow-view>
 </template>
 
 <script>

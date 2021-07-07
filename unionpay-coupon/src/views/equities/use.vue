@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <wow-view>
         <div class="null"></div>
         <div class="use-inner">
             <div class="header">
@@ -26,7 +26,7 @@
                 <dd>使用须知使用须知使用须知使用须知使用须知使用须知使用须知使用须知使用须知使用须知</dd>
             </dl>
         </div>
-    </div>
+    </wow-view>
 </template>
 
 <script>

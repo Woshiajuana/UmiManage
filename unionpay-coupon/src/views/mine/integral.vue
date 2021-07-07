@@ -1,10 +1,10 @@
 
 <template>
-    <div>
+    <wow-view>
         <filter-view></filter-view>
         <div class="null"></div>
         <integral-item v-for="item in 10" :key="item"></integral-item>
-    </div>
+    </wow-view>
 </template>
 
 <script>

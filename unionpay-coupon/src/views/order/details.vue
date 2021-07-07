@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <wow-view>
         <div class="null1"></div>
         <ul class="content">
             <li>
@@ -28,7 +28,7 @@
             <div class="c-button c-button-border"><span>取消订单</span></div>
             <div class="c-button"><span>支付</span></div>
         </div>
-    </div>
+    </wow-view>
 </template>
 
 <script>

@@ -1,8 +1,8 @@
 
 <template>
-    <div>
+    <wow-view>
 
-    </div>
+    </wow-view>
 </template>
 
 <script>

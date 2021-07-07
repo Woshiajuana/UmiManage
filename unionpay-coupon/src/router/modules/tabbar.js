@@ -17,7 +17,7 @@ export default [
                 meta: { depth: 1, title: 'router.equities' },
             },
             {
-                path: '/mine',
+                path: 'mine',
                 name: 'Mine',
                 component: () => import(/* webpackChunkName: "mine" */ 'src/views/mine'),
                 meta: { depth: 1, title: 'router.mine' },

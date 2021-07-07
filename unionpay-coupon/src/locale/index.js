@@ -4,6 +4,7 @@ import VueI18n from 'vue-i18n'
 import axios from 'axios'
 import messages from './lang/zh-CN'
 import { langOptions } from './config'
+import { $upsdk } from 'src/plugins/upsdk'
 
 const DEFAULT_LANG = 'zh-CN'
 const $$LOCALE_LANG = '$$LOCALE_LANG'
@@ -57,9 +58,10 @@ export function getLocale () {
 function setPageTitle (meta) {
     const { title } = meta || {};
     if (title) {
-        document.title = '\u200E';
+        $upsdk.setNavigationBarTitle({ title: i18n.t(title).toString() })
+        document.title = '\u200E'
         setTimeout(() => {
-            document.title = i18n.t(title).toString();
+            document.title = i18n.t(title).toString()
         }, 30);
     }
 }
