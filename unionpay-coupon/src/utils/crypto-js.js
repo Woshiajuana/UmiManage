@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
 CryptoJS
 code.google.com/p/crypto-js

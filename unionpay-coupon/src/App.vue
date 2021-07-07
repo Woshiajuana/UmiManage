@@ -12,18 +12,22 @@
 
 <script>
     import TransitionMixin from 'src/mixins/transition'
+    import { doUserLogin } from 'src/api'
     export default {
         mixins: [
             TransitionMixin,
         ],
         mounted() {
-            // this.judgeUserStatus();
+            this.judgeUserStatus();
         },
         methods: {
             judgeUserStatus () {
                 this.$upsdk.appletAuth().then(res => {
+                    return doUserLogin(res);
+                    // console.log(res);
+                    // setTimeout(this.handleUserAuthConfirm.bind(this), 300)
+                }).then(res => {
                     console.log(res);
-                    setTimeout(this.handleUserAuthConfirm.bind(this), 300)
                 }).toast();
             },
             handleUserAuthConfirm () {

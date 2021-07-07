@@ -17,7 +17,7 @@ Vue.use(VueCupUi);
 Vue.config.productionTip = false;
 
 // 将所有 loading Toast 设置为背景不可点击
-Toast.setDefaultOptions('loading', { forbidClick: true });
+Toast.setDefaultOptions('loading', { forbidClick: true, message: '加载中...' });
 Vue.use(Toast);
 Vue.use(Dialog);
 

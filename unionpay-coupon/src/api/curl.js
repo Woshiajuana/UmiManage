@@ -1,9 +1,12 @@
 
-import Vue from 'vue'
 import axios from 'axios'
 import router from 'src/router'
+import { Toast } from 'vant'
+import { $user } from 'src/plugins/user'
 import { filterDate } from 'src/utils/filters'
 import CryptoJS from 'src/utils/crypto-js'
+
+const ENCRYPT_KEY = 'dryadM5tgb&UJhlk'
 
 export const baseURL =
     window.location.hostname.includes('localhost')
@@ -41,9 +44,8 @@ instance.interceptors.response.use((response) => {
     }
     let { Message, Status, Data } = data;
     if ([201].indexOf(Status) > -1) {
-        let { ActiveId } = Vue.prototype.$user.get();
-        Vue.prototype.$user.del();
-        setTimeout(() => router.replace({ path: '/', query: { ActiveId } }), 800);
+        $user.clear();
+        router.replace('/');
         return Promise.reject(Message || 'token无效，请重新授权');
     }
     if (Status !== 0) {
@@ -60,26 +62,35 @@ instance.interceptors.response.use((response) => {
 
 const curl = (url, data = {}, options = {}) => {
     let {
-        method,
-        loading,
-        useToken = true,
-    } = options = Object.assign({
-        url,
-        loading: true,
-        method: 'post',
-    }, options);
-    let { $vux, $user } = Vue.prototype;
-    if (loading && $vux) $vux.loading.show();
-    let { token, ActiveId } = $user.get();
-    if (useToken && token) {
-        options.headers = { AccessToken: token };
-        data.AccessToken = token;
-        if (ActiveId) data.ActiveId = ActiveId;
+        method = 'post',
+        loading = false,
+        headers = {},
+    } = options = Object.assign({ url }, options);
+    let toast;
+    if (loading) {
+        toast = Toast.loading({
+            message: loading === true ? 'Loading...' : loading,
+            duration: 0,
+        });
+    }
+    const timestamp = filterDate(Date.now(), 'yyyyMMddhhmmss');
+    const { access_token } = $user.get({ });
+    const headerParams = {
+        timestamp,
+        'TENANT-ID': 'DB_0',
+        Authorization: access_token ? `bearer ${access_token}` : 'Basic  Y291cG9uOmNvdXBvbg==',
+    };
+    options.headers = Object.assign({}, headerParams, headers);
+    if (!(data instanceof FormData)) {
+        if (method !== 'GET') {
+            data = Object.assign({ reqTime: timestamp, traceId: `${Date.now()}${randomNum(7)}` }, data);
+        }
+        data = Object.assign({ signature: signatureGenerate(Object.assign({}, data)) }, data);
     }
     options[method === 'get' ? 'params' : 'data'] = data;
     delete options.loading;
     return instance(options).finally(() => {
-        if (loading && $vux) $vux.loading.hide();
+        if (toast) toast.clear();
     });
 };
 
@@ -92,3 +103,25 @@ curl.post = (url, data = {}, options = {}) => {
 };
 
 export default curl;
+
+// 签名
+function signatureGenerate (data) {
+    let stringSignTemp = '';
+    Object.keys(data).sort().forEach(key => {
+        let value = data[key];
+        if (!['', null, undefined].includes(value)) {
+            stringSignTemp = stringSignTemp ? `${stringSignTemp}&${key}=${value}` : `${key}=${value}`;
+        }
+    });
+    stringSignTemp = stringSignTemp ? `${stringSignTemp}&key=${ENCRYPT_KEY}` : `key=${ENCRYPT_KEY}`;
+    return CryptoJS.SHA256(stringSignTemp).toString();
+}
+
+function randomNum (len) {
+    let result = '';
+    while (len > 0) {
+        len--;
+        result += Math.floor(Math.random() * 10)
+    }
+    return result;
+}
