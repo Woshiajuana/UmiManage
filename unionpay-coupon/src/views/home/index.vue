@@ -123,7 +123,11 @@
             }
             .van-sticky--fixed{
                 background-color: #8A7161;
+                background-image: linear-gradient(to bottom, #8A7161, #715746);
                 .van-tab{
+                    color: #ddd;
+                }
+                .more-link{
                     color: #ddd;
                 }
             }
