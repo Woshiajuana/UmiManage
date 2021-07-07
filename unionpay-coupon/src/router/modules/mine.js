@@ -1,6 +1,12 @@
 
 export default [
     {
+        path: '/mine/center',
+        name: 'MineCenter',
+        component: () => import(/* webpackChunkName: "mine-center" */ 'src/views/mine/center'),
+        meta: { depth: 2, title: 'router.setting' }
+    },
+    {
         path: '/setting',
         name: 'Setting',
         component: () => import(/* webpackChunkName: "setting" */ 'src/views/mine/setting'),

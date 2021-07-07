@@ -10,7 +10,7 @@ export default [
         path: '/equities/details',
         name: 'EquitiesDetails',
         component: () => import(/* webpackChunkName: "equities-details" */ 'src/views/equities/details'),
-        meta: { depth: 2, title: 'router.setting' }
+        meta: { depth: 3, title: 'router.setting' }
     },
     {
         path: '/equities/use',
@@ -22,6 +22,6 @@ export default [
         path: '/equities/use/merchant',
         name: 'EquitiesUseMerchant',
         component: () => import(/* webpackChunkName: "equities-use-merchant" */ 'src/views/equities/merchant'),
-        meta: { depth: 2, title: 'router.setting' }
+        meta: { depth: 3, title: 'router.setting' }
     },
 ]
