@@ -2,12 +2,14 @@
 import Vue from 'vue'
 import axios from 'axios'
 import router from 'src/router'
+import { filterDate } from 'src/utils/filters'
+import CryptoJS from 'src/utils/crypto-js'
 
 export const baseURL =
     window.location.hostname.includes('localhost')
     || window.location.hostname.includes('192')
-        ? 'https://kpl.castrol.com.cn/'
-        : 'https://kpl.castrol.com.cn/';
+        ? 'http://192.168.2.133:19082/'
+        : 'http://192.168.2.133:19082/';
 
 const instance = axios.create({
     baseURL,
