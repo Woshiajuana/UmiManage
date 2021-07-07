@@ -23,8 +23,8 @@
         methods: {
             judgeUserStatus () {
                 this.$upsdk.appletAuth().then(res => {
-                    return doUserLogin(res);
-                    // console.log(res);
+                    console.log(`返回的code => `, res);
+                    return doUserLogin({ auth_code: res.code });
                     // setTimeout(this.handleUserAuthConfirm.bind(this), 300)
                 }).then(res => {
                     console.log(res);
@@ -33,7 +33,7 @@
             handleUserAuthConfirm () {
                 this.$refs.button.handleClick()
             },
-            handleUserAuth (e, err, data) {
+            handleUserAuth (e, err, res) {
                 if (err) {
                     this.$dialog.confirm({
                         title: '温馨提示',
@@ -48,7 +48,8 @@
                     return null
                 }
                 // 登录成功
-                console.log(`授权成功 => `, data)
+                console.log(`授权成功 => `, res)
+                doUserLogin({ auth_code: res.code });
             }
         },
     }

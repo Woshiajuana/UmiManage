@@ -4,7 +4,7 @@
 
         <user-section></user-section>
 
-        <div class="section-card">
+        <div class="section-card first-card">
             <div class="section-head">
                 <h2>我的订单</h2>
                 <router-link to="/order" class="order-link">
@@ -78,8 +78,10 @@
         padding-top: j(10);
         margin: j(16) j(10);
         border-radius: j(20);
-        box-shadow: 0 -1px 0 0 $color-primary;
         background-color: $color-background-light;
+        &.first-card{
+            box-shadow: 0 -1px 0 0 $color-primary;
+        }
         /deep/ {
             .van-grid-item__content{
                 background: transparent;
