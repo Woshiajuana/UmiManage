@@ -15,6 +15,7 @@
             <coupon-item
                 v-for="item in pagingData"
                 :key="item.id"
+                :item="item"
             ></coupon-item>
         </wow-scroll-loading>
     </div>
@@ -24,12 +25,7 @@
     import CouponItem from 'src/components/CouponItem'
     import { reqEquitiesList } from 'src/api'
     import PagingMixin from 'src/mixins/paging'
-    const fn = ({ pageNum }) => new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log(pageNum)
-            pageNum <= 2 ? resolve({ details: new Array(10).fill('A'), sizeTotal: 32 }) : reject('网络错误');
-        }, 1000)
-    });
+
     export default {
         mixins: [
             PagingMixin,
@@ -42,7 +38,7 @@
         },
         methods: {
             pagingGetUrlParamsOptions() {
-                return { fn: fn || reqEquitiesList, params: { categoryId: this.categoryId } }
+                return { fn: reqEquitiesList, params: { categoryId: this.categoryId } }
             },
         },
         components: {

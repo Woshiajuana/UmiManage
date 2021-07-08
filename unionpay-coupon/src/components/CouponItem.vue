@@ -1,16 +1,15 @@
 
 <template>
     <div class="coupon-item">
-        <img class="coupon-item-image" src="" alt="优惠劵"/>
+        <img class="coupon-item-image" :src="item.pic" alt="优惠劵"/>
         <div class="coupon-item-info">
-            <h3 class="coupon-item-name">云闪云闪付通用卷云闪云闪付通用卷云闪付通用卷云闪云闪付通用卷云闪</h3>
-            <ul class="coupon-item-types">
-                <li class="coupon-item-type">通用劵</li>
-                <li class="coupon-item-type">笔笔减</li>
+            <h3 class="coupon-item-name">{{ item.name }}</h3>
+            <ul class="coupon-item-types" v-if="item.attributeList.length">
+                <li class="coupon-item-type" v-for="attr in item.attributeList" :key="attr.id">{{ item.attributeName }}</li>
             </ul>
-            <p class="coupon-item-tips">4S店通用补漆一次</p>
+<!--            <p class="coupon-item-tips">4S店通用补漆一次</p>-->
             <div class="c-flex1"></div>
-            <span class="coupon-item-number">800积分</span>
+            <span class="coupon-item-number">{{item.price}}积分</span>
         </div>
         <span class="coupon-item-status">待付款</span>
         <div class="coupon-item-button c-button" @click="$router.push('/equities/details')">
@@ -21,7 +20,7 @@
 
 <script>
     export default {
-
+        props: { item: { default: '' } }
     }
 </script>
 

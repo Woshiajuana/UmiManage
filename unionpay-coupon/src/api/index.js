@@ -16,3 +16,10 @@ export const reqEquitiesType = data => curl('coupon/categories', data, { method:
 
 // 卡券<商品>列表查询
 export const reqEquitiesList = data => curl('coupon/list', data);
+
+
+export const fn = ({ pageNum }) => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        pageNum <= 2 ? resolve({ details: new Array(10).fill('A'), sizeTotal: 32 }) : reject('网络错误');
+    }, 1000)
+});

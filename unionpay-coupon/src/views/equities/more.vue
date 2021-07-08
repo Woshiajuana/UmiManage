@@ -1,30 +1,50 @@
 
 <template>
     <wow-view class="more-warp">
-        <van-sidebar v-model="current">
-            <van-sidebar-item v-for="(item, index) in arrData" :key="index" :title="item" />
-        </van-sidebar>
-        <more-content
-            class="more-inner"
-            v-for="(item, index) in arrData"
-            :key="index"
-            :is-visible="index === current"
-        ></more-content>
+        <wow-super-box
+            @refresh="fetchData"
+            :error="error"
+            v-if="!arrData"
+        ></wow-super-box>
+        <template v-else>
+            <van-sidebar v-model="current">
+                <van-sidebar-item v-for="(item, index) in arrData" :key="index" :title="item.name" />
+            </van-sidebar>
+            <more-content
+                class="more-inner"
+                v-for="(item, index) in arrData"
+                :key="index"
+                :category-id="item.id"
+                :is-visible="index === current"
+            ></more-content>
+        </template>
     </wow-view>
 </template>
 
 <script>
     import { Sidebar, SidebarItem } from 'vant'
     import MoreContent from './components/MoreContent'
+    import { reqEquitiesType } from 'src/api'
     export default {
         data() {
             return {
                 current: 0,
-                arrData: [
-                    '热门推荐', '全部', '充值卡', '代金劵', '权益', '会员', '其他',
-                    '热门推荐', '全部', '充值卡', '代金劵', '权益', '会员', '其他',
-                ]
+                error: '',
+                arrData: ''
             };
+        },
+        created () {
+            this.fetchData();
+        },
+        methods: {
+            fetchData () {
+                reqEquitiesType(this.d)
+                    .then(res => this.arrData = res.details)
+                    .toast(err => {
+                        this.error = err
+                        return true
+                    })
+            },
         },
         components: {
             MoreContent,
