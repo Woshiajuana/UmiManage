@@ -20,13 +20,11 @@
             messages: {
                 'zh-CN': {
                     loadingText: '加载中...',
-                    successText: '刷新成功',
                     finishedText: '没有更多了',
                     retryText: '，点击重新加载'
                 },
                 'en-US': {
                     loadingText: 'Loading...',
-                    successText: 'Success',
                     finishedText: 'No more',
                     retryText: '，Try again'
                 },
@@ -49,6 +47,10 @@
                     this.loadErrorText = err ? `${err}${this.$t('retryText')}` : '';
                     this.loading = false;
                 });
+            },
+            resetError () {
+                this.loadError = false;
+                this.loadErrorText = '';
             },
             check () {
                 this.$refs.list.check();

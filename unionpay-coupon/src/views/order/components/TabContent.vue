@@ -23,7 +23,7 @@
     const fn = ({ pageNum }) => new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log(pageNum)
-            pageNum <= 2 ? resolve({ details: new Array(3).fill('A'), sizeTotal: 3 }) : reject('网络错误');
+            pageNum <= 2 ? resolve({ details: new Array(3).fill('A'), sizeTotal: 30 }) : reject('网络错误');
         }, 1000)
     });
 
