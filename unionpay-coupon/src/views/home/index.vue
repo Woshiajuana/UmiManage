@@ -78,6 +78,7 @@
     @import "src/assets/scss/define";
     .home-inner{
         min-height: 100%;
+        background-color: $color-background;
         background-image: linear-gradient(to bottom, #8A7161 100px, #201E23 300px, #1F1D1C);
         .wow-loading{
             /deep/ {

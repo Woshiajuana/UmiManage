@@ -12,6 +12,7 @@
 
 <script>
     import TransitionMixin from 'src/mixins/transition'
+    import { filterMessage } from 'src/utils/filters'
     import { doUserLogin } from 'src/api'
     export default {
         mixins: [
@@ -22,13 +23,9 @@
         },
         methods: {
             judgeUserStatus () {
-                this.$upsdk.appletAuth().then(res => {
-                    console.log(`返回的code => `, res);
-                    return doUserLogin({ auth_code: res.code });
-                    // setTimeout(this.handleUserAuthConfirm.bind(this), 300)
-                }).then(res => {
-                    console.log(res);
-                }).toast();
+                const user = this.$user.get({});
+                console.log('user => ', user);
+                // setTimeout(this.handleUserAuthConfirm.bind(this), 300)
             },
             handleUserAuthConfirm () {
                 this.$refs.button.handleClick()
@@ -48,8 +45,43 @@
                     return null
                 }
                 // 登录成功
-                console.log(`授权成功 => `, res)
-                doUserLogin({ auth_code: res.code });
+                doUserLogin({ auth_code: res.code }).then(res => {
+                    res =  {
+                        "access_token": "0490d994-761d-4ba6-a0d8-88f1596050a4",
+                        "refresh_token": "cf523095-22d0-4fed-8558-f863eaf76341",
+                        "license": "made by dryad",
+                        "user_info": {
+                            "openId": "QBXYdsRfP0DYn9obQ5y2dXSXcOAZuS5vKH/F39qt3G3IpeJN07fSHc8ar4FhdwyA",
+                            "credentialsNonExpired": true,
+                            "enabled": true,
+                            "authorities": [{
+                                "authority": "ALL"
+                            }],
+                            "tenantId": "DB_0",
+                            "accountNonExpired": true,
+                            "id": "1412945132129341444",
+                            "username": "13127590698",
+                            "accountNonLocked": true
+                        },
+                        "scope": "server",
+                        "active": true,
+                        "token_type": "bearer",
+                        "expires_in": 43185
+                    };
+                    const { user_info, ...data } = res;
+                    this.$user.set(Object.assign({}, user_info, data));
+                }).catch(err => {
+                    this.$dialog.confirm({
+                        title: '温馨提示',
+                        message: filterMessage(err),
+                        cancelButtonText: '关闭页面',
+                        confirmButtonText: '重新授权',
+                    }).then(() => {
+                        this.handleUserAuthConfirm()
+                    }).catch(() => {
+                        this.$upsdk.closeWebApp()
+                    });
+                });
             }
         },
     }

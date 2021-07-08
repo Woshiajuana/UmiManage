@@ -71,6 +71,7 @@ const curl = (url, data = {}, options = {}) => {
         method,
         loading,
         headers = {},
+        useToken = true,
     } = options = Object.assign({
         url,
         method: 'post',
@@ -79,7 +80,7 @@ const curl = (url, data = {}, options = {}) => {
     let toast;
     if (loading) {
         toast = Toast.loading({
-            message: loading === true ? 'Loading...' : loading,
+            message: loading === true ? '加载中...' : loading,
             duration: 0,
         });
     }
@@ -88,7 +89,7 @@ const curl = (url, data = {}, options = {}) => {
     const headerParams = {
         timestamp,
         'TENANT-ID': 'DB_0',
-        Authorization: access_token ? `bearer ${access_token}` : 'Basic  Y291cG9uOmNvdXBvbg==',
+        Authorization: access_token && useToken ? `bearer ${access_token}` : 'Basic  Y291cG9uOmNvdXBvbg==',
     };
     options.headers = Object.assign({}, headerParams, headers);
     if (!(data instanceof FormData)) {

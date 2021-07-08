@@ -5,7 +5,7 @@ import curl  from 'src/api/curl'
 export const doUserLogin = data => curl('oauth/token/union', {
     ...data,
     grant_type: 'password',
-}, { loading: true, method: 'get' });
+}, { loading: `登录中...`, method: 'get', useToken: false });
 
 // 查询Banner信息
 export const reqBannerList = data => curl('sys/banner', data, { method: 'get' });
