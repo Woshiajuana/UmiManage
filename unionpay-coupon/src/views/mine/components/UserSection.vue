@@ -2,7 +2,7 @@
 <template>
     <div class="user-section">
         <div class="user-info" @click="$router.push('/mine/center')">
-            <img src="" alt="头像" class="user-avatar">
+            <img src="~src/assets/images/defaultFace013x.png" alt="头像" class="user-avatar">
             <span>昵称</span>
         </div>
         <i class="iconfont icon-tongzhi"></i>
@@ -23,7 +23,6 @@
 
 <script>
     export default {
-
     }
 </script>
 
