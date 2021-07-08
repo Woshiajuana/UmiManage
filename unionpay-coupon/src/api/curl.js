@@ -66,10 +66,14 @@ instance.interceptors.response.use((response) => {
 
 const curl = (url, data = {}, options = {}) => {
     let {
-        method = 'post',
-        loading = false,
+        method,
+        loading,
         headers = {},
-    } = options = Object.assign({ url }, options);
+    } = options = Object.assign({
+        url,
+        method: 'post',
+        loading: false,
+    }, options);
     let toast;
     if (loading) {
         toast = Toast.loading({
@@ -86,12 +90,13 @@ const curl = (url, data = {}, options = {}) => {
     };
     options.headers = Object.assign({}, headerParams, headers);
     if (!(data instanceof FormData)) {
-        if (method !== 'GET') {
+        if (method !== 'get') {
             data = Object.assign({ reqTime: timestamp, traceId: `${Date.now()}${randomNum(7)}` }, data);
         }
         data = Object.assign({ signature: signatureGenerate(Object.assign({}, data)) }, data);
     }
     options[method === 'get' ? 'params' : 'data'] = data;
+    console.log(options)
     delete options.loading;
     return instance(options).finally(() => {
         if (toast) toast.clear();

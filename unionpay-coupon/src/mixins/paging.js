@@ -23,13 +23,13 @@ export default {
             this.pagingError = '';
             const { fn, params = {}, options } = this.pagingGetUrlParamsOptions();
             fn(Object.assign({
-                pageIndex: pagingIndex,
+                pageNum: pagingIndex,
                 pageSize: this.pagingSize,
             }, params), options).then(res => {
-                const { list, total } = this.pagingFormatResult(res);
+                const { details: list, sizeTotal: total } = this.pagingFormatResult(res);
                 this.pagingIndex = pagingIndex;
                 this.pagingData = pagingIndex === 1 ? list : [...this.pagingData, ...list];
-                this.pagingTotal = total;
+                this.pagingTotal = +total;
             }).toast(err => {
                 this.pagingError = err;
                 return true;
@@ -39,7 +39,7 @@ export default {
         },
         pagingFormatResult (res) {
             if (Array.isArray(res)) {
-                res = { list: res, total: res.length };
+                res = { details: res, sizeTotal: res.length };
             }
             return res;
         },

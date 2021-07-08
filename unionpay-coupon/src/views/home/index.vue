@@ -28,7 +28,7 @@
                     v-for="item in arrType"
                     :key="item.id"
                     :title="item.name">
-                    <tab-content></tab-content>
+                    <tab-content :category-id="item.id"></tab-content>
                 </van-tab>
             </van-tabs>
             <wow-loading v-if="!arrBanner || !arrType"></wow-loading>
