@@ -2,62 +2,67 @@
 <template>
     <wow-view nav-background-color="0xff8A7161">
         <div class="home-inner">
-            <div class="header">
-                <div class="city-box"><span>上海市</span></div>
+            <template v-if="arrBanner">
                 <van-search
                     class="search-box"
                     shape="round"
                     disabled
                     placeholder="请输入搜索关键词"
                 ></van-search>
-            </div>
-            <van-swipe
-                class="banner-section"
-                :autoplay="3000"
-                indicator-color="white">
-                <van-swipe-item>
-                    <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
-                </van-swipe-item>
-                <van-swipe-item>
-                    <img src="https://img.owulia.com/daysnap/607d0ca6d3ad886378eb0cd8/AVATAR/20210419163036.jpeg?w=64"/>
-                </van-swipe-item>
-            </van-swipe>
+                <van-swipe
+                    class="banner-section"
+                    :autoplay="3000"
+                    indicator-color="white">
+                    <van-swipe-item v-for="item in arrBanner" :key="item.id"><img :src="item.bannerPic"/></van-swipe-item>
+                </van-swipe>
+            </template>
             <van-tabs
+                v-if="arrType"
                 sticky
                 class="tabs-section"
                 v-model="active">
                 <template #nav-right>
                     <span @click="$router.push('/equities/more')" class="more-link">查看全部 &gt;</span>
                 </template>
-                <van-tab title="代金卷">
-                    <coupon-item v-for="(item, index) in 10" :key="index"></coupon-item>
-                </van-tab>
-                <van-tab title="充值卡">
-                    <coupon-item v-for="(item, index) in 2" :key="index"></coupon-item>
-                </van-tab>
-                <van-tab title="权益会员">
-                    <coupon-item v-for="(item, index) in 3" :key="index"></coupon-item>
-                </van-tab>
-                <van-tab title="其他">
-                    <coupon-item v-for="(item, index) in 4" :key="index"></coupon-item>
+                <van-tab
+                    v-for="item in arrType"
+                    :key="item.id"
+                    :title="item.name">
+                    <tab-content></tab-content>
                 </van-tab>
             </van-tabs>
-            <wow-end-line></wow-end-line>
+            <wow-loading v-if="!arrBanner || !arrType"></wow-loading>
         </div>
     </wow-view>
 </template>
 
 <script>
     import { Search, Swipe, SwipeItem, Tabs, Tab } from 'vant'
-    import CouponItem from 'src/components/CouponItem'
+    import TabContent from './components/TabContent'
+    import { reqEquitiesType, reqBannerList } from 'src/api'
     export default {
         data () {
             return {
                 active: 0,
+                arrBanner: '',
+                arrType: '',
             }
         },
+        created() {
+            this.fetchData();
+        },
+        methods: {
+            fetchData () {
+                reqBannerList().then(res => {
+                    this.arrBanner = res.details;
+                    return reqEquitiesType()
+                }).then(res => {
+                    this.arrType = res.details.slice(0, 4);
+                }).toast();
+            },
+        },
         components: {
-            CouponItem,
+            TabContent,
             VanTabs: Tabs,
             VanTab: Tab,
             VanSwipe: Swipe,
@@ -72,34 +77,17 @@
     .home-inner{
         min-height: 100%;
         background-image: linear-gradient(to bottom, #8A7161 100px, #201E23 300px, #1F1D1C);
-    }
-    .header{
-        @extend %df;
-        @extend %aic;
-        padding: j(10) j(20);
-    }
-    .city-box{
-        @extend %df;
-        @extend %aic;
-        @extend %jcc;
-        margin-right: j(12);
-        font-size: j(14);
-        span{
-            max-width: j(100);
-        }
-        &:after{
-            content: '';
-            width: 0;
-            height: 0;
-            margin: j(5) 0 0 j(5);
-            border-style: solid;
-            border-width: 5px;
-            border-color: #fff transparent transparent transparent;
+        .wow-loading{
+            /deep/ {
+                .van-loading__text{
+                    color: #bbb;
+                }
+            }
         }
     }
     .search-box{
         @extend %df1;
-        padding: 0;
+        padding: j(10) j(20);
         background-color: transparent;
     }
     .banner-section{

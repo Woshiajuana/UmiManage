@@ -37,7 +37,7 @@ instance.interceptors.response.use((response) => {
     // 对响应数据做点什么
     let { data: respData, config } = response;
     let { url, baseURL } = config;
-    console.log(`${ url.startsWith('http') ? url : baseURL + url } 请求结果 =>`, data);
+    console.log(`${ url.startsWith('http') ? url : baseURL + url } 请求结果 =>`, respData);
     if (!respData) {
         return Promise.reject(`网络繁忙，请稍后再试(1)`);
     }
