@@ -1,6 +1,13 @@
 
 <template>
-    <div>
+    <div class="home-tab-content">
+        <wow-super-box
+            @refresh="pagingRefresh"
+            :error="pagingError"
+            v-if="pagingTotal < 1"
+            :loading="pagingTotal === -1"
+            use-btn
+        ></wow-super-box>
         <coupon-item
             v-for="item in pagingData"
             :key="item.id"
@@ -35,4 +42,11 @@
 
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
+    .home-tab-content{
+        /deep/{
+            .wow-super-box{
+                min-height: j(360);
+            }
+        }
+    }
 </style>

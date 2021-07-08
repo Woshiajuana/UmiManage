@@ -3,8 +3,8 @@
     <van-empty
         class="wow-super-box"
         :image="error ? 'error' : 'default'"
-        :description="error ? error : loading ? '' : $t('emptyText')">
-        <template v-if="loading && !error" #image>
+        :description="error ? error : (loading || isLoading) ? '' : $t('emptyText')">
+        <template v-if="(loading || isLoading) && !error" #image>
             <van-loading
                 class="wow-super-loading"
                 vertical
@@ -12,8 +12,8 @@
             ></van-loading>
         </template>
         <van-button
-            v-if="error"
-            @click="$emit('refresh')"
+            v-if="error || (!loading && !isLoading && useBtn)"
+            @click="handleRefresh"
             round
             type="danger"
             class="wow-super-button"
@@ -25,6 +25,11 @@
     import { Empty as VanEmpty, Button as VanButton, Loading as VanLoading } from 'vant'
 
     export default {
+        data () {
+            return {
+                isLoading: false,
+            }
+        },
         i18n: {
             messages: {
                 'zh-CN': {
@@ -42,6 +47,15 @@
         props: {
             loading: { default: true },
             error: { default: '' },
+            useBtn: { type: Boolean, default: false },
+        },
+        methods: {
+            handleRefresh() {
+                this.isLoading = true;
+                this.$emit('refresh', () => {
+                    this.isLoading = false;
+                });
+            }
         },
         components: {
             VanEmpty,
