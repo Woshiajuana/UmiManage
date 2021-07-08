@@ -2,7 +2,7 @@
 import * as $storage from 'wow-cool/dist/lib/storage'
 
 export function createLocalStorage (key) {
-    const { setItem, removeItem, getItem, updateItem, clear } = $storage.local;
+    const { setItem, removeItem, getItem, updateItem, clear } = $storage.cache;
     return {
         set: setItem.bind(this, key),
         remove: removeItem.bind(this, key),

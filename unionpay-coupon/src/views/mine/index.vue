@@ -30,7 +30,7 @@
                 <h2>其他服务</h2>
             </div>
             <van-grid :border="false">
-                <van-grid-item text="商家入驻">
+                <van-grid-item text="商家入驻" @click="handleText">
                     <template #icon><i class="icon-4"></i></template>
                 </van-grid-item>
                 <van-grid-item text="我的地址">
@@ -60,6 +60,11 @@
     import { Grid as VanGrid, GridItem as VanGridItem } from 'vant'
     import UserSection from './components/UserSection'
     export default {
+        methods: {
+            handleText () {
+                this.$router.push('/setting');
+            }
+        },
         components: {
             UserSection,
             VanGrid,

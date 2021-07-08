@@ -1,6 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { loadLanguageAsync } from 'src/locale'
+import { $user } from 'src/plugins/user'
+
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+    return originalPush.call(this, location).catch(err => err)
+}
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject)
+    return originalReplace.call(this, location).catch(err => err)
+}
 
 Vue.use(VueRouter);
 
@@ -19,7 +32,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    loadLanguageAsync(undefined, to.meta).then(() => next());
+    loadLanguageAsync(undefined, to.meta).then(() => {
+        const user = $user.get();
+        if (!user) {
+            // 未登录
+            if (['/'].includes(to.path)) {
+                next();
+            } else {
+                next('/');
+            }
+        } else {
+            // 已登录
+            next();
+        }
+    });
 });
 
 export default router
