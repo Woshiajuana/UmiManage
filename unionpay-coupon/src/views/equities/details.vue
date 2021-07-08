@@ -6,15 +6,15 @@
             <div class="header">
                 <h2 class="integral">
                     <i class="iconfont icon-jifen2"></i>
-                    3000 积分
+                    {{ computedData.price }} 积分
                 </h2>
-                <h3 class="name">云闪付100元代金券云闪付100元代金券云闪付100元代金券</h3>
+                <h3 class="name">{{ computedData.name }}</h3>
             </div>
             <div class="content">
                 <ul class="prompt">
                     <li>
                         <i class="iconfont icon-shijian"></i>
-                        <span>2021年4月30日-2021年7月1日</span>
+                        <span>{{ computedData.startDate }} - {{ computedData.endDate }}</span>
                     </li>
                     <li>
                         <i class="iconfont icon-icon_yinhangqia"></i>
@@ -25,7 +25,7 @@
                         <span>云闪付APP支付、二维码交易</span>
                     </li>
                 </ul>
-                <img src="" alt="封面" class="cover-image"/>
+                <img :src="computedData.pic" alt="封面" class="cover-image"/>
                 <dl class="info">
                     <dt>详情</dt>
                     <dd>这是一段活动规则，这是一段活动规则，这是一段活动规则这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则。</dd>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="footer">
-            <div class="c-button c-button-large">
+            <div class="c-button c-button-large" @click="handleSubmit">
                 <span>立即兑换</span>
             </div>
             <div class="c-ios-seat"></div>
@@ -44,8 +44,24 @@
 </template>
 
 <script>
+    import { doEquitiesExchange } from 'src/api'
     export default {
+        computed: {
+            computedData () {
+                return this.$route.query;
+            },
+        },
+        methods: {
+            handleSubmit () {
+                const { id: goodsId } = this.computedData;
+                doEquitiesExchange({
+                    goodsId,
+                    quantity: 1,
+                }).then(() => {
 
+                }).toast();
+            },
+        }
     }
 </script>
 

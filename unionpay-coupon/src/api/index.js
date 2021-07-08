@@ -13,11 +13,13 @@ export const reqBannerList = data => curl('sys/banner', data, { method: 'get' })
 // 卡券<商品>类型查询
 export const reqEquitiesType = data => curl('coupon/categories', data, { method: 'get' });
 
-
 // 卡券<商品>列表查询
 export const reqEquitiesList = data => curl('coupon/list', data);
 
+// 卡券<商品>购买
+export const doEquitiesExchange = data => curl('coupon/buy', data, { loading: true });
 
+// 测试
 export const fn = ({ pageNum }) => new Promise((resolve, reject) => {
     setTimeout(() => {
         pageNum <= 2 ? resolve({ details: new Array(10).fill('A'), sizeTotal: 32 }) : reject('网络错误');
