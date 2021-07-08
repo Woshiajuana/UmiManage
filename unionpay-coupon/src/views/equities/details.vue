@@ -1,57 +1,79 @@
 
 <template>
     <wow-view>
-        <div class="null1"></div>
-        <div class="details-inner">
-            <div class="header">
-                <h2 class="integral">
-                    <i class="iconfont icon-jifen2"></i>
-                    {{ computedData.price }} 积分
-                </h2>
-                <h3 class="name">{{ computedData.name }}</h3>
+        <wow-super-box
+            @refresh="fetchData"
+            :error="error"
+            v-if="!objData"
+        ></wow-super-box>
+        <template v-else>
+            <div class="null1"></div>
+            <div class="details-inner">
+                <div class="header">
+                    <h2 class="integral">
+                        <i class="iconfont icon-jifen2"></i>
+                        {{ objData.price }} 积分
+                    </h2>
+                    <h3 class="name">{{ objData.name }}</h3>
+                </div>
+                <div class="content">
+                    <ul class="prompt">
+                        <li>
+                            <i class="iconfont icon-shijian"></i>
+                            <span>{{ objData.startDate }} - {{ objData.endDate }}</span>
+                        </li>
+                        <li>
+                            <i class="iconfont icon-icon_yinhangqia"></i>
+                            <span>银联62开头银行卡，借记卡以及信用卡</span>
+                        </li>
+                        <li>
+                            <i class="iconfont icon-zhangdan"></i>
+                            <span>云闪付APP支付、二维码交易</span>
+                        </li>
+                    </ul>
+                    <img :src="objData.pic" alt="封面" class="cover-image"/>
+                    <dl class="info">
+                        <dt>详情</dt>
+                        <dd>{{ objData.detailDesc }}</dd>
+                        <dt>活动规则</dt>
+<!--                        <dd>{{ 这是一段活动规则，这是一段活动规则，这是一段活动规则这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则。 }}</dd>-->
+                    </dl>
+                </div>
             </div>
-            <div class="content">
-                <ul class="prompt">
-                    <li>
-                        <i class="iconfont icon-shijian"></i>
-                        <span>{{ computedData.startDate }} - {{ computedData.endDate }}</span>
-                    </li>
-                    <li>
-                        <i class="iconfont icon-icon_yinhangqia"></i>
-                        <span>银联62开头银行卡，借记卡以及信用卡</span>
-                    </li>
-                    <li>
-                        <i class="iconfont icon-zhangdan"></i>
-                        <span>云闪付APP支付、二维码交易</span>
-                    </li>
-                </ul>
-                <img :src="computedData.pic" alt="封面" class="cover-image"/>
-                <dl class="info">
-                    <dt>详情</dt>
-                    <dd>这是一段活动规则，这是一段活动规则，这是一段活动规则这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则。</dd>
-                    <dt>活动规则</dt>
-                    <dd>这是一段活动规则，这是一段活动规则，这是一段活动规则这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则，这是一段活动规则。</dd>
-                </dl>
+            <div class="footer">
+                <div class="c-button c-button-large" @click="handleSubmit">
+                    <span>立即兑换</span>
+                </div>
+                <div class="c-ios-seat"></div>
             </div>
-        </div>
-        <div class="footer">
-            <div class="c-button c-button-large" @click="handleSubmit">
-                <span>立即兑换</span>
-            </div>
-            <div class="c-ios-seat"></div>
-        </div>
+        </template>
     </wow-view>
 </template>
 
 <script>
-    import { doEquitiesExchange } from 'src/api'
+    import { doEquitiesExchange, reqEquitiesInfo } from 'src/api'
     export default {
-        computed: {
-            computedData () {
-                return this.$route.query;
-            },
+        data () {
+            return {
+                objData: '',
+                error: '',
+            }
+        },
+        created() {
+            this.fetchData();
         },
         methods: {
+            fetchData () {
+                this.error = '';
+                reqEquitiesInfo({
+                    id: this.$route.query.id,
+                }).then(res => {
+                    this.objData = res;
+                }).toast(err => {
+                    this.error = err
+                    return true
+                })
+            },
             handleSubmit () {
                 const { id: goodsId } = this.computedData;
                 doEquitiesExchange({
@@ -59,7 +81,7 @@
                     quantity: 1,
                 }).then(() => {
 
-                }).toast();
+                }).toast()
             },
         }
     }

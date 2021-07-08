@@ -2,7 +2,7 @@
 <template>
     <van-empty
         class="wow-super-box"
-        :image="error ? 'error' : 'default'"
+        :image="error ? require('src/assets/images/empty-image-error.png') : require('src/assets/images/empty-image-default.png')"
         :description="error ? error : (loading || isLoading) ? '' : $t('emptyText')">
         <template v-if="(loading || isLoading) && !error" #image>
             <van-loading

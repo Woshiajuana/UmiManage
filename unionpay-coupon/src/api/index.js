@@ -7,6 +7,9 @@ export const doUserLogin = data => curl('oauth/token/union', {
     grant_type: 'password',
 }, { loading: `登录中...`, method: 'get', useToken: false });
 
+// 查下用户信息
+export const reqUserInfo = () => curl('customer/myself', {}, { method: 'get' });
+
 // 查询Banner信息
 export const reqBannerList = data => curl('sys/banner', data, { method: 'get' });
 
@@ -15,6 +18,9 @@ export const reqEquitiesType = data => curl('coupon/categories', data, { method:
 
 // 卡券<商品>列表查询
 export const reqEquitiesList = data => curl('coupon/list', data);
+
+// 卡券<商品>详情查询
+export const reqEquitiesInfo = data => curl('coupon/info', data);
 
 // 卡券<商品>购买
 export const doEquitiesExchange = data => curl('coupon/buy', data, { loading: true });

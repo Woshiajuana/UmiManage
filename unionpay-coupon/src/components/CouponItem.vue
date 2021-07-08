@@ -13,7 +13,7 @@
         </div>
         <span class="coupon-item-status">待付款</span>
         <div class="coupon-item-button c-button"
-             @click="$router.push({ path: '/equities/details', query: item })">
+             @click="$router.push({ path: '/equities/details', query: { id: item.id } })">
             <span>兑换</span>
         </div>
     </div>

@@ -1,22 +1,10 @@
 
 export default [
     {
-        path: '/mine/center',
-        name: 'MineCenter',
-        component: () => import(/* webpackChunkName: "mine-center" */ 'src/views/mine/center'),
-        meta: { depth: 2, title: 'router.setting' }
-    },
-    {
         path: '/setting',
         name: 'Setting',
         component: () => import(/* webpackChunkName: "setting" */ 'src/views/mine/setting'),
         meta: { depth: 2, title: 'router.setting' }
-    },
-    {
-        path: '/help',
-        name: 'Help',
-        component: () => import(/* webpackChunkName: "help" */ 'src/views/mine/help'),
-        meta: { depth: 2, title: '常见问题' }
     },
     {
         path: '/integral',

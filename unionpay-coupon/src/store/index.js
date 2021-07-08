@@ -6,9 +6,10 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex);
 
+const reg = /\/(.+)\.js$/;
 const modules = (s => {
     const r = {};
-    s.keys().forEach(k => r[k.split('/')[1]] = s(k).default);
+    s.keys().forEach(k => r[k.match(reg)[1]] = s(k).default);
     return r;
 })(require.context('./modules/', true, /\.js$/));
 

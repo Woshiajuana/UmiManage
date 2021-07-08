@@ -38,12 +38,10 @@
         },
         methods: {
             fetchData () {
-                reqEquitiesType(this.d)
-                    .then(res => this.arrData = res.details)
-                    .toast(err => {
-                        this.error = err
-                        return true
-                    })
+                reqEquitiesType().then(res => this.arrData = res.details).toast(err => {
+                    this.error = err
+                    return true
+                })
             },
         },
         components: {

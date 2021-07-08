@@ -13,7 +13,7 @@
 <script>
     import TransitionMixin from 'src/mixins/transition'
     import { filterMessage } from 'src/utils/filters'
-    import { doUserLogin } from 'src/api'
+    import { mapActions } from 'vuex'
     export default {
         mixins: [
             TransitionMixin,
@@ -22,6 +22,7 @@
             this.judgeUserStatus();
         },
         methods: {
+            ...mapActions('user', [ 'actionUserLogin' ]),
             judgeUserStatus () {
                 // this.$user.set({
                 //     "access_token": "0490d994-761d-4ba6-a0d8-88f1596050a4",
@@ -46,7 +47,6 @@
                 const user = this.$user.get();
                 if (!user) {
                     this.handleUserAuthConfirm();
-                    // setTimeout(this.handleUserAuthConfirm.bind(this), 200)
                 }
             },
             handleUserAuthConfirm () {
@@ -66,10 +66,8 @@
                     })
                     return null
                 }
-                // 登录成功
-                doUserLogin({ auth_code: res.code }).then(res => {
-                    const { user_info, ...data } = res;
-                    this.$user.set(Object.assign({}, user_info, data));
+                this.actionUserLogin({
+                    auth_code: res ? res.code : '',
                 }).catch(err => {
                     this.$dialog.confirm({
                         title: '温馨提示',

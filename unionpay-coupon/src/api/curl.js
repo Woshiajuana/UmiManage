@@ -63,6 +63,7 @@ instance.interceptors.response.use((response) => {
             error = msg;
         }
     }
+    console.log('error => ', error);
     return Promise.reject(error);
 });
 

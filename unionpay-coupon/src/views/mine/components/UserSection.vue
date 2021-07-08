@@ -1,28 +1,34 @@
 
 <template>
     <div class="user-section">
-        <div class="user-info" @click="$router.push('/mine/center')">
+        <div class="user-info">
             <img src="~src/assets/images/defaultFace013x.png" alt="头像" class="user-avatar">
-            <span>昵称</span>
+            <span>{{ userInfo.username | filterPhone }}</span>
         </div>
-        <i class="iconfont icon-tongzhi"></i>
         <ul class="user-data">
             <li class="user-data-item">
-                <span class="user-data-value">2</span>
+                <span class="user-data-value">{{ userInfo.balance || 0 }}</span>
                 <span class="user-data-label">优惠券</span>
             </li>
             <li class="user-data-bar"></li>
             <li class="user-data-item">
-                <span class="user-data-value">2</span>
+                <span class="user-data-value">{{ userInfo.count || 0 }}</span>
                 <span class="user-data-label">积分</span>
             </li>
         </ul>
-        <div class="user-link-button"><span>积分记录</span></div>
+        <router-link to="/integral" class="user-link-button">
+            <span>积分记录</span>
+        </router-link>
     </div>
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+
     export default {
+        computed: {
+            ...mapState('user', ['userInfo'])
+        }
     }
 </script>
 
@@ -40,16 +46,6 @@
         height: j(150);
         border-radius: j(8);
         background-image: $gradient-primary-color;
-        i{
-            @extend %pa;
-            @extend %c3;
-            @extend %df;
-            @extend %aic;
-            @extend %jcc;
-            font-size: j(20);
-            top: j(10);
-            right: j(16);
-        }
     }
     .user-info{
         @extend %df;

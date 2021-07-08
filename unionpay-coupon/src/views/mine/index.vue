@@ -58,9 +58,14 @@
 
 <script>
     import { Grid as VanGrid, GridItem as VanGridItem } from 'vant'
+    import { mapActions } from 'vuex'
     import UserSection from './components/UserSection'
     export default {
+        created() {
+            this.actionUserUpdate();
+        },
         methods: {
+            ...mapActions('user', ['actionUserUpdate']),
             handleText () {
                 this.$router.push('/setting');
             }
