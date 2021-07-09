@@ -38,8 +38,8 @@
         },
         methods: {
             fetchData () {
-                reqEquitiesType().then(res => this.arrData = res.details).toast(err => {
-                    this.error = err
+                reqEquitiesType().then(res => this.arrData = res.details).toast((err, msg) => {
+                    this.error = msg
                     return true
                 })
             },

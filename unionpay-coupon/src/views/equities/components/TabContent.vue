@@ -12,7 +12,11 @@
             :finished="pagingData.length >= pagingTotal"
             @refresh="pagingRefresh"
             @load="pagingLoad">
-            <equities-item v-for="(item, index) in pagingData" :key="index" :title="item" :value="index"/>
+            <equities-item
+                v-for="item in pagingData"
+                :key="item.id"
+                :item="item"
+            ></equities-item>
         </wow-scroll>
     </div>
 </template>

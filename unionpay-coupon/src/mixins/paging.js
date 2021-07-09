@@ -30,8 +30,8 @@ export default {
                 this.pagingIndex = pagingIndex;
                 this.pagingData = pagingIndex === 1 ? list : [...this.pagingData, ...list];
                 this.pagingTotal = +total;
-            }).toast(err => {
-                this.pagingError = err;
+            }).toast((err, msg) => {
+                this.pagingError = msg;
                 return true;
             }).finally(() => {
                 typeof callback === 'function' && callback(this.pagingError);

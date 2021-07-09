@@ -2,21 +2,23 @@
 <template>
     <div class="equities-item">
         <div class="equities-item-cover">
-            <img src="" alt="封面" class="equities-item-image">
+            <img :src="item.goodsPic" alt="封面" class="equities-item-image">
         </div>
         <div class="equities-item-content">
-            <h3 class="equities-item-name">云闪付100元通用卷</h3>
-            <p class="equities-item-tips">全场通用</p>
-            <p class="equities-item-time">有效期：2021.06.08-2022.06.08</p>
+            <h3 class="equities-item-name">{{ item.goodsName }}</h3>
+            <p class="equities-item-tips">{{ item.remark }}</p>
+            <p class="equities-item-time">有效期：{{ item.startDate }} - {{ item.endDate }}</p>
         </div>
         <i class="equities-item-status-icon"></i>
-        <div class="equities-item-button"><span>去使用</span></div>
+        <div class="equities-item-button" @click="$router.push({ path: '/equities/use', query: { } })">
+            <span>去使用</span>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
-
+        props: { item: { default: '' }}
     }
 </script>
 

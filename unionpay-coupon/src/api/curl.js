@@ -99,7 +99,6 @@ const curl = (url, data = {}, options = {}) => {
         data = Object.assign({ signature: signatureGenerate(Object.assign({}, data)) }, data);
     }
     options[method === 'get' ? 'params' : 'data'] = data;
-    console.log(options)
     delete options.loading;
     return instance(options).finally(() => {
         if (toast) toast.clear();

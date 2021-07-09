@@ -69,8 +69,8 @@
                     id: this.$route.query.id,
                 }).then(res => {
                     this.objData = res
-                }).toast(err => {
-                    this.error = err
+                }).toast((err, msg) => {
+                    this.error = msg
                     return true
                 })
             },
