@@ -1,6 +1,8 @@
 
 <template>
-    <div class="equities-item">
+    <div class="equities-item"
+         @click="handleEnter"
+         :class="['equities-item--N ' + item.status]">
         <div class="equities-item-cover">
             <img :src="item.goodsPic" alt="封面" class="equities-item-image">
         </div>
@@ -10,15 +12,20 @@
             <p class="equities-item-time">有效期：{{ item.startDate }} - {{ item.endDate }}</p>
         </div>
         <i class="equities-item-status-icon"></i>
-        <div class="equities-item-button" @click="$router.push({ path: '/equities/use', query: { } })">
-            <span>去使用</span>
-        </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: { item: { default: '' }}
+        props: { item: { default: '' }},
+        methods: {
+            handleEnter () {
+                const { goodsId, status } = this.item;
+                if (this.$enum.EQUITIES_STATUS.valueByKey.NOT_USED === status) {
+                    this.$router.push({ path: '/equities/details', query: { id: goodsId } })
+                }
+            },
+        },
     }
 </script>
 
@@ -32,16 +39,29 @@
         margin: j(10);
         border-radius: j(8);
         background-color: #fff;
-        &.status-1{
+        &.equities-item--N{
+            @extend %cp;
+        }
+        &.equities-item--Y{
+            opacity: 0.9;
+            .equities-item-cover{
+                background-color: rgba(239,210,185,0.70);
+                background-image: none;
+            }
+            .equities-item-status-icon{
+                background: url("~src/assets/images/equities-status-1.png") no-repeat;
+                background-size: contain;
+            }
+        }
+        &.equities-item--E{
+            opacity: 0.8;
             .equities-item-cover{
                 background-color: #D1D0CE;
                 background-image: none;
             }
-        }
-        &.status-2{
-            .equities-item-cover{
-                background-color: rgba(239,210,185,0.70);
-                background-image: none;
+            .equities-item-status-icon{
+                background: url("~src/assets/images/equities-status-2.png") no-repeat;
+                background-size: contain;
             }
         }
         &-cover{
@@ -123,8 +143,6 @@
             @extend %r0;
             width: j(64);
             height: j(64);
-            background: url("~src/assets/images/equities-status-1.png") no-repeat;
-            background-size: contain;
         }
     }
 </style>
