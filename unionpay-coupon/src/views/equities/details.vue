@@ -68,19 +68,20 @@
                 reqEquitiesInfo({
                     id: this.$route.query.id,
                 }).then(res => {
-                    this.objData = res;
+                    this.objData = res
                 }).toast(err => {
                     this.error = err
                     return true
                 })
             },
             handleSubmit () {
-                const { id: goodsId } = this.computedData;
+                const { id: goodsId } = this.objData;
                 doEquitiesExchange({
                     goodsId,
                     quantity: 1,
                 }).then(() => {
-
+                    this.$toast('兑换成功')
+                    this.$router.replace('/equities')
                 }).toast()
             },
         }

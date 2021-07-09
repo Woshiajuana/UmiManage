@@ -56,14 +56,13 @@ instance.interceptors.response.use((response) => {
         error = status ? `网络繁忙，请稍后再试[${status}]` : `网络繁忙，请稍后再试(3)`;
         if (status === 401) {
             $user.clear();
-            setTimeout(() => window.location.reload(), 1000)
+            // setTimeout(() => window.location.reload(), 1000)
             error = 'token无效，请重新授权'
         } else if (respData) {
             const { msg } = respData;
             error = msg;
         }
     }
-    console.log('error => ', error);
     return Promise.reject(error);
 });
 

@@ -25,6 +25,9 @@ export const reqEquitiesInfo = data => curl('coupon/info', data);
 // 卡券<商品>购买
 export const doEquitiesExchange = data => curl('coupon/buy', data, { loading: true });
 
+// 查询个人权益记录
+export const reqEquitiesCouponList = data => curl('customer/goods/record', data);
+
 // 测试
 export const fn = ({ pageNum }) => new Promise((resolve, reject) => {
     setTimeout(() => {

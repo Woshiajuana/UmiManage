@@ -25,10 +25,10 @@
             return {
                 active: 0,
                 arrData: [
-                    { title: '全部' },
-                    { title: '未使用' },
-                    { title: '已使用' },
-                    { title: '已过期' },
+                    { title: '全部', status: 'A' },
+                    { title: '未使用', status: 'N' },
+                    { title: '已使用', status: 'Y' },
+                    { title: '已过期', status: 'E' },
                 ]
             };
         },

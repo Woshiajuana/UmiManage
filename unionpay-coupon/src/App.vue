@@ -24,26 +24,26 @@
         methods: {
             ...mapActions('user', [ 'actionUserLogin' ]),
             judgeUserStatus () {
-                // this.$user.set({
-                //     "access_token": "0490d994-761d-4ba6-a0d8-88f1596050a4",
-                //     "refresh_token": "cf523095-22d0-4fed-8558-f863eaf76341",
-                //     "license": "made by dryad",
-                //     "openId": "QBXYdsRfP0DYn9obQ5y2dXSXcOAZuS5vKH/F39qt3G3IpeJN07fSHc8ar4FhdwyA",
-                //     "credentialsNonExpired": true,
-                //     "enabled": true,
-                //     "authorities": [{
-                //         "authority": "ALL"
-                //     }],
-                //     "tenantId": "DB_0",
-                //     "accountNonExpired": true,
-                //     "id": "1412945132129341444",
-                //     "username": "13127590698",
-                //     "accountNonLocked": true,
-                //     "scope": "server",
-                //     "active": true,
-                //     "token_type": "bearer",
-                //     "expires_in": 43185
-                // });
+                this.$user.set({
+                    "access_token": "ec8f2784-9fdd-488d-8960-4dd74f475d0f",
+                    "refresh_token": "997ec736-9b13-4eb9-84a5-dae4e292b9a1",
+                    "license": "made by dryad",
+                    "openId": "QBXYdsRfP0DYn9obQ5y2dXSXcOAZuS5vKH/F39qt3G3IpeJN07fSHc8ar4FhdwyA",
+                    "credentialsNonExpired": true,
+                    "enabled": true,
+                    "authorities": [{
+                        "authority": "ALL"
+                    }],
+                    "tenantId": "DB_0",
+                    "accountNonExpired": true,
+                    "id": "1412945132129341444",
+                    "username": "13127590698",
+                    "accountNonLocked": true,
+                    "scope": "server",
+                    "active": true,
+                    "token_type": "bearer",
+                    "expires_in": 43198
+                });
                 const user = this.$user.get();
                 if (!user) {
                     this.handleUserAuthConfirm();

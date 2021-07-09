@@ -4,8 +4,8 @@
         <img class="coupon-item-image" :src="item.pic" alt="优惠劵"/>
         <div class="coupon-item-info">
             <h3 class="coupon-item-name">{{ item.name }}</h3>
-            <ul class="coupon-item-types" v-if="item.attributeList.length">
-                <li class="coupon-item-type" v-for="attr in item.attributeList" :key="attr.id">{{ item.attributeName }}</li>
+            <ul class="coupon-item-types" v-if="computedAttrs.length">
+                <li class="coupon-item-type" v-for="attr in computedAttrs" :key="attr.id">{{ item.attributeName }}</li>
             </ul>
 <!--            <p class="coupon-item-tips">4S店通用补漆一次</p>-->
             <div class="c-flex1"></div>
@@ -21,6 +21,11 @@
 
 <script>
     export default {
+        computed: {
+            computedAttrs () {
+                return this.item.attributeList || [];
+            }
+        },
         props: { item: { default: '' } }
     }
 </script>

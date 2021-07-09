@@ -20,22 +20,21 @@
 <script>
     import EquitiesItem from 'src/components/EquitiesItem'
     import PagingMixin from 'src/mixins/paging'
-    const fn = ({ pageIndex }) => new Promise((resolve, reject) => {
-        setTimeout(() => {
-            pageIndex <= 2 ? resolve({ list: new Array(10).fill('A'), total: 50 }) : reject('网络错误');
-        }, 1000)
-    });
+    import { reqEquitiesCouponList } from 'src/api'
 
     export default {
         mixins: [
             PagingMixin,
         ],
+        props: {
+            params: { default: '' },
+        },
         created() {
             this.pagingRefresh();
         },
         methods: {
             pagingGetUrlParamsOptions() {
-                return { fn };
+                return { fn: reqEquitiesCouponList, params: { status: this.params.status } };
             }
         },
         components: {
