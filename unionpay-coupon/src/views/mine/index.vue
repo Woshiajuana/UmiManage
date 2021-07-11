@@ -1,41 +1,42 @@
 
 <template>
     <wow-view class="mine-wrap">
+        <wow-scroll-refresh
+            @refresh="handleRefresh">
+            <user-section></user-section>
 
-        <user-section></user-section>
+            <div class="section-card first-card">
+                <div class="section-head"><h2>个人服务</h2></div>
+                <van-grid :border="false" :column-num="3">
+                    <van-grid-item text="全部订单">
+                        <template #icon><i class="icon-1"></i></template>
+                    </van-grid-item>
+                    <van-grid-item text="优惠劵">
+                        <template #icon><i class="icon-2"></i></template>
+                    </van-grid-item>
+                    <van-grid-item text="积分记录" to="/integral">
+                        <template #icon><i class="icon-3"></i></template>
+                    </van-grid-item>
+                </van-grid>
+            </div>
 
-        <div class="section-card first-card">
-            <div class="section-head"><h2>个人服务</h2></div>
-            <van-grid :border="false" :column-num="3">
-                <van-grid-item text="全部订单">
-                    <template #icon><i class="icon-1"></i></template>
-                </van-grid-item>
-                <van-grid-item text="优惠劵">
-                    <template #icon><i class="icon-2"></i></template>
-                </van-grid-item>
-                <van-grid-item text="积分记录" to="/integral">
-                    <template #icon><i class="icon-3"></i></template>
-                </van-grid-item>
-            </van-grid>
-        </div>
+            <div class="section-card">
+                <div class="section-head"><h2>其他服务</h2></div>
+                <van-grid :border="false">
+                    <van-grid-item text="常见问题">
+                        <template #icon><i class="icon-6"></i></template>
+                    </van-grid-item>
+                    <van-grid-item text="在线客服" to="/order/details">
+                        <template #icon><i class="icon-8"></i></template>
+                    </van-grid-item>
+                    <van-grid-item text="设置" to="/setting">
+                        <template #icon><i class="icon-9"></i></template>
+                    </van-grid-item>
+                </van-grid>
+            </div>
 
-        <div class="section-card">
-            <div class="section-head"><h2>其他服务</h2></div>
-            <van-grid :border="false">
-                <van-grid-item text="常见问题">
-                    <template #icon><i class="icon-6"></i></template>
-                </van-grid-item>
-                <van-grid-item text="在线客服" to="/order/details">
-                    <template #icon><i class="icon-8"></i></template>
-                </van-grid-item>
-                <van-grid-item text="设置" to="/setting">
-                    <template #icon><i class="icon-9"></i></template>
-                </van-grid-item>
-            </van-grid>
-        </div>
-
-        <wow-end-line></wow-end-line>
-
+            <wow-end-line></wow-end-line>
+        </wow-scroll-refresh>
     </wow-view>
 </template>
 
@@ -45,10 +46,13 @@
     import UserSection from './components/UserSection'
     export default {
         created() {
-            this.actionUserUpdate();
+            this.handleRefresh();
         },
         methods: {
             ...mapActions('user', ['actionUserUpdate']),
+            handleRefresh (cb) {
+                this.actionUserUpdate().finally(() => cb && cb());
+            }
         },
         components: {
             UserSection,
