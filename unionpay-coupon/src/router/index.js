@@ -34,7 +34,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     loadLanguageAsync(undefined, to.meta).then(() => {
         const user = $user.get();
-        console.log('user => ', user);
         if (!user) {
             // 未登录
             if (['/'].includes(to.path)) {

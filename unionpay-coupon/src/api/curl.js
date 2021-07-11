@@ -50,7 +50,7 @@ instance.interceptors.response.use((response) => {
     }
     return data;
 }, error => {
-    console.log('请求响应错误 => ', error.response);
+    console.log('请求响应错误 => ', error.response, error);
     if (error && error.response) {
         const { status, data: respData } = error.response;
         error = status ? `网络繁忙，请稍后再试[${status}]` : `网络繁忙，请稍后再试(3)`;
@@ -62,6 +62,8 @@ instance.interceptors.response.use((response) => {
             const { msg } = respData;
             error = msg;
         }
+    } else {
+        error = `网络繁忙，请稍后再试(4)`
     }
     return Promise.reject(error);
 });
