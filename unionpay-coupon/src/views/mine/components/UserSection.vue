@@ -6,19 +6,16 @@
             <span>{{ userInfo.username | filterPhone }}</span>
         </div>
         <ul class="user-data">
-            <li class="user-data-item">
+            <li class="user-data-item" @click="$router.push('/equities')">
                 <span class="user-data-value">{{ userInfo.balance || 0 }}</span>
                 <span class="user-data-label">优惠券</span>
             </li>
             <li class="user-data-bar"></li>
-            <li class="user-data-item">
+            <li class="user-data-item" @click="$router.push('/integral')">
                 <span class="user-data-value">{{ userInfo.count || 0 }}</span>
                 <span class="user-data-label">积分</span>
             </li>
         </ul>
-        <router-link to="/integral" class="user-link-button">
-            <span>积分记录</span>
-        </router-link>
     </div>
 </template>
 
@@ -41,8 +38,9 @@
         @extend %jcs;
         @extend %fdc;
         @extend %bsb;
+        margin: 0 j(10);
         padding: j(16) 0;
-        width: j(335);
+        //width: j(335);
         height: j(150);
         border-radius: j(8);
         background-image: $gradient-primary-color;
@@ -67,16 +65,19 @@
     .user-data{
         @extend %df;
         @extend %aic;
+        @extend %jcc;
         padding: 0 j(16);
         &-item{
             @extend %df;
+            @extend %df1;
             @extend %fdc;
             @extend %aic;
             width: j(90);
         }
         &-value{
             @extend %c3;
-            font-size: j(18);
+            @extend %fwb;
+            font-size: j(20);
         }
         &-label{
             @extend %c6;
@@ -84,22 +85,8 @@
         }
         &-bar{
             width: 1px;
-            height: j(18);
+            height: j(24);
             background-color: #b1b1b1;
         }
-    }
-    .user-link-button{
-        @extend %df;
-        @extend %aic;
-        @extend %jcc;
-        @extend %cp;
-        @extend %pa;
-        right: j(16);
-        bottom: j(16);
-        width: j(72);
-        border-radius: j(13);
-        height: j(26);
-        color: $color-primary;
-        background-color: $color-background-light;
     }
 </style>

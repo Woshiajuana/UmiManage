@@ -5,42 +5,25 @@
         <user-section></user-section>
 
         <div class="section-card first-card">
-            <div class="section-head">
-                <h2>我的订单</h2>
-                <router-link to="/order" class="order-link">
-                    <span>全部订单</span>
-                    <i class="c-arrow right"></i>
-                </router-link>
-            </div>
+            <div class="section-head"><h2>个人服务</h2></div>
             <van-grid :border="false" :column-num="3">
-                <van-grid-item text="已完成">
+                <van-grid-item text="全部订单">
                     <template #icon><i class="icon-1"></i></template>
                 </van-grid-item>
-                <van-grid-item text="代付款">
+                <van-grid-item text="优惠劵">
                     <template #icon><i class="icon-2"></i></template>
                 </van-grid-item>
-                <van-grid-item text="退换货">
+                <van-grid-item text="积分记录" to="/integral">
                     <template #icon><i class="icon-3"></i></template>
                 </van-grid-item>
             </van-grid>
         </div>
 
         <div class="section-card">
-            <div class="section-head">
-                <h2>其他服务</h2>
-            </div>
+            <div class="section-head"><h2>其他服务</h2></div>
             <van-grid :border="false">
-                <van-grid-item text="商家入驻" @click="handleText">
-                    <template #icon><i class="icon-4"></i></template>
-                </van-grid-item>
-                <van-grid-item text="我的地址">
-                    <template #icon><i class="icon-5"></i></template>
-                </van-grid-item>
                 <van-grid-item text="常见问题">
                     <template #icon><i class="icon-6"></i></template>
-                </van-grid-item>
-                <van-grid-item text="反馈">
-                    <template #icon><i class="icon-7"></i></template>
                 </van-grid-item>
                 <van-grid-item text="在线客服" to="/order/details">
                     <template #icon><i class="icon-8"></i></template>
@@ -66,9 +49,6 @@
         },
         methods: {
             ...mapActions('user', ['actionUserUpdate']),
-            handleText () {
-                this.$router.push('/setting');
-            }
         },
         components: {
             UserSection,
@@ -81,11 +61,12 @@
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
     .mine-wrap{
-        padding-top: j(10);
+        padding-top: j(16);
+        padding-bottom: j(20);
     }
     .section-card{
         @extend %oh;
-        padding-top: j(10);
+        padding: j(10) 0;
         margin: j(16) j(10);
         border-radius: j(20);
         background-color: $color-background-light;
@@ -119,22 +100,22 @@
             background: url("~src/assets/images/mine-icon3.png") no-repeat;
             background-size: contain;
         }
-        .icon-4{
-            background: url("~src/assets/images/mine-icon4.png") no-repeat;
-            background-size: contain;
-        }
-        .icon-5{
-            background: url("~src/assets/images/mine-icon5.png") no-repeat;
-            background-size: contain;
-        }
+        //.icon-4{
+        //    background: url("~src/assets/images/mine-icon4.png") no-repeat;
+        //    background-size: contain;
+        //}
+        //.icon-5{
+        //    background: url("~src/assets/images/mine-icon5.png") no-repeat;
+        //    background-size: contain;
+        //}
         .icon-6{
             background: url("~src/assets/images/mine-icon6.png") no-repeat;
             background-size: contain;
         }
-        .icon-7{
-            background: url("~src/assets/images/mine-icon7.png") no-repeat;
-            background-size: contain;
-        }
+        //.icon-7{
+        //    background: url("~src/assets/images/mine-icon7.png") no-repeat;
+        //    background-size: contain;
+        //}
         .icon-8{
             background: url("~src/assets/images/mine-icon8.png") no-repeat;
             background-size: contain;
@@ -149,7 +130,7 @@
         @extend %aic;
         @extend %jcs;
         height: j(40);
-        padding: 0 j(16);
+        padding: 0 j(20);
         h2{
             font-size: j(16);
         }
