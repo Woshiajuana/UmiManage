@@ -4,6 +4,7 @@
         <div class="home-inner">
             <template v-if="arrBanner">
                 <van-search
+                    @click="$router.push('/search')"
                     class="search-box"
                     shape="round"
                     disabled
@@ -51,6 +52,7 @@
             }
         },
         created() {
+            // this.$router.push('/search')
             this.fetchData();
         },
         methods: {
