@@ -1,7 +1,7 @@
 
 <template>
     <wow-view class="view-flex">
-        <filter-view></filter-view>
+        <filter-view :obj-filter="objFilter"></filter-view>
         <div class="null"></div>
         <wow-super-box
             @refresh="pagingRefresh"
@@ -29,6 +29,20 @@
         mixins: [
             PagingMixin,
         ],
+        data () {
+            return {
+                objFilter: {
+                    month: {
+                        value: '',
+                        is: false,
+                        label: '选择日期',
+                        element: 'datetime',
+                    }
+                }
+            }
+        },
+        watch: {
+        },
         created() {
             this.pagingRefresh();
         },

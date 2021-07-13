@@ -1,20 +1,45 @@
 
 <template>
     <div class="filter-view">
-        <div class="filter-cell">
-            <span>上海市</span>
-            <i></i>
-        </div>
-        <div class="filter-cell">
-            <span>浦东新区</span>
-            <i></i>
-        </div>
+        <template v-for="(item, key) in objFilter" >
+            <div class="filter-cell" @click="item.is = true" :key="key">
+                <span>{{ item.value || item.label }}</span>
+                <i></i>
+            </div>
+            <van-popup
+                :key="key + 'popup'"
+                v-if="item.element === 'datetime'"
+                v-model="item.is"
+                round
+                position="bottom">
+                <van-datetime-picker
+                    type="year-month"
+                    title="选择年月日"
+                    @confirm="handleDateTimeConfirm(item, $event)"
+                    @cancel="item.is = false"
+                ></van-datetime-picker>
+            </van-popup>
+        </template>
     </div>
 </template>
 
 <script>
+    import { Popup, DatetimePicker } from 'vant'
+    import { filterDate } from 'src/utils/filters'
     export default {
-
+        props: {
+            objFilter: { default: () => ({})}
+        },
+        methods: {
+            handleDateTimeConfirm (item, value) {
+                item.value = filterDate(value, 'yyyy-MM')
+                item.is = false
+            }
+        },
+        components: {
+            VanPopup: Popup,
+            VanDatetimePicker: DatetimePicker,
+        }
     }
 </script>
 
