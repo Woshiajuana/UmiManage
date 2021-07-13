@@ -25,25 +25,13 @@
             ...mapActions('user', [ 'actionUserLogin' ]),
             judgeUserStatus () {
                 this.$user.set({
-                    "access_token": "ec8f2784-9fdd-488d-8960-4dd74f475d0f",
-                    "refresh_token": "997ec736-9b13-4eb9-84a5-dae4e292b9a1",
-                    "license": "made by dryad",
-                    "openId": "QBXYdsRfP0DYn9obQ5y2dXSXcOAZuS5vKH/F39qt3G3IpeJN07fSHc8ar4FhdwyA",
-                    "credentialsNonExpired": true,
-                    "enabled": true,
-                    "authorities": [{
-                        "authority": "ALL"
-                    }],
-                    "tenantId": "DB_0",
-                    "accountNonExpired": true,
-                    "id": "1412945132129341444",
-                    "username": "13127590698",
-                    "accountNonLocked": true,
-                    "scope": "server",
-                    "active": true,
-                    "token_type": "bearer",
-                    "expires_in": 43198
-                });
+                    "openId":"QBXYdsRfP0DYn9obQ5y2dXSXcOAZuS5vKH/F39qt3G3IpeJN07fSHc8ar4FhdwyA",
+                    "credentialsNonExpired":true,
+                    "enabled":true,
+                    "authorities":[{"authority":"ALL"}],
+                    "tenantId":"DB_0",
+                    "accountNonExpired":true,
+                    "id":"1412945132129341444","username":"13127590698","accountNonLocked":true,"access_token":"9b181b76-3cda-4d08-be11-ae0b746e6ed7","refresh_token":"74ec8de5-e991-4ca3-b75a-97e86d594516","license":"made by dryad","scope":"server","active":true,"token_type":"bearer","expires_in":43199,"version":"1.0.0","charset":"utf-8","traceId":null,"workId":"1414603285809414146","respTime":"20210712231120","loginNo":"13127590698","operatorNo":"1412945132129341444","userName":null,"nickName":null,"balance":"799","headPortrait":null,"count":1});
                 const user = this.$user.get();
                 if (!user) {
                     this.handleUserAuthConfirm();

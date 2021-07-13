@@ -1,20 +1,20 @@
 
 <template>
-    <div class="coupon-item">
-        <img class="coupon-item-image" :src="item.pic" alt="优惠劵"/>
-        <div class="coupon-item-info">
-            <h3 class="coupon-item-name">{{ item.name }}</h3>
-            <ul class="coupon-item-types" v-if="computedAttrs.length">
-                <li class="coupon-item-type" v-for="attr in computedAttrs" :key="attr.id">{{ item.attributeName }}</li>
+    <div class="order-item">
+        <img class="order-item-image" :src="item.pic" alt="优惠劵"/>
+        <div class="order-item-info">
+            <h3 class="order-item-name">{{ item.name }}</h3>
+            <ul class="order-item-types" v-if="computedAttrs.length">
+                <li class="order-item-type" v-for="attr in computedAttrs" :key="attr.id">{{ item.attributeName }}</li>
             </ul>
-<!--            <p class="coupon-item-tips">4S店通用补漆一次</p>-->
             <div class="c-flex1"></div>
-            <span class="coupon-item-number">{{item.price}}积分</span>
+            <p class="order-item-tips">{{ item.createdTime }}</p>
+            <span class="order-item-number">{{item.payPoint}}积分</span>
         </div>
-<!--        <span class="coupon-item-status">待付款</span>-->
-        <div class="coupon-item-button c-button"
-             @click="$router.push({ path: '/equities/details', query: { id: item.id } })">
-            <span>兑换</span>
+<!--        <span class="order-item-status">待付款</span>-->
+        <div class="order-item-button c-button"
+             @click="$router.push({ path: '/order/details', query: item })">
+            <span>查看权益</span>
         </div>
     </div>
 </template>
@@ -32,7 +32,7 @@
 
 <style lang="scss" scoped>
     @import "src/assets/scss/define";
-    .coupon-item{
+    .order-item{
         @extend %df;
         @extend %pr;
         @extend %aic;

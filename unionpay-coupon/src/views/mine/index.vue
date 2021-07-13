@@ -8,7 +8,7 @@
             <div class="section-card first-card">
                 <div class="section-head"><h2>个人服务</h2></div>
                 <van-grid :border="false" :column-num="3">
-                    <van-grid-item text="全部订单">
+                    <van-grid-item text="全部订单" to="/order">
                         <template #icon><i class="icon-1"></i></template>
                     </van-grid-item>
                     <van-grid-item text="优惠劵">
@@ -26,7 +26,7 @@
                     <van-grid-item text="常见问题">
                         <template #icon><i class="icon-6"></i></template>
                     </van-grid-item>
-                    <van-grid-item text="在线客服" to="/order/details">
+                    <van-grid-item text="在线客服">
                         <template #icon><i class="icon-8"></i></template>
                     </van-grid-item>
                     <van-grid-item text="设置" to="/setting">

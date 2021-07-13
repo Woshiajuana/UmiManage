@@ -5,35 +5,46 @@
         <ul class="content">
             <li>
                 <span class="label">交易编号</span>
-                <span class="value">D打扫打扫</span>
+                <span class="value">{{ computedData.orderSn }}</span>
             </li>
             <li>
-                <span class="label">交易编号</span>
-                <span class="value">D打扫打扫</span>
+                <span class="label">状态</span>
+                <span class="value">已完成</span>
             </li>
             <li>
-                <span class="label">交易编号</span>
-                <span class="value">D打扫打扫</span>
+                <span class="label">名称</span>
+                <span class="value">{{ computedData.name }}</span>
             </li>
             <li>
-                <span class="label">交易编号</span>
-                <span class="value">D打扫打扫</span>
+                <span class="label">积分</span>
+                <span class="value">{{ computedData.payPoint }}</span>
             </li>
             <li>
-                <span class="label">交易编号</span>
-                <span class="value">D打扫打扫</span>
+                <span class="label">下单时间</span>
+                <span class="value">{{ computedData.createdTime }}</span>
+            </li>
+            <li>
+                <span class="label">支付时间</span>
+                <span class="value">{{ computedData.paymentTime }}</span>
             </li>
         </ul>
-        <div class="operate">
-            <div class="c-button c-button-border"><span>取消订单</span></div>
-            <div class="c-button"><span>支付</span></div>
-        </div>
+<!--        <div class="operate">-->
+<!--            <div class="c-button c-button-border"><span>取消订单</span></div>-->
+<!--            <div class="c-button"><span>支付</span></div>-->
+<!--        </div>-->
     </wow-view>
 </template>
 
 <script>
     export default {
-
+        created() {
+            console.log(this.$route.query)
+        },
+        computed: {
+            computedData () {
+                return this.$route.query
+            }
+        }
     }
 </script>
 

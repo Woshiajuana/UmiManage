@@ -10,8 +10,8 @@ const ENCRYPT_KEY = 'dryadM5tgb&UJhlk'
 export const baseURL =
     window.location.hostname.includes('localhost')
     || window.location.hostname.includes('192')
-        ? 'http://192.168.2.133:19082/'
-        : 'http://192.168.2.133:19082/';
+        ? 'http://testcoupon.xiaomiqiu.com/'
+        : 'http://testcoupon.xiaomiqiu.com/';
 
 const instance = axios.create({
     baseURL,
@@ -41,10 +41,7 @@ instance.interceptors.response.use((response) => {
     if (!respData) {
         return Promise.reject(`网络繁忙，请稍后再试(1)`);
     }
-    let { msg, code, data } = respData;
-    if ([201].indexOf(code) > -1) {
-        return Promise.reject(msg || 'token无效，请重新授权');
-    }
+    const { msg, code, data } = respData;
     if (code !== 0) {
         return Promise.reject(msg || `网络繁忙，请稍后再试(2)`);
     }
@@ -55,7 +52,7 @@ instance.interceptors.response.use((response) => {
         const { status, data: respData } = error.response;
         error = status ? `网络繁忙，请稍后再试[${status}]` : `网络繁忙，请稍后再试(3)`;
         if (status === 401) {
-            $user.clear();
+            // $user.clear();
             // setTimeout(() => window.location.reload(), 1000)
             error = 'token无效，请重新授权'
         } else if (respData) {
