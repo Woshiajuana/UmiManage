@@ -8,8 +8,8 @@ import { Toast, Dialog } from 'vant'
 import router from './router'
 import store from './store'
 import i18n from './locale'
-import VueCupUi from 'vue-cup-ui'
-import 'vue-cup-ui/lib/vue-cup-ui.css'
+import VueCupUi from 'src/components/vue-cup-ui'
+import 'src/components/vue-cup-ui/lib/vue-cup-ui.css'
 
 Vue.use(VueCupUi);
 
