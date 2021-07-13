@@ -20,6 +20,8 @@
                 ></van-datetime-picker>
             </van-popup>
         </template>
+        <div class="c-flex1"></div>
+        <div class="c-button c-button-border" @click="handleReset">重置</div>
     </div>
 </template>
 
@@ -34,7 +36,14 @@
             handleDateTimeConfirm (item, value) {
                 item.value = filterDate(value, 'yyyy-MM')
                 item.is = false
-            }
+                this.$emit('refresh')
+            },
+            handleReset () {
+                for (let k in this.objFilter) {
+                    this.objFilter[k].value = ''
+                }
+                this.$emit('refresh')
+            },
         },
         components: {
             VanPopup: Popup,

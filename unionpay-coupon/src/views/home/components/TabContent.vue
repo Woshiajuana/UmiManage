@@ -31,6 +31,7 @@
             PagingMixin,
         ],
         props: {
+            keyword: { default: '' },
             categoryId: { default: '' },
         },
         created() {
@@ -38,7 +39,11 @@
         },
         methods: {
             pagingGetUrlParamsOptions() {
-                return { fn: reqEquitiesList, params: { categoryId: this.categoryId } }
+                const params = { categoryId: this.categoryId };
+                if (this.keyword) {
+                    params.name = this.keyword;
+                }
+                return { fn: reqEquitiesList, params }
             },
         },
         components: {

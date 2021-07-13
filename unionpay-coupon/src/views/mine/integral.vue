@@ -1,7 +1,10 @@
 
 <template>
     <wow-view class="view-flex">
-        <filter-view :obj-filter="objFilter"></filter-view>
+        <filter-view
+            @refresh="pagingRefresh"
+            :obj-filter="objFilter"
+        ></filter-view>
         <div class="null"></div>
         <wow-super-box
             @refresh="pagingRefresh"
@@ -41,14 +44,17 @@
                 }
             }
         },
-        watch: {
-        },
         created() {
             this.pagingRefresh();
         },
         methods: {
             pagingGetUrlParamsOptions() {
-                return { fn: reqIntegralList };
+                const { value } = this.objFilter.month;
+                const params = {};
+                if (value) {
+                    params.month = value.replace(/-/g, '')
+                }
+                return { fn: reqIntegralList, params };
             }
         },
         components: {
