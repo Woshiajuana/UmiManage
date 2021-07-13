@@ -10,6 +10,6 @@ export default [
         path: '/equities/details',
         name: 'EquitiesDetails',
         component: () => import(/* webpackChunkName: "equities-details" */ 'src/views/equities/details'),
-        meta: { depth: 3, title: 'router.setting' }
+        meta: { depth: 3, title: 'router.equitiesDetails' }
     },
 ]
