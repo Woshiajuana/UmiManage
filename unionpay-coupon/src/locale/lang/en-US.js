@@ -6,6 +6,11 @@ export default {
         mine: 'Mine',
         setting: 'Setting',
         order: 'Order',
+        equitiesMore: 'Equities More',
+        equitiesDetails: 'Equities Details',
+        advert: 'Advert',
+        search: 'Search',
+        orderDetails: 'Order Details',
     },
     main: {
         home: 'Home',

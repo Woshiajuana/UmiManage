@@ -1,13 +1,10 @@
 
 <template>
-    <wow-view>
+    <wow-view class="setting-wrap">
+        <div class="null1"></div>
         <van-cell-group>
             <van-cell :title="$t('setting.translations')" :value="computeTranslations.name" is-link @click="show = true"/>
         </van-cell-group>
-        <van-button type="primary">切换主题</van-button>
-        <div class="test-button">
-            <span class="test-button-text">哈哈</span>
-        </div>
         <van-action-sheet
             v-model="show"
             :actions="computedLangOptions"
@@ -19,7 +16,7 @@
 </template>
 
 <script>
-    import { Cell as VanCell, CellGroup as VanCellGroup, ActionSheet as VanActionSheet, Button as VanButton } from 'vant'
+    import { Cell, CellGroup, ActionSheet } from 'vant'
     export default {
         data() {
             return {
@@ -43,35 +40,28 @@
             }
         },
         components: {
-            VanCell,
-            VanButton,
-            VanCellGroup,
-            VanActionSheet,
+            VanCell: Cell,
+            VanCellGroup: CellGroup,
+            VanActionSheet: ActionSheet,
         }
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "src/assets/scss/define";
-    .test-button{
-        @extend %df;
-        @extend %aic;
-        @extend %jcc;
-        @extend %bsb;
-        width: j(200);
-        height: j(50);
-        margin: j(20);
-        border: 1px solid red;
-    }
-    @include b(human) {
-        padding: j(20);
-        background-color: red;
-        @include e(finger) {
-            padding: j(20);
-            background-color: #42bdff;
-            @include m(little) {
-                padding: j(20);
-                background-color: #ffa442;
+    .setting-wrap {
+        /deep/ {
+            .van-cell-group{
+                background-color: transparent;
+            }
+            .van-cell{
+                background-color: $color-background-light;
+            }
+            .van-cell__title{
+                color: #ddd;
+            }
+            .van-cell__value{
+                @extend %cfff;
             }
         }
     }
