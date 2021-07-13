@@ -11,7 +11,7 @@
                     <van-grid-item text="全部订单" to="/order">
                         <template #icon><i class="icon-1"></i></template>
                     </van-grid-item>
-                    <van-grid-item text="优惠劵">
+                    <van-grid-item text="优惠劵" replace to="/equities">
                         <template #icon><i class="icon-2"></i></template>
                     </van-grid-item>
                     <van-grid-item text="积分记录" to="/integral">

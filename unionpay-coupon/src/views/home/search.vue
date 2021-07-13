@@ -178,6 +178,7 @@
             }
             .van-tabs__content{
                 min-height: 100vh;
+                background-color: $color-background;
             }
         }
     }
