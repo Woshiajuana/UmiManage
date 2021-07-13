@@ -14,7 +14,7 @@ export const reqUserInfo = () => curl('customer/myself', {}, { method: 'get' })
 export const reqBannerList = data => curl('sys/banner', data, { method: 'get' })
 
 // 卡券<商品>类型查询
-export const reqEquitiesType = data => curl('coupon/categories', data, { method: 'get' })
+export const reqEquitiesType = (data, options = {}) => curl('coupon/categories', data, { method: 'get', ...options })
 
 // 卡券<商品>列表查询
 export const reqEquitiesList = data => curl('coupon/list', data)

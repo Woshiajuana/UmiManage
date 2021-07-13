@@ -100,7 +100,7 @@
                 this.arrHistory = arrHistory.slice(0, 10)
                 this.setHistoryKeywords()
                 this.active = 0;
-                reqEquitiesType().then(res => {
+                reqEquitiesType({}, { loading: true }).then(res => {
                     this.arrType = res.details;
                     this.isShowResult = true;
                 }).toast();

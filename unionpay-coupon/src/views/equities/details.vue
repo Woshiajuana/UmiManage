@@ -40,7 +40,7 @@
                     </dl>
                 </div>
             </div>
-            <div class="footer">
+            <div class="footer" v-if="$route.query.path !== '/equities'">
                 <div class="c-button c-button-large" @click="handleSubmit">
                     <span>立即兑换</span>
                 </div>

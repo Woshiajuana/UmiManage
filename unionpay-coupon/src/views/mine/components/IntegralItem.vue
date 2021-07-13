@@ -3,17 +3,17 @@
     <div class="integral-item">
         <div class="integral-item-content">
             <div class="integral-item-info">
-                <p class="integral-item-title">洗车券</p>
-                <p class="integral-item-time">2021-06-07  09:30:30</p>
+                <p class="integral-item-title">{{ item.subject }}</p>
+                <p class="integral-item-time">{{ item.createdTime }}</p>
             </div>
-            <span class="integral-item-number color-1">100</span>
+            <span class="integral-item-number" :class="['color-' + item.type]">{{ item.point }}</span>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-
+        props: { item: { default: '' } }
     }
 </script>
 
@@ -55,10 +55,10 @@
         }
         &-number{
             font-size: j(16);
-            &.color-1{
+            &.color-CONSUME{
                 color: $color-warning;
             }
-            &.color-2{
+            &.color-RECHARGE{
                 color: #199AFF;
             }
         }

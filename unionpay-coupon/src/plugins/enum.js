@@ -8,6 +8,14 @@ export const $enum = {
             { label: '已使用', value: 'Y', key: 'USED' },
             { label: '已过期', value: 'E', key: 'EXPIRED' },
         ]
+    },
+
+    // 积分类型
+    INTEGRAL_TYPE: {
+        options: [
+            { label: '充值', value: 'RECHARGE', key: 'RECHARGE' },
+            { label: '消费', value: 'CONSUME', key: 'CONSUME' },
+        ]
     }
 
 };
